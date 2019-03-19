@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    <table>
+        <tr>
+            <th>Films</th>
+        </tr>
+        {% for film in films%}
+        <tr>
+            <td>{{film.name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

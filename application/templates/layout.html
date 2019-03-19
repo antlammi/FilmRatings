@@ -7,6 +7,10 @@
   </head>
 
   <body>
+    <ul>
+      <li><a href="{{ url_for('films_index') }}">List Films</a></li>
+      <li><a href="{{ url_for('films_form') }}">Add a film</a></li>
+    </ul>
     {% block body %}
     <h1>
   Tähän tuodaan sisältö muualta.
