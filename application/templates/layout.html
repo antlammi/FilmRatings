@@ -7,6 +7,14 @@
   </head>
 
   <body>
+    {% if current_user.is_authenticated %}
+    <p>
+      Kirjautunut nimellä {{ current_user.name }}. <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+    </p>
+    {% else %}
+    <a href="{{ url_for('auth_login') }} "> Kirjaudu</a>
+    <a href="{{ url_for('signup_form') }}">Signup</a> 
+    {% endif %}
     <ul>
       <li><a href="{{ url_for('films_index') }}">List Films</a></li>
       <li><a href="{{ url_for('films_form') }}">Add a film</a></li>
