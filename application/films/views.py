@@ -1,13 +1,20 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.films.models import Film
+from application.films.forms import FilmForm
 @app.route("/films/new")
 def films_form():
-    return render_template("films/new.html")
+    return render_template("films/new.html", form = FilmForm())
 
 @app.route("/films/", methods=["POST"])
 def films_create():
-    f = Film(request.form.get("name"))
+    form = FilmForm(request.form)
+
+    f = Film(form.name.data)
+    ##f.director = f.director.data
+
+    if not form.validate():
+        return render_template("films/new.html", form = form)
     db.session().add(f)
     db.session().commit()
 
@@ -16,3 +23,4 @@ def films_create():
 @app.route("/films/", methods=["GET"])
 def films_index():
     return render_template("films/list.html", films = Film.query.all())
+

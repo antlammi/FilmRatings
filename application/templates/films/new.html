@@ -2,7 +2,34 @@
 
 {% block body %}
 <form method="POST" action="{{url_for('films_create') }}">
-    <input type="text" name="name"/>
-    <input type="submit" value="add a new film"/>
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+            <td>
+                {% for error in form.name.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.director.label}}
+            </td>
+            <td>
+                {{form.director}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="add a new film"/>
+            </td>
+        </tr>
+    </table>
+    
 </form>
 {% endblock %}
