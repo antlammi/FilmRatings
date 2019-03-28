@@ -3,10 +3,19 @@
     <table>
         <tr>
             <th>Films</th>
+            <th>Director</th>
         </tr>
         {% for film in films%}
         <tr>
             <td>{{film.name}}</td>
+        
+        {% if not film.director_id == null %}
+            {% for director in directors %}
+                {% if film.director_id == director.id %}
+                    <td>{{director.name}}</td>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         </tr>
         {% endfor %}
     </table>

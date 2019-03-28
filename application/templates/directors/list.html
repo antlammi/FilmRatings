@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+    <table>
+        <tr>
+            <th>Directors</th>
+        </tr>
+        {% for director in directors%}
+        <tr>
+            <td>{{director.name}}</td>
+            {% if not director.nationality == null %}
+                <td>, {{director.nationality}}</td>
+            {% endif %}
+            {% if not director.age == null %}
+                <td>, {{director.age}}</td>
+            {% endif %} 
+        </tr>   
+        
+        {% endfor %}
+    </table>
+{% endblock %}

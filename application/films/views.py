@@ -2,20 +2,21 @@ from application import app, db
 from flask_login import login_required
 from flask import redirect, render_template, request, url_for
 from application.films.models import Film
+from application.directors.models import Director
 from application.films.forms import FilmForm
+
 @app.route("/films/new")
-@login_required
 def films_form():
     return render_template("films/new.html", form = FilmForm())
 
 @app.route("/films/", methods=["POST"])
-@login_required
 def films_create():
     form = FilmForm(request.form)
 
     f = Film(form.name.data)
-    ##f.director = f.director.data
 
+    director = Director.query.filter_by(name=form.director.data).first()
+    f.director_id = director.id
     if not form.validate():
         return render_template("films/new.html", form = form)
     db.session().add(f)
@@ -27,5 +28,5 @@ def films_create():
 #@login_required
 @app.route("/films/", methods=["GET"])
 def films_index():
-    return render_template("films/list.html", films = Film.query.all())
+    return render_template("films/list.html", films = Film.query.all(), directors = Director.query.all())
 

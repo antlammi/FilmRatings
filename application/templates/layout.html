@@ -17,7 +17,9 @@
     {% endif %}
     <ul>
       <li><a href="{{ url_for('films_index') }}">List Films</a></li>
-      <li><a href="{{ url_for('films_form') }}">Add a film</a></li>
+      <li><a href="{{ url_for('films_form') }}">Add a Film</a></li>
+      <li><a href="{{url_for('directors_index') }}">List Directors</a></li>
+      <li><a href="{{url_for('directors_form') }}">Add a Director</a></li>
     </ul>
     {% block body %}
     <h1>

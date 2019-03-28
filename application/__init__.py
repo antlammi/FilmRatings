@@ -12,11 +12,15 @@ from application import views
 from application.films import models
 from application.films import views
 
+from application.directors import models
+from application.directors import views
+
 from application.auth import models
 from application.auth import views
 
 from application.user import views
 from application.auth.models import User
+
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
 
