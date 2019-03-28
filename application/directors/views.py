@@ -14,7 +14,7 @@ def directors_form():
 def directors_create():
     form = DirectorForm(request.form)
 
-    d = Director(form.name.data, form.nationality.data, form.age.data)
+    d = Director(form.name.data, form.nationality.data or 'unknown', form.age.data )
 
     if not form.validate():
         return render_template("directors/new.html", form = form)

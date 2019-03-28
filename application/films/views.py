@@ -16,7 +16,10 @@ def films_create():
     f = Film(form.name.data)
 
     director = Director.query.filter_by(name=form.director.data).first()
+    
     f.director_id = director.id
+    ##check if null, create director with name if so
+       
     if not form.validate():
         return render_template("films/new.html", form = form)
     db.session().add(f)

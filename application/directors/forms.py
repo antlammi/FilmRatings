@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, validators
+from wtforms import StringField, validators
 
 class DirectorForm(FlaskForm):
     name = StringField("Name", [validators.Length(min=1)])
     nationality = StringField("Nationality")
-    age = IntegerField("Age")
+    age = StringField("Age", [validators.Length(max=3)])
 
     class Meta:
         csrf = False
