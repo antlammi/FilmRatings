@@ -27,3 +27,4 @@ def directors_create():
 def directors_index():
     return render_template("directors/list.html", directors = Director.query.all())
 
+

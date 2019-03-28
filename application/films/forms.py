@@ -6,3 +6,5 @@ class FilmForm(FlaskForm):
     director = StringField("Directed by")
     class Meta:
         csrf = False
+
+

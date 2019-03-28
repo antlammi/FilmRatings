@@ -16,6 +16,21 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+            <td>
+                <a href="{{ url_for('films_show', film_id=film.id )}}">
+                    Show
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('films_edit', film_id=film.id )}}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('films_delete', film_id=film.id) }}">
+                    Delete
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </table>
