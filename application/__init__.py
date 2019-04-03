@@ -26,6 +26,9 @@ from application.auth import views
 from application.user import views
 from application.auth.models import User
 
+from application.ratings import models
+from application.ratings import views
+
 
 from os import urandom
 app.config["SECRET_KEY"] = urandom(32)
@@ -40,6 +43,7 @@ login_manager.login_message = "Please login to use this functionality."
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
 try: 
     db.create_all()
 except:

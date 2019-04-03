@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+    <table class="table">
+        <tr>
+            <th>Film</th>
+            <th>Score</th>
+            <th>Rated by</th>
+        </tr>
+        {% for rating in ratings%}
+        <tr>
+            <th> 
+                {% for film in films %}
+                    {% if film.id == rating.film_id %}
+                        {{film.name}}
+                    {% endif %}
+                {% endfor %}
+            </th>
+            <th>{{rating.score}}</th>
+            <th> 
+                {% for user in users %}
+                    {% if user.id == rating.user_id %}
+                        {{user.username}}
+                    {% endif %}
+                {% endfor %}
+            </th>
+        </tr>
+            
+        {% endfor %}
+    </table>
+{% endblock %}

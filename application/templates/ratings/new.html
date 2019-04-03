@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{url_for('ratings_create') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.film_id.label }}
+            </td>
+            <td>
+                {{ form.film_id }}
+            </td>
+            
+        </tr>
+        <tr>
+            <td>
+                {{ form.account_id.label}}
+            </td>
+            <td>
+                {{form.account_id}}
+            </td>
+        </tr>
+        <tr>
+                <td>
+                    {{ form.score.label}}
+                </td>
+                <td>
+                    {{form.score}}
+                </td>
+            </tr>
+        <tr>
+            <td colspan="2">
+                <Button type="submit" class="btn btn-primary">Submit</Button>
+            </td>
+        </tr>
+    </table>
+    
+</form>
+{% endblock %}
