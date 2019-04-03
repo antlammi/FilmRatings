@@ -1,11 +1,7 @@
 from application import db
-
-class Director(db.Model):
-    id = db.Column(db.Integer, primary_key =True)
-    date_created = db.Column(db.DateTime, default = db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default = db.func.current_timestamp())
-    onupdate = db.func.current_timestamp()
-
+from application.models import Base
+class Director(Base):
+    
     name = db.Column(db.String(400), nullable=False)
     nationality = db.Column(db.String(400), nullable = True)
     age = db.Column(db.String(3), nullable = True)

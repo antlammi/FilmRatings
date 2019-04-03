@@ -29,11 +29,6 @@ def films_create():
 
     return redirect(url_for("films_index"))
 ##update
-
-
-
-
-
 @app.route("/films/<film_id>/edit", methods=["GET"])
 @login_required
 def films_edit(film_id):
@@ -44,6 +39,7 @@ def films_show(film_id):
         return render_template("films/show.html", film=Film.query.get(film_id), directors=Director.query.all())
  
 @app.route("/films/<film_id>/delete", methods=["GET"])
+@login_required
 def films_delete(film_id):
     f = Film.query.get(film_id)
     db.session().delete(f)
@@ -51,6 +47,7 @@ def films_delete(film_id):
     return redirect(url_for("films_index"))
 
 @app.route("/films/<film_id>/update", methods=["POST"])
+@login_required
 def films_update(film_id):
     form = FilmForm(request.form)
     f = Film.query.get(film_id)
