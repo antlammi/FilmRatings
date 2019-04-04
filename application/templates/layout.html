@@ -27,6 +27,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('directors_form') }}">Add a Director</a>
           </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{url_for('ratings_index') }}">Ratings</a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{url_for('ratings_form') }}">Add a Rating</a>
+            </li>
         </ul>
         <div class ="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}
