@@ -36,7 +36,9 @@ def films_edit(film_id):
 
 @app.route("/films/<film_id>", methods=["GET"])
 def films_show(film_id):
-        return render_template("films/show.html", film=Film.query.get(film_id), directors=Director.query.all())
+    f=Film.query.get(film_id)
+    return render_template("films/show.html", film=f, director=Director.query.filter_by(id = f.director_id).first(),
+        average_rating=Film.average_rating(film_id))
  
 @app.route("/films/<film_id>/delete", methods=["GET"])
 @login_required
