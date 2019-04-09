@@ -1,16 +1,15 @@
-from application import app, db
-from flask_login import login_required
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
 from application.directors.models import Director
 from application.directors.forms import DirectorForm
 
 @app.route("/directors/new")
-@login_required
+@login_required("ANY")
 def directors_form():
     return render_template("directors/new.html", form = DirectorForm())
 
 @app.route("/directors/", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def directors_create():
     form = DirectorForm(request.form)
 

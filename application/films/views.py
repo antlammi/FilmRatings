@@ -1,17 +1,16 @@
-from application import app, db
-from flask_login import login_required
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
 from application.films.models import Film
 from application.directors.models import Director
 from application.films.forms import FilmForm
 
 @app.route("/films/new")
-@login_required
+@login_required("ANY")
 def films_form():
     return render_template("films/new.html", form = FilmForm())
 
 @app.route("/films/", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def films_create():
     form = FilmForm(request.form)
 
@@ -30,7 +29,7 @@ def films_create():
     return redirect(url_for("films_index"))
 ##update
 @app.route("/films/<film_id>/edit", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def films_edit(film_id):
     return render_template("films/update.html", form=FilmForm(), film_id = film_id)
 
@@ -41,7 +40,7 @@ def films_show(film_id):
         average_rating=Film.average_rating(film_id))
  
 @app.route("/films/<film_id>/delete", methods=["GET"])
-@login_required
+@login_required(role="ADMIN")
 def films_delete(film_id):
     f = Film.query.get(film_id)
     db.session().delete(f)
@@ -49,7 +48,7 @@ def films_delete(film_id):
     return redirect(url_for("films_index"))
 
 @app.route("/films/<film_id>/update", methods=["POST"])
-@login_required
+@login_required(role="ADMIN")
 def films_update(film_id):
     form = FilmForm(request.form)
     f = Film.query.get(film_id)

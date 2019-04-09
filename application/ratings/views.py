@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
+from flask_login import current_user
 
-from application import app, db
+from application import app, db, login_required
 from application.ratings.models import Rating
 from application.films.models import Film
 from application.auth.models import User
@@ -16,7 +16,7 @@ def ratings_form():
     return render_template("ratings/new.html", form = RatingForm())
 
 @app.route("/ratings/new", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def ratings_create():
     form = RatingForm(request.form)
     r = Rating(form.score.data)

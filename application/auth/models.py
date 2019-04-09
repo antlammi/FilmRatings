@@ -8,13 +8,15 @@ class User(Base):
     name= db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    urole = db.Column(db.String(80))
     ratings = db.relationship("Rating", cascade="all, delete-orphan")
+    
 
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
-
+        self.urole = "DEFAULT"
     def get_id(self):
         return self.id
 
@@ -26,3 +28,6 @@ class User(Base):
     
     def is_authenticated(self):
         return True
+
+    def role(self):
+        return self.urole
