@@ -1,11 +1,14 @@
 from application import db
 from application.models import Base
+from sqlalchemy.orm import relationship
+from application.ratings.models import Rating
 class User(Base):
     __tablename__ = "account"
 
     name= db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    ratings = db.relationship("Rating", cascade="all, delete-orphan")
 
     def __init__(self, name, username, password):
         self.name = name
