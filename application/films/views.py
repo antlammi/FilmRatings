@@ -29,7 +29,7 @@ def films_create():
     db.session().commit()
 
     return redirect(url_for("films_index"))
-##update
+
 @app.route("/films/<film_id>/edit", methods=["GET"])
 @login_required(role="ADMIN")
 def films_edit(film_id):

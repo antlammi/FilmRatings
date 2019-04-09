@@ -12,20 +12,34 @@ def ratings_index():
     return render_template("ratings/list.html", ratings=Rating.query.all(), films=Film.query.all(), users=User.query.all())
 
 @app.route("/ratings/new", methods=["GET"])
+@login_required(role="DEFAULT")
 def ratings_form():
-    return render_template("ratings/new.html", form = RatingForm())
+    formtorender = RatingForm()
+    ratings = Rating.query.all()
+    films = Film.query.all()
+    
+    #Rajataan käyttäjän vaihtoehdoiksi sellaiset elokuvat, joita tämä ei ole vielä arvostellut (varmaan voisi toteuttaa järkevämminkin)
+    for r in ratings:    
+        if (r.user_id == current_user.id):
+            for f in films:
+                if f.id == r.film_id:
+                    films.remove(f)
+   
+    formtorender.film.choices = [(f.id, f.name) for f in films]
+    return render_template("ratings/new.html", form = formtorender)
 
 @app.route("/ratings/new", methods=["POST"])
-@login_required(role="ANY")
+@login_required(role="DEFAULT")
 def ratings_create():
     form = RatingForm(request.form)
     r = Rating(form.score.data)
 
     
     r.user_id = current_user.id
-    r.film_id = Film.query.filter_by(name=form.film_name.data).first().id
+    r.film_id = form.film.data
        
     if not form.validate():
+        form.film.choices = [(f.id, f.name) for f in Film.query.all()]
         return render_template("ratings/new.html", form = form)
     db.session().add(r)
     db.session().commit()
