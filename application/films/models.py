@@ -18,3 +18,14 @@ class Film(Base):
             avg = row[0]
             
         return avg
+
+    @staticmethod
+    def ratings_count(id):
+        stmt = text("SELECT Count(*) from Rating LEFT JOIN"
+         " Film ON Rating.film_id = Film.id WHERE Film.id = :id").params(id=id)
+        res = db.engine.execute(stmt)
+    
+        for row in res:
+            count = row[0]
+            
+        return count

@@ -41,7 +41,7 @@ def films_edit(film_id):
 def films_show(film_id):
     f=Film.query.get(film_id)
     return render_template("films/show.html", film=f, director=Director.query.filter_by(id = f.director_id).first(),
-        average_rating=Film.average_rating(film_id))
+        average_rating=Film.average_rating(film_id), ratings_count=Film.ratings_count(film_id))
  
 @app.route("/films/<film_id>/delete", methods=["GET"])
 @login_required(role="ADMIN")

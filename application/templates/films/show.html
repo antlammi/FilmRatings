@@ -7,10 +7,12 @@
 <p>
    
     {{ film.name }} is a film directed by {{director.name}} <br/>
-    {% if average_rating != None %}
-        Users have given it an average rating of <strong>{{average_rating}}</strong> 
+    {% if ratings_count == 0 %}
+         This film has no ratings yet.
     {% else %}
-        This film has no ratings yet.
+        It has been rated {{ ratings_count }} {% if ratings_count == 1 %} time {% else %} times {% endif %} 
+        and has been given an average rating of <strong>{{average_rating}}</strong> 
+        
     {% endif %}
 </p>
 <p>
