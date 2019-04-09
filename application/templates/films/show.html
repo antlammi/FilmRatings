@@ -4,12 +4,16 @@
 <h1>
     {{ film.name }}
 </h1>
-<p style>
+<p>
    
     {{ film.name }} is a film directed by {{director.name}} <br/>
-         
-    Users have given it an average rating of <strong>{{average_rating}}</strong> 
-  
-     
+    {% if average_rating != None %}
+        Users have given it an average rating of <strong>{{average_rating}}</strong> 
+    {% else %}
+        This film has no ratings yet.
+    {% endif %}
+</p>
+<p>
+    <a href="{{ url_for('films_index')}}">back to list</a>
 </p>
 {% endblock %}
