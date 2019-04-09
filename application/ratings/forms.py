@@ -11,4 +11,7 @@ class RatingForm(FlaskForm):
     class Meta:
         csrf = False
 
-
+class EditRatingForm(FlaskForm):
+    score = IntegerField("Score (1-10)", [validators.NumberRange(min=1, max=10)])
+    class Meta:
+        csrf = False

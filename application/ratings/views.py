@@ -5,7 +5,7 @@ from application import app, db, login_required
 from application.ratings.models import Rating
 from application.films.models import Film
 from application.auth.models import User
-from application.ratings.forms import RatingForm
+from application.ratings.forms import RatingForm, EditRatingForm
 
 @app.route("/ratings/", methods=["GET"])
 def ratings_index():
@@ -44,3 +44,28 @@ def ratings_create():
     db.session().add(r)
     db.session().commit()
     return redirect(url_for("ratings_index"))
+
+@app.route("/ratings/user/", methods=["GET"])
+@login_required(role="DEFAULT")
+def user_ratings_index():
+    ratings = Rating.query.filter_by(user_id = current_user.id)
+    return render_template("ratings/personallist.html", ratings = ratings, films = Film.query.all())
+
+@login_required(role="DEFAULT")
+@app.route("/ratings/user/<user_id>/film/<film_id>", methods=["GET"])
+def edit_rating_form(user_id, film_id):
+    return render_template("ratings/edit.html", form=EditRatingForm(), user_id = user_id, film_id = film_id)
+
+@login_required(role="DEFAULT")
+@app.route("/ratings/user/<user_id>/film/<film_id>", methods=["POST"])
+def edit_rating(user_id, film_id):
+    form = EditRatingForm(request.form)
+
+    r = Rating.query.filter_by(user_id = user_id, film_id=film_id).first()
+    
+    if not form.validate():
+        return render_template("ratings/edit.html", form=form, user_id=user_id, film_id = film_id)
+    
+    r.score = form.score.data
+    db.session().commit()
+    return redirect(url_for("user_ratings_index"))

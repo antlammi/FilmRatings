@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{url_for('edit_rating', user_id=user_id, film_id=film_id)}}">
+    <table>
+        
+        <tr>
+                <td>
+                    {{ form.score.label}}
+                </td>
+                <td>
+                    {{form.score}}
+                </td>
+            </tr>
+        <tr>
+            <td colspan="2">
+                <Button type="submit" class="btn btn-primary">Submit</Button>
+            </td>
+        </tr>
+    </table>
+    
+</form>
+{% endblock %}

@@ -20,31 +20,32 @@
             <a class="nav-link" href="{{ url_for('films_index') }}">List Films</a>
           </li>
           {% if current_user.urole == "ADMIN" %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('films_form') }}">Add a Film</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('films_form') }}">Add a Film</a>
+            </li>
           {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('directors_index') }}">List Directors</a>
           </li>
           {% if current_user.urole == "ADMIN" %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{url_for('directors_form') }}">Add a Director</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('directors_form') }}">Add a Director</a>
+            </li>
           {% endif %}
-          <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="{{url_for('ratings_index') }}">Ratings</a>
             </li>
-            {% if current_user.urole == "DEFAULT" %}
-          <li class="nav-item">
+          {% if current_user.urole == "DEFAULT" %}
+            
+            <li class="nav-item">
               <a class="nav-link" href="{{url_for('ratings_form') }}">Add a Rating</a>
             </li>
-            {% endif %}
+          {% endif %}
         </ul>
         <div class ="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}
-
-            <a href="{{ url_for('auth_logout') }}"> Signed in as {{ current_user.name }} -- Logout</a>
+              <a class="nav-link" href="{{url_for('user_ratings_index') }}">My Ratings</a>
+              <a href="{{ url_for('auth_logout') }}"> Signed in as {{ current_user.name }} -- Logout</a>
           
             {% else %}
             <div class="container">
