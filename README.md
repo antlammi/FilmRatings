@@ -6,7 +6,10 @@ Käyttäjä voi lisätä sovelluksen avulla elokuville pisteytyksiä (rating), s
 
 [Sovellus Heroku-palvelussa](https://shielded-hamlet-29677.herokuapp.com/)
 ### Testitunnukset
-Sovellukseen voi tällä hetkellä luoda omat tunnukset, joilla voi vapaasti käyttää kaikkea sovelluksen toiminnallisuutta.
-
+Sovellukseen voi tällä hetkellä luoda omat tunnukset, joilla voi vapaasti käyttää kaikkea normaalikäyttäjälle sallittua toiminnallisuutta. Lisäksi on käytössä ennalta määritelty admin tili, seuraavilla tiedoilla:
+        
+Username: **admin**     
+Password: **admin**
+        
 Alla on (alustava) tietokantakaavio projektille.
 ![Image](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Tietokantakaavio%20v1.png)
