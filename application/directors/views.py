@@ -1,6 +1,7 @@
 from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
 from application.directors.models import Director
+from application.films.models import Film
 from application.directors.forms import DirectorForm
 
 @app.route("/directors/new")
@@ -30,4 +31,5 @@ def directors_index():
 @app.route("/directors/<director_id>", methods=["GET"])
 def directors_show(director_id):
     d = Director.query.get(director_id)
-    return render_template("directors/show.html", id = director_id, director = d)
+    f = Film.query.filter_by(director_id = d.id)
+    return render_template("directors/show.html", id = d.id, director = d, films = f)
