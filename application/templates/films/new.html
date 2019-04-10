@@ -16,12 +16,23 @@
                 {% endfor %}
             </td>
         </tr>
+       
         <tr>
             <td> {{ form.director.label }}</td>
             <td>
                 {{ form.director }}
             </td>
-        </tr>   
+        </tr> 
+        <tr>
+                <td>{{ form.description.label }}</td>
+        
+                <td>{{form.description(cols=70, rows=3)}}</td>
+                <td>
+                    {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </td>
+        </tr>
         <tr>
             <td colspan="2">
                 <Button type="submit" class="btn btn-primary">Submit</Button>

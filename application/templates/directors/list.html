@@ -8,7 +8,7 @@
         </tr>
         {% for director in directors%}
         <tr>
-            <td>{{director.name}}</td>
+            <td><a href="{{url_for('directors_show', director_id = director.id)}}">{{director.name}}</a></td>
             {% if not director.nationality == null %}
                 <td>{{director.nationality}}</td>
             {% endif %}

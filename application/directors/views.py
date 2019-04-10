@@ -13,8 +13,8 @@ def directors_form():
 def directors_create():
     form = DirectorForm(request.form)
 
-    d = Director(form.name.data, form.nationality.data or 'unknown', form.age.data )
-
+    d = Director(form.name.data, form.nationality.data or '', form.age.data )
+    d.bio = form.bio.data
     if not form.validate():
         return render_template("directors/new.html", form = form)
     db.session().add(d)
@@ -27,3 +27,7 @@ def directors_index():
     return render_template("directors/list.html", directors = Director.query.all())
 
 
+@app.route("/directors/<director_id>", methods=["GET"])
+def directors_show(director_id):
+    d = Director.query.get(director_id)
+    return render_template("directors/show.html", id = director_id, director = d)

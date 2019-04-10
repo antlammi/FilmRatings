@@ -21,7 +21,7 @@ def films_create():
    
     f.director_id = d_id
     
-    
+    f.description = form.description.data
     if not form.validate():
         form.director.choices = [(d.id, d.name) for d in Director.query.all()]
         return render_template("films/new.html", form = form)
@@ -62,6 +62,7 @@ def films_update(film_id):
    
     f.director_id = d_id
 
+    f.description = form.description.data
     if not form.validate():
         form.director.choices = [(d.id, d.name) for d in Director.query.all()]
         return render_template("films/new.html", form = form)

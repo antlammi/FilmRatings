@@ -25,9 +25,19 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <input type="submit" value="update film information"/>
-            </td>
+                <td>{{ form.description.label }}</td>
+        
+                <td>{{form.description(cols=70, rows=3)}}</td>
+                <td>
+                    {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2">
+                    <Button type="submit" class="btn btn-primary">Update film information</Button>
+                </td>
         </tr>
     </table>
     

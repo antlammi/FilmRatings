@@ -3,6 +3,7 @@ from application.models import Base
 from sqlalchemy.sql import text
 class Film(Base):
     name = db.Column(db.String(400), nullable=False)
+    description = db.Column(db.String(1200), nullable=True)
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = False)
     ratings = db.relationship("Rating", cascade="all, delete-orphan")
     def __init__(self, name):

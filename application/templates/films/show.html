@@ -1,12 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h1>
+<h3>
     {{ film.name }}
-</h1>
+</h3>
+{% if film.description != None %}
+
+    
+    <p> {{ film.description }}</p>
+
+{% endif %}
 <p>
    
-    {{ film.name }} is a film directed by {{director.name}} <br/>
+    <strong>Director: {{director.name}} </strong><br/>
     {% if ratings_count == 0 %}
          This film has no ratings yet.
     {% else %}
