@@ -10,6 +10,24 @@ Sovellukseen voi tällä hetkellä luoda omat tunnukset, joilla voi vapaasti kä
         
 Username: **admin**     
 Password: **admin**
+## Asennusohjeet
+Mikäli haluaa ladata sovelluksen omalle koneelleen, selainversion käyttämisen sijaan, onnistuu tämäkin.
+Aloita kloonaamalla ensin git repositorion omalle koneelle. Tämän jälkeen tulee luoda hakemiston sisälle python virtuaaliympäristö komennolla       
         
+        python3 -m venv venv
+
+Tämän jälkeen tulee ottaa python virtuaaliympäristö käyttöön komennolla 
+        
+        source venv/bin/activate
+
+Vielä tulee asentaa sovelluksen riippuvuudet ajamalla komento 
+
+        pip install -r requirements.txt
+
+kun viruaaliympäristö on käytössä. Tämän jälkeen sovellus on valmis käytettäväksi ja sen voi ajaa komennolla 
+
+        python3 run.py
+        
+## Tietokanta
 Alla on (alustava) tietokantakaavio projektille.
 ![Image](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Tietokantakaavio%20v1.png)
