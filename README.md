@@ -27,7 +27,7 @@ Vielä tulee asentaa sovelluksen riippuvuudet ajamalla komento
 kun viruaaliympäristö on käytössä. Tämän jälkeen sovellus on valmis käytettäväksi ja sen voi ajaa komennolla 
 
         python3 run.py
-        
+Nyt kun sovellus on asennettuna, voi halutessaan vilkaista [sovelluksen käyttöohjetta](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Käyttöohjeet.md)
 ## Tietokanta
 Alla on (alustava) tietokantakaavio projektille.
 ![Image](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Tietokantakaavio%20v1.png)
