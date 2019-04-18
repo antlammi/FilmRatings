@@ -32,6 +32,14 @@
               <a class="nav-link" href="{{url_for('directors_form') }}">Add a Director</a>
             </li>
           {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('actors_index') }}">List Actors</a>
+          </li>
+          {% if current_user.urole == "ADMIN" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('actors_form') }}">Add an Actor</a>
+            </li>
+          {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('ratings_index') }}">Ratings</a>
             </li>

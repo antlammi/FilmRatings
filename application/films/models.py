@@ -1,11 +1,14 @@
 from application import db
 from application.models import Base
 from sqlalchemy.sql import text
+from application.actors.models import FilmActor
 class Film(Base):
     name = db.Column(db.String(400), nullable=False)
     description = db.Column(db.String(1200), nullable=True)
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = False)
+    actors = db.relationship("FilmActor", cascade="all, delete-orphan")
     ratings = db.relationship("Rating", cascade="all, delete-orphan")
+    
     def __init__(self, name):
         self.name = name
 
@@ -30,3 +33,5 @@ class Film(Base):
             count = row[0]
             
         return count
+
+

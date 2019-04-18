@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Actors</th>
+            <th>Nationality</th>
+            <th>Age</th>
+        </tr>
+        {% for actor in actors%}
+        <tr>
+            <td><a href="{{url_for('actors_show',  actor_id = actor.id)}}">{{actor.name}}</a></td>
+            {% if not actor.nationality == null %}
+                <td>{{actor.nationality}}</td>
+            {% endif %}
+            {% if not actor.age == null %}
+                <td>{{actor.age}}</td>
+            {% endif %} 
+        </tr>   
+        
+        {% endfor %}
+    </table>
+{% endblock %}

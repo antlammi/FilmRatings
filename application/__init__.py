@@ -59,6 +59,9 @@ from application import views
 from application.films import models
 from application.films import views
 
+from application.actors import models
+from application.actors import views
+
 from application.directors import models
 from application.directors import views
 
@@ -77,5 +80,12 @@ def load_user(user_id):
 
 try: 
     db.create_all()
+    
+except:
+    pass
+
+try: 
+    stmt = text("INSERT INTO account (date_created, date_modified, name, username, password, urole) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'admin', 'admin', 'admin', 'ADMIN')")
+    res = db.engine.execute(stmt)
 except:
     pass    

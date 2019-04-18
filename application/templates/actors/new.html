@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{url_for('films_create') }}">
+<form method="POST" action="{{url_for('actors_create') }}">
     <table>
         <tr>
             <td>
@@ -16,28 +16,29 @@
                 {% endfor %}
             </td>
         </tr>
-       
         <tr>
-            <td> {{ form.director.label }}</td>
             <td>
-                {{ form.director }}
+                {{ form.nationality.label}}
+            </td>
+            <td>
+                {{form.nationality}}
             </td>
         </tr>
         <tr>
-            <td> {{ form.actors.label }}</td>
             <td>
-                {{ form.actors }}
+                {{form.age.label}}
             </td>
-        </tr>  
+            <td>
+                {{form.age}}
+            </td>
+        </tr>
         <tr>
-                <td>{{ form.description.label }}</td>
-        
-                <td>{{form.description(cols=70, rows=3)}}</td>
-                <td>
-                    {% for error in form.description.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </td>
+            <td>
+                {{form.bio.label}}
+            </td>
+            <td>
+                {{form.bio(cols=70, rows=3)}}
+            </td>
         </tr>
         <tr>
             <td colspan="2">

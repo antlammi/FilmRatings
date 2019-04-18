@@ -2,6 +2,7 @@ from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
 from application.films.models import Film
 from application.directors.models import Director
+from application.actors.models import Actor, FilmActor
 from application.films.forms import FilmForm
 
 @app.route("/films/new")
@@ -9,6 +10,7 @@ from application.films.forms import FilmForm
 def films_form():
     formtorender = FilmForm() 
     formtorender.director.choices = [(d.id, d.name) for d in Director.query.all()]
+    formtorender.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
     return render_template("films/new.html", form=formtorender)
 
 @app.route("/films/", methods=["POST"])
@@ -21,13 +23,20 @@ def films_create():
    
     f.director_id = d_id
     
+    actors = form.actors.data
     f.description = form.description.data
     if not form.validate():
         form.director.choices = [(d.id, d.name) for d in Director.query.all()]
+        form.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
         return render_template("films/new.html", form = form)
     db.session().add(f)
     db.session().commit()
-
+    for actor in actors:
+        fa = FilmActor()
+        fa.film_id = Film.query.filter_by(name=form.name.data).first().id
+        fa.actor_id = actor
+        db.session().add(fa)
+        db.session().commit()
     return redirect(url_for("films_index"))
 
 @app.route("/films/<film_id>/edit", methods=["GET"])
@@ -35,13 +44,20 @@ def films_create():
 def films_edit(film_id):
     formtorender = FilmForm() 
     formtorender.director.choices = [(d.id, d.name) for d in Director.query.all()]
+    formtorender.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
     return render_template("films/update.html", form=formtorender, film_id = film_id)
 
 @app.route("/films/<film_id>", methods=["GET"])
 def films_show(film_id):
     f=Film.query.get(film_id)
+    actor_ids = FilmActor.query.filter_by(film_id = film_id)
+    actors = []
+    for a in actor_ids:
+        actors.append(Actor.query.filter_by(id = a.actor_id).first())     
+    
     return render_template("films/show.html", film=f, director=Director.query.filter_by(id = f.director_id).first(),
-        average_rating=Film.average_rating(film_id), ratings_count=Film.ratings_count(film_id))
+        average_rating=Film.average_rating(film_id), ratings_count=Film.ratings_count(film_id),
+        actors = actors)
  
 @app.route("/films/<film_id>/delete", methods=["GET"])
 @login_required(role="ADMIN")
@@ -59,14 +75,22 @@ def films_update(film_id):
 
     f.name = form.name.data
     d_id = form.director.data
-   
+    
     f.director_id = d_id
-
+    actors = film.actors.data
     f.description = form.description.data
     if not form.validate():
         form.director.choices = [(d.id, d.name) for d in Director.query.all()]
+        form.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
         return render_template("films/new.html", form = form)
     db.session().commit()
+    for actor in actors:
+        fa = FilmActor()
+        fa.film_id = Film.query.filter_by(name=form.name.data).first().id
+        fa.actor_id = actor
+        db.session().add(fa)
+        db.session().commit()
+
     return redirect(url_for("films_index"))
 
 @app.route("/films/", methods=["GET"])

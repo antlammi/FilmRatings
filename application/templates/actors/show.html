@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h3>
+    {{ actor.name }}
+</h3>
+{% if actor.bio != None %}
+
+    
+    <p> {{ actor.bio }}</p>
+
+{% endif %}
+
+<p>
+    <a href="{{ url_for('actors_index')}}">back to list</a>
+</p>
+{% endblock %}

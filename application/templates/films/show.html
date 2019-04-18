@@ -11,8 +11,19 @@
 
 {% endif %}
 <p>
-   
-    <strong>Director: {{director.name}} </strong><br/>
+    <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a><br/>
+    {% if actors.__len__() != 0 %}
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Actors</th>
+            </tr>
+            {% for actor in actors %}
+                <tr>
+                    <td><a href="{{ url_for('actors_show', actor_id=actor.id )}}">{{actor.name}}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
     {% if ratings_count == 0 %}
          This film has no ratings yet.
     {% else %}

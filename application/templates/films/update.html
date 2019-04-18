@@ -25,6 +25,12 @@
             </td>
         </tr>
         <tr>
+            <td> {{ form.actors.label }}</td>
+            <td>
+                {{ form.actors(size=10)}}
+            </td>
+        </tr> 
+        <tr>
                 <td>{{ form.description.label }}</td>
         
                 <td>{{form.description(cols=70, rows=3)}}</td>
