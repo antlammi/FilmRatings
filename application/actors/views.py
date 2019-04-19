@@ -62,9 +62,10 @@ def actors_delete(actor_id):
 def actors_show(actor_id):
     a = Actor.query.get(actor_id)
     film_ids = FilmActor.query.filter_by(actor_id = actor_id)
+    avg_rating = Actor.avg_rating(actor_id)
     films = []
     for item in film_ids:
         f = Film.query.filter_by(id = item.film_id).first()
         films.append(f)
     
-    return render_template("actors/show.html", id = a.id, actor= a, films = films)
+    return render_template("actors/show.html", id = a.id, actor= a, films = films, avg_rating = avg_rating)

@@ -10,6 +10,13 @@
     <p> {{ actor.bio }}</p>
 
 {% endif %}
+<br/>
+<br/>
+{% if avg_rating != None %}
+    {{actor.name}}'s films have been given an average rating of <strong>{{avg_rating}}</strong>
+{% else %}
+    {{actor.name}}'s  films have not yet been rated
+{% endif %}
 <table class = "table table-bordered table-striped">
     <tr>
         <th>Films</th>

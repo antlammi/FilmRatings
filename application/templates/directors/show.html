@@ -10,6 +10,13 @@
     <p> {{ director.bio }}</p>
 
 {% endif %}
+<br/>
+<br/>
+{% if avg_rating != None %}
+    {{director.name}}'s movies have been given an average rating of <strong>{{avg_rating}}</strong>
+{% else %}
+    {{director.name}}'s movies have not yet been rated
+{% endif %}
 <table class = "table table-bordered table-striped">
     <tr>
         <th>Films</th>

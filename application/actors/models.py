@@ -1,5 +1,7 @@
 from application import db
 from application.models import Base
+
+from sqlalchemy.sql import text
 class Actor(Base):
     
     name = db.Column(db.String(400), nullable=False)
@@ -13,6 +15,32 @@ class Actor(Base):
         self.name = name
         self.nationality = nationality
         self.age = age
+    
+    @staticmethod
+    def avg_rating(id):
+        stmt = text("SELECT AVG(Rating.score) FROM Rating "
+                +"LEFT JOIN Film on Rating.film_id = film.id "
+                +"LEFT JOIN film_actor on film_actor.film_id = film.id "
+                +"WHERE film_actor.actor_id = :id").params(id=id)
+        res = db.engine.execute(stmt)
+        
+        for row in res:
+            avg = row[0]
+            
+        return avg
+    
+    @staticmethod
+    def top_actors():
+        stmt = text("SELECT Actor.name, AVG(Rating.score) AS avg FROM Actor, Rating " 
+        "LEFT JOIN Film_actor on film_actor.actor_id = Actor.id "
+        "Left JOIN Film on film_actor.film_id = Film.id "
+        "WHERE Film.id = Rating.film_id GROUP BY Actor.id ORDER BY avg desc LIMIT 5")
+        res = db.engine.execute(stmt)
+        top = []
+        for row in res:
+            top.append([row.name, row.avg])
+
+        return top
 
 class FilmActor(db.Model):
     film_id = db.Column(db.Integer, db.ForeignKey('film.id'), nullable=False, primary_key=True)

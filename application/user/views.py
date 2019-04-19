@@ -13,7 +13,6 @@ def signup():
     form = UserForm(request.form)
     
     u = User(form.name.data, form.username.data, form.password.data)
-    ##f.director = f.director.data
 
     if not form.validate():
         return render_template("user/new.html", form = form)
@@ -21,3 +20,6 @@ def signup():
     db.session().commit()
 
     return redirect(url_for("films_index"))
+
+##@app.route("/user/<user_id>", methods=["GET"])
+##def user_profile(user_id):

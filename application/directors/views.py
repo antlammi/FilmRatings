@@ -65,4 +65,5 @@ def directors_delete(director_id):
 def directors_show(director_id):
     d = Director.query.get(director_id)
     f = Film.query.filter_by(director_id = d.id)
-    return render_template("directors/show.html", id = d.id, director = d, films = f)
+    avg_rating = Director.avg_rating(director_id)
+    return render_template("directors/show.html", id = d.id, director = d, films = f, avg_rating = avg_rating)

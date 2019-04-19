@@ -1,8 +1,75 @@
 {% extends "layout.html" %}
-<h>  Welcome to the FilmRatings App!</h>
 {% block body %}
 
-<h1>
-    Welcome to the FilmRatings App!
-</h1>
+<h2>
+    Welcome to the FilmRatings!
+</h2>
+<br/>
+{% if top_films != None %}
+
+
+<h3>Top Films</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Film</th>
+            <th>Rating</th>
+        </tr>
+        {% for film in top_films %}
+            <tr>
+               
+                <td>
+                    {{ film[0]}}
+                </td>
+                <td>
+                    {{film[1]}}
+                </td>
+               
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% if top_directors != None %}
+
+<h3>Top Directors</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Director</th>
+            <th>Rating</th>
+        </tr>
+        {% for director in top_directors %}
+            <tr>
+               
+                <td>
+                    {{director[0]}}
+                </td>
+                <td>
+                    {{director[1]}}
+                </td>
+               
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+{% if top_directors != None %}
+
+<h3>Top Actors</h3>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Actors</th>
+            <th>Rating</th>
+        </tr>
+        {% for actor in top_actors %}
+            <tr>
+               
+                <td>
+                    {{actor[0]}}
+                </td>
+                <td>
+                    {{actor[1]}}
+                </td>
+               
+            </tr>
+        {% endfor %}
+    </table>
+{% endif %}
 {% endblock %}
