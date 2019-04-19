@@ -39,7 +39,7 @@ class Actor(Base):
         res = db.engine.execute(stmt)
         top = []
         for row in res:
-            top.append([row.name, row.avg])
+            top.append([row.name, round(row.avg, 2)])
 
         return top
 

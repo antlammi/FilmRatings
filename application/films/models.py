@@ -19,7 +19,7 @@ class Film(Base):
         res = db.engine.execute(stmt)
     
         for row in res:
-            avg = row[0]
+            avg = round(row[0], 2)
             
         return avg
 
@@ -30,7 +30,7 @@ class Film(Base):
         res = db.engine.execute(stmt)
     
         for row in res:
-            count = round(row[0], 2)
+            count = row[0]
             
         return count
 
@@ -41,6 +41,6 @@ class Film(Base):
         res = db.engine.execute(stmt)
         top = []
         for row in res:
-            top.append([row.name, row.avg])
+            top.append([row.name, round(row.avg, 2)])
 
         return top
