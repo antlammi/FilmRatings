@@ -4,7 +4,7 @@ from application.films.models import Film
 from application.directors.models import Director
 from application.actors.models import Actor
 @app.route("/")
-def index():
+def welcome():
     films = Film.top_films()
     directors = Director.top_directors()
     actors = Actor.top_actors()
