@@ -30,7 +30,7 @@ class Film(Base):
         res = db.engine.execute(stmt)
     
         for row in res:
-            count = row[0]
+            count = round(row[0], 2)
             
         return count
 

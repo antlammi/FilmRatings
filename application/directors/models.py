@@ -22,7 +22,7 @@ class Director(Base):
         res = db.engine.execute(stmt)
         
         for row in res:
-            avg = row[0]
+            avg = round(row[0], 2)
             
         return avg
     
