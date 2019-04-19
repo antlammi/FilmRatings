@@ -11,7 +11,7 @@ from application.ratings.forms import RatingForm, EditRatingForm
 def reviews_index():
     ratings = Rating.query.all()
     for r in ratings:
-        if r.review == None:
+        if r.review__len__() == 0:
             ratings.remove(r)
     return render_template("ratings/list.html", ratings=ratings, films=Film.query.all(), users=User.query.all())
 
