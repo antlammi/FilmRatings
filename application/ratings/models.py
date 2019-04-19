@@ -9,6 +9,5 @@ class Rating(db.Model):
     
     score = db.Column(db.Integer, nullable=False)
     review = db.Column(db.String(5000), nullable=True)
-    def __init__(self, score, review):
+    def __init__(self, score):
         self.score = score
-        self.review = review

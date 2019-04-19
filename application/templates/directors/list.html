@@ -15,6 +15,18 @@
             {% if not director.age == null %}
                 <td>{{director.age}}</td>
             {% endif %} 
+            {% if current_user.urole=="ADMIN" %}
+            <td>
+                <a href="{{ url_for('directors_edit', director_id=director.id )}}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('directors_delete', director_id=director.id) }}">
+                    Delete
+                </a>
+            </td>
+            {% endif %}
         </tr>   
         
         {% endfor %}

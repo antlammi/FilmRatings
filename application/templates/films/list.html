@@ -8,15 +8,15 @@
         {% for film in films%}
         <tr>
             <td><a href="{{ url_for('films_show', film_id=film.id )}}">{{film.name}}</a></td>
-        
-        {% if not film.director_id == null %}
-            {% for director in directors %}
-                {% if film.director_id == director.id %}
-                    <td>{{director.name}}</td>
+            <td>
+                {% if not film.director_id == null %}
+                    {% for director in directors %}
+                        {% if film.director_id == director.id %}
+                            <a href="{{url_for('directors_show', director_id = director.id)}}">{{director.name}}</a>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
-            {% endfor %}
-        {% endif %}
-           
+            </td>
             {% if current_user.urole=="ADMIN" %}
             <td>
                 <a href="{{ url_for('films_edit', film_id=film.id )}}">

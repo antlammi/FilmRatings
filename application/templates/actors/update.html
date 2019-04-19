@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{url_for('actors_update', actor_id = actor_id) }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+            <td>
+                {% for error in form.name.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.nationality.label}}
+            </td>
+            <td>
+                {{form.nationality}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{form.age.label}}
+            </td>
+            <td>
+                {{form.age}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{form.bio.label}}
+            </td>
+            <td>
+                {{form.bio(cols=70, rows=3)}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <Button type="submit" class="btn btn-primary">Update Actor information</Button>
+            </td>
+        </tr>
+    </table>
+    
+</form>
+{% endblock %}

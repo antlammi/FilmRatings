@@ -5,24 +5,26 @@
             <th>Film</th>
             <th>Score</th>
             <th>Rated by</th>
+            <th></th>
         </tr>
         {% for rating in ratings%}
         <tr>
-            <th> 
+            <td> 
                 {% for film in films %}
                     {% if film.id == rating.film_id %}
-                        {{film.name}}
+                        <a href="{{ url_for('films_show', film_id=film.id )}}">{{film.name}}</a>
                     {% endif %}
                 {% endfor %}
-            </th>
-            <th>{{rating.score}}</th>
-            <th> 
+            </td>
+            <td>{{rating.score}}</td>
+            <td> 
                 {% for user in users %}
                     {% if user.id == rating.user_id %}
                         {{user.username}}
                     {% endif %}
                 {% endfor %}
-            </th>
+            </td>
+            <td><a href="{{ url_for('ratings_show', film_id=rating.film_id, user_id = rating.user_id )}}">Review</a></td>
         </tr>
             
         {% endfor %}

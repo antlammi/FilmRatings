@@ -15,6 +15,18 @@
             {% if not actor.age == null %}
                 <td>{{actor.age}}</td>
             {% endif %} 
+            {% if current_user.urole=="ADMIN" %}
+            <td>
+                <a href="{{ url_for('actors_edit', actor_id=actor.id )}}">
+                    Edit
+                </a>
+            </td>
+            <td>
+                <a href="{{ url_for('actors_delete', actor_id=actor.id) }}">
+                    Delete
+                </a>
+            </td>
+            {% endif %}
         </tr>   
         
         {% endfor %}

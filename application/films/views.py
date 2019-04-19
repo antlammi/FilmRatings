@@ -59,7 +59,7 @@ def films_show(film_id):
         average_rating=Film.average_rating(film_id), ratings_count=Film.ratings_count(film_id),
         actors = actors)
  
-@app.route("/films/<film_id>/delete", methods=["GET"])
+@app.route("/films/<film_id>/delete")
 @login_required(role="ADMIN")
 def films_delete(film_id):
     f = Film.query.get(film_id)
@@ -77,19 +77,21 @@ def films_update(film_id):
     d_id = form.director.data
     
     f.director_id = d_id
-    actors = film.actors.data
+    actors = form.actors.data
     f.description = form.description.data
     if not form.validate():
         form.director.choices = [(d.id, d.name) for d in Director.query.all()]
         form.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
-        return render_template("films/new.html", form = form)
+        return render_template("films/update.html", form = form, film_id = film_id)
     db.session().commit()
     for actor in actors:
-        fa = FilmActor()
-        fa.film_id = Film.query.filter_by(name=form.name.data).first().id
-        fa.actor_id = actor
-        db.session().add(fa)
-        db.session().commit()
+        if (FilmActor.query.filter_by(film_id = film_id, actor_id = actor).first() == None):
+            fa = FilmActor()
+            fa.film_id = Film.query.filter_by(name=form.name.data).first().id
+            fa.actor_id = actor
+            
+            db.session().add(fa)
+            db.session().commit()
 
     return redirect(url_for("films_index"))
 

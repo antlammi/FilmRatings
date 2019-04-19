@@ -10,8 +10,10 @@
     <p> {{ film.description }}</p>
 
 {% endif %}
-<p>
-    <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a><br/>
+<p> 
+    {% if director != None %}
+        <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a><br/>
+    {% endif %}
     {% if actors.__len__() != 0 %}
         <table class="table table-bordered table-striped">
             <tr>

@@ -1,6 +1,6 @@
 from application import app, db, login_required
 from flask import redirect, render_template, request, url_for
-from application.actors.models import Actor
+from application.actors.models import Actor, FilmActor
 from application.films.models import Film
 from application.actors.forms import ActorForm
 
@@ -27,8 +27,44 @@ def actors_create():
 def actors_index():
     return render_template("actors/list.html", actors = Actor.query.all())
 
+@app.route("/actors/<actor_id>/edit", methods=["GET"])
+@login_required(role="ADMIN")
+def actors_edit(actor_id):
+    formtorender = ActorForm() 
+    return render_template("actors/update.html", form=formtorender, actor_id = actor_id)
+
+@app.route("/actors/<actor_id>/update", methods=["POST"])
+@login_required(role="ADMIN")
+def actors_update(actor_id):
+    form = ActorForm(request.form)
+    a = Actor.query.get(actor_id)
+
+    a.name = form.name.data
+    a.nationality = form.nationality.data
+    a.age = form.age.data
+    a.bio = form.bio.data
+    
+    if not form.validate():
+        return render_template("actors/update.html", form = form)
+
+    db.session().commit()
+    return redirect(url_for("actors_index"))
+
+@app.route("/actors/<actor_id>/delete")
+@login_required(role="ADMIN")
+def actors_delete(actor_id):
+    a = Actor.query.get(actor_id)
+    db.session().delete(a)
+    db.session().commit()
+    return redirect(url_for("actors_index"))
 
 @app.route("/actors/<actor_id>", methods=["GET"])
 def actors_show(actor_id):
     a = Actor.query.get(actor_id)
-    return render_template("actors/show.html", id = a.id, actor= a)
+    film_ids = FilmActor.query.filter_by(actor_id = actor_id)
+    films = []
+    for item in film_ids:
+        f = Film.query.filter_by(id = item.film_id).first()
+        films.append(f)
+    
+    return render_template("actors/show.html", id = a.id, actor= a, films = films)

@@ -5,7 +5,7 @@ from application.actors.models import FilmActor
 class Film(Base):
     name = db.Column(db.String(400), nullable=False)
     description = db.Column(db.String(1200), nullable=True)
-    director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = False)
+    director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = True)
     actors = db.relationship("FilmActor", cascade="all, delete-orphan")
     ratings = db.relationship("Rating", cascade="all, delete-orphan")
     

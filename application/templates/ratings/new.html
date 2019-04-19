@@ -14,13 +14,21 @@
         </tr>
         
         <tr>
-                <td>
-                    {{ form.score.label}}
-                </td>
-                <td>
-                    {{form.score}}
-                </td>
-            </tr>
+            <td>
+                {{ form.score.label}}
+            </td>
+            <td>
+                {{form.score}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.review.label}}
+            </td>
+            <td>
+                {{form.review(cols=70, rows=12)}}
+            </td>
+        </tr>
         <tr>
             <td colspan="2">
                 <Button type="submit" class="btn btn-primary">Submit</Button>

@@ -17,7 +17,7 @@
         <ul class="navbar-nav mr-auto">
           
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('films_index') }}">List Films</a>
+            <a class="nav-link" href="{{ url_for('films_index') }}">Films</a>
           </li>
           {% if current_user.urole == "ADMIN" %}
             <li class="nav-item">
@@ -25,7 +25,7 @@
             </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('directors_index') }}">List Directors</a>
+            <a class="nav-link" href="{{url_for('directors_index') }}">Directors</a>
           </li>
           {% if current_user.urole == "ADMIN" %}
             <li class="nav-item">
@@ -33,7 +33,7 @@
             </li>
           {% endif %}
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('actors_index') }}">List Actors</a>
+            <a class="nav-link" href="{{url_for('actors_index') }}">Actors</a>
           </li>
           {% if current_user.urole == "ADMIN" %}
             <li class="nav-item">
@@ -41,12 +41,12 @@
             </li>
           {% endif %}
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('ratings_index') }}">Ratings</a>
+              <a class="nav-link" href="{{url_for('reviews_index') }}">Reviews</a>
             </li>
           {% if current_user.urole == "DEFAULT" %}
             
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('ratings_form') }}">Add a Rating</a>
+              <a class="nav-link" href="{{url_for('ratings_form') }}">Review a Film</a>
             </li>
           {% endif %}
         </ul>
