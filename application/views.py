@@ -7,5 +7,7 @@ from application.actors.models import Actor
 def welcome():
     films = Film.top_films()
     #directors = Director.top_directors()
-    #actors = Actor.top_actors()
+    #   actors = Actor.top_actors()
+    directors = []
+    actors = []
     return render_template("index.html", top_films = films, top_directors = directors, top_actors = actors)
