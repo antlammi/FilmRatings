@@ -6,7 +6,6 @@
             <th>Score</th>
             <th>Rated by</th>
             <th></th>
-            <th></th>
         </tr>
         {% for rating in ratings%}
         <tr>
@@ -24,15 +23,8 @@
                         {{user.username}}
                     {% endif %}
                 {% endfor %}
-            </td> 
-            <td>
-            {% if rating.review.__len__() > 0 %}
-                <a href="{{ url_for('ratings_show', film_id=rating.film_id, user_id = rating.user_id )}}">Review</a>
-            {% endif %}
             </td>
-            <td>
-                <a href="{{ url_for('ratings_delete', film_id=rating.film_id, user_id = rating.user_id )}}">Delete</a>
-            </td>
+            <td><a href="{{ url_for('ratings_show', film_id=rating.film_id, user_id = rating.user_id )}}">Review</a></td>
         </tr>
             
         {% endfor %}

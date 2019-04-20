@@ -49,10 +49,17 @@
               <a class="nav-link" href="{{url_for('ratings_form') }}">Review a Film</a>
             </li>
           {% endif %}
+          {% if current_user.urole == "ADMIN" %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('ratings_index') }}">All Ratings</a>
+            </li>
+          {% endif %}
         </ul>
         <div class ="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}
+              {% if current_user.urole == "DEFAULT" %}
               <a class="nav-link" href="{{url_for('user_ratings_index') }}">My Ratings</a>
+              {% endif %}
               <a href="{{ url_for('auth_logout') }}"> Signed in as {{ current_user.name }} -- Logout</a>
           
             {% else %}

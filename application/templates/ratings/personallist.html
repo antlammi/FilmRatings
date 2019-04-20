@@ -6,6 +6,7 @@
             <th>Film</th>
             <th>Score</th>
             <th></th>
+            <th></th>
         </tr>
         {% for rating in ratings%}
         <tr>
@@ -17,6 +18,11 @@
                 {% endfor %}
             </td>
             <td>{{rating.score}}</td>
+            <td>
+                {% if rating.review.__len__() > 0 %}
+                    <a href="{{ url_for('ratings_show', film_id=rating.film_id, user_id = rating.user_id )}}">Review</a>
+                {% endif %}
+            </td>
             <td><a href="{{url_for('edit_rating_form', film_id=rating.film_id, user_id=rating.user_id)}}">Edit</a></td>
         </tr>
             

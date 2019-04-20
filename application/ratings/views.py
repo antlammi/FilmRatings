@@ -7,13 +7,20 @@ from application.films.models import Film
 from application.auth.models import User
 from application.ratings.forms import RatingForm, EditRatingForm
 
+#admins have full access to a list of every rating
 @app.route("/ratings/", methods=["GET"])
+@login_required(role="ADMIN")
+def ratings_index():
+    ratings = Rating.query.all()
+    return render_template("ratings/list.html", ratings=ratings, films=Film.query.all(), users=User.query.all())
+
+@app.route("/ratings/reviews", methods=["GET"])
 def reviews_index():
     ratings = Rating.query.all()
     for r in ratings:
         if r.review.__len__() == 0:
             ratings.remove(r)
-    return render_template("ratings/list.html", ratings=ratings, films=Film.query.all(), users=User.query.all())
+    return render_template("ratings/reviewlist.html", ratings=ratings, films=Film.query.all(), users=User.query.all())
 
 @app.route("/ratings/new", methods=["GET"])
 @login_required(role="DEFAULT")
@@ -67,6 +74,14 @@ def ratings_show(user_id, film_id):
     film = Film.query.get(film_id)
     rating = Rating.query.filter_by(user_id = user_id, film_id=film_id).first()
     return render_template("ratings/show.html", user = user, film = film, rating = rating)
+
+@login_required(role="ADMIN")
+@app.route("/ratings/user/<user_id>/film/<film_id>/delete")
+def ratings_delete(user_id, film_id):
+    r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
+    db.session().delete(r)
+    db.session().commit()
+    return redirect(url_for("ratings_index"))
 
 @login_required(role="DEFAULT")
 @app.route("/ratings/user/<user_id>/film/<film_id>", methods=["POST"])
