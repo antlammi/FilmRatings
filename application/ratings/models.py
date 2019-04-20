@@ -18,7 +18,7 @@ class Rating(db.Model):
     @staticmethod
     def recent_reviews():
         stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review FROM Rating, Account, Film" 
-        " WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id ORDER BY Rating.date_modified limit 5")
+        " WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id ORDER BY Rating.date_modified desc limit 5")
         res = db.engine.execute(stmt)
         recent = []
         for row in res:

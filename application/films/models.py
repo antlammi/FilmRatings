@@ -39,7 +39,7 @@ class Film(Base):
 
     @staticmethod
     def recent_films():
-        stmt = text("SELECT * FROM Film ORDER BY Film.date_modified limit 5")
+        stmt = text("SELECT * FROM Film ORDER BY Film.date_modified desc limit 5")
         res = db.engine.execute(stmt)
         recent = []
         for row in res:
