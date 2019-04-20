@@ -25,7 +25,10 @@ class Actor(Base):
         res = db.engine.execute(stmt)
         
         for row in res:
-            avg = round(row[0], 2)
+            if row[0] != None: 
+                avg = round(row[0], 2)
+            else:
+                avg = row[0]
             
         return avg
     
