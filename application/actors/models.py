@@ -31,7 +31,7 @@ class Actor(Base):
                 avg = row[0]
             
         return avg
-    
+
     @staticmethod
     def top_actors():
 

@@ -1,77 +1,136 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h2>
-    Welcome to FilmRatings!
-</h2>
-<br/>
-{% if top_films != None %}
 
 
-<h3>Top Films</h3>
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Film</th>
-            <th>Rating</th>
-        </tr>
-        {% for film in top_films %}
-            <tr>
-               
-                <td>
-                    <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
-                </td>
-                <td>
-                    {{film[2]}}
-                </td>
-               
-            </tr>
-        {% endfor %}
-    </table>
-{% endif %}
-{% if top_directors != None %}
+<div class="container">
+    <h2>
+        Welcome to FilmRatings!
+    </h2>
+    <br/>
+    <div class="row">
+        {% if recent_films != None %}
+            <div class="col-md">
+                <h4>Recent Films</h4>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Film</th>
+                    </tr>
+                    {% for film in recent_films %}
+                        <tr>
+                        
+                            <td>
+                                <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
+                            </td>
+                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        {% if recent_reviews != None %}
+            <div class="col-md">
+                <h4>Recent Reviews</h4>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Film</th>
+                        <th>Reviewer</th>
+                        <th>Score</th>
+                        <th></th>
+                    </tr>
+                    {% for review in recent_reviews %}
+                        <tr>
+                        
+                            <td>
+                                <a href="{{ url_for('films_show', film_id=review[1])}}">{{review[0]}}</a>
+                            </td>
+                            <td>
+                                {{review[2]}}
+                            </td>
+                            <td>
+                                {{review[4]}}
+                            </td>
+                            <td>
+                                <a href="{{url_for('ratings_show', film_id = review[1], user_id = review[3])}}">Review</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if top_films != None %}
+            <div class="col-md">
+                <h4>Top Films</h4>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Film</th>
+                        <th>Rating</th>
+                    </tr>
+                    {% for film in top_films %}
+                        <tr>
+                        
+                            <td>
+                                <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
+                            </td>
+                            <td>
+                                {{film[2]}}
+                            </td>
+                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        {% if top_directors != None %}
+            <div class="col-md">
+                <h4>Top Directors</h4>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Director</th>
+                        <th>Rating</th>
+                    </tr>
+                    {% for director in top_directors %}
+                        <tr>
+                        
+                            <td>
+                                <a href="{{ url_for('directors_show', director_id=director[1])}}">{{director[0]}}</a>
+                            </td>
+                            <td>
+                                {{director[2]}}
+                            </td>
+                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        {% if top_actors != None %}
+            <div class="col-md">
+                <h4>Top Actors</h4>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Actors</th>
+                        <th>Rating</th>
+                    </tr>
+                    {% for actor in top_actors %}
+                        <tr>
+                        
+                            <td>
+                                <a href="{{ url_for('actors_show', actor_id=actor[1])}}">{{actor[0]}}</a>
+                            
+                            </td>
 
-<h3>Top Directors</h3>
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Director</th>
-            <th>Rating</th>
-        </tr>
-        {% for director in top_directors %}
-            <tr>
-               
-                <td>
-                    <a href="{{ url_for('directors_show', director_id=director[1])}}">{{director[0]}}</a>
-                </td>
-                <td>
-                    {{director[2]}}
-                </td>
-               
-            </tr>
-        {% endfor %}
-    </table>
-{% endif %}
-{% if top_directors != None %}
-
-<h3>Top Actors</h3>
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Actors</th>
-            <th>Rating</th>
-        </tr>
-        {% for actor in top_actors %}
-            <tr>
-               
-                <td>
-                    <a href="{{ url_for('actors_show', actor_id=actor[1])}}">{{actor[0]}}</a>
-                   
-                </td>
-
-                <td>
-                    {{actor[2]}}
-                </td>
-               
-            </tr>
-        {% endfor %}
-    </table>
-{% endif %}
+                            <td>
+                                {{actor[2]}}
+                            </td>
+                        
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

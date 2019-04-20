@@ -37,7 +37,15 @@ class Film(Base):
             
         return count
 
-
+    @staticmethod
+    def recent_films():
+        stmt = text("SELECT * FROM Film ORDER BY Film.date_modified limit 5")
+        res = db.engine.execute(stmt)
+        recent = []
+        for row in res:
+            recent.append([row.name, row.id])
+        
+        return recent
     @staticmethod
     def top_films():
         stmt = text("SELECT name, id, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id GROUP BY Film.id Order By avg desc LIMIT 5")
