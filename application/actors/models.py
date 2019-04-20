@@ -36,13 +36,13 @@ class Actor(Base):
     def top_actors():
 
         #initially used a left join syntax but changed it as that only worked locally and not in heroku
-        stmt = text("SELECT Actor.name, AVG(Rating.score) AS avg FROM Actor, Rating, Film_actor, Film"
+        stmt = text("SELECT Actor.name, Actor.id, AVG(Rating.score) AS avg FROM Actor, Rating, Film_actor, Film"
         " WHERE Film_actor.actor_id = Actor.id AND film_actor.film_id = Film.id "
         " AND Film.id = Rating.film_id GROUP BY Actor.id ORDER BY avg DESC LIMIT 5")
         res = db.engine.execute(stmt)
         top = []
         for row in res:
-            top.append([row.name, round(row.avg, 2)])
+            top.append([row.name, row.id, round(row.avg, 2)])
 
         return top
 

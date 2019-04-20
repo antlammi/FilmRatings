@@ -40,10 +40,10 @@ class Film(Base):
 
     @staticmethod
     def top_films():
-        stmt = text("SELECT name, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id GROUP BY Film.id Order By avg desc LIMIT 5")
+        stmt = text("SELECT name, id, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id GROUP BY Film.id Order By avg desc LIMIT 5")
         res = db.engine.execute(stmt)
         top = []
         for row in res:
-            top.append([row.name, round(row.avg, 2)])
+            top.append([row.name, row.id, round(row.avg, 2)])
 
         return top

@@ -18,10 +18,10 @@
             <tr>
                
                 <td>
-                    {{ film[0]}}
+                    <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
                 </td>
                 <td>
-                    {{film[1]}}
+                    {{film[2]}}
                 </td>
                
             </tr>
@@ -40,10 +40,10 @@
             <tr>
                
                 <td>
-                    {{director[0]}}
+                    <a href="{{ url_for('directors_show', director_id=director[1])}}">{{director[0]}}</a>
                 </td>
                 <td>
-                    {{director[1]}}
+                    {{director[2]}}
                 </td>
                
             </tr>
@@ -62,10 +62,12 @@
             <tr>
                
                 <td>
-                    {{actor[0]}}
+                    <a href="{{ url_for('actors_show', actor_id=actor[1])}}">{{actor[0]}}</a>
+                   
                 </td>
+
                 <td>
-                    {{actor[1]}}
+                    {{actor[2]}}
                 </td>
                
             </tr>
