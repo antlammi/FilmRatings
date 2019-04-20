@@ -32,8 +32,8 @@ class Director(Base):
     @staticmethod
     def top_directors():
         #initially used a left join syntax but changed it as that only worked locally and not in heroku
-        stmt = text("SELECT director.name, director.id, AVG(Rating.score) as avg FROM Director, Rating, FILM WHERE Director.id = Film.director_id " 
-        "AND Film.id = rating.film_id GROUP BY director.name Order By avg desc LIMIT 5")
+        stmt = text("SELECT director.id, director.name, AVG(Rating.score) as avg FROM Director, Rating, FILM WHERE Director.id = Film.director_id " 
+        "AND Film.id = rating.film_id GROUP BY director.id Order By avg desc LIMIT 5")
         res = db.engine.execute(stmt)
         top = []
         for row in res:
