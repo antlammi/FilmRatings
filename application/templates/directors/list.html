@@ -5,6 +5,10 @@
             <th>Directors</th>
             <th>Nationality</th>
             <th>Age</th>
+            {% if current_user.urole == "ADMIN" %}
+                <th></th>
+                <th></th>
+            {% endif %}s
         </tr>
         {% for director in directors%}
         <tr>

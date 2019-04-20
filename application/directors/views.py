@@ -32,6 +32,11 @@ def directors_index():
 @login_required(role="ADMIN")
 def directors_edit(director_id):
     formtorender = DirectorForm() 
+    director = Director.query.get(director_id)
+    formtorender.name.data = director.name
+    formtorender.age.data = director.age
+    formtorender.nationality.data = director.nationality
+    formtorender.bio.data = director.bio
     return render_template("directors/update.html", form=formtorender, director_id = director_id)
 
 

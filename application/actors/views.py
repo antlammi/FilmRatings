@@ -31,6 +31,11 @@ def actors_index():
 @login_required(role="ADMIN")
 def actors_edit(actor_id):
     formtorender = ActorForm() 
+    actor = Actor.query.get(actor_id)
+    formtorender.name.data = actor.name
+    formtorender.age.data = actor.age
+    formtorender.nationality.data = actor.nationality
+    formtorender.bio.data = actor.bio
     return render_template("actors/update.html", form=formtorender, actor_id = actor_id)
 
 @app.route("/actors/<actor_id>/update", methods=["POST"])

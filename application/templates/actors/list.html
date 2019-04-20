@@ -5,6 +5,10 @@
             <th>Actors</th>
             <th>Nationality</th>
             <th>Age</th>
+            {% if current_user.urole == "ADMIN" %}
+                <th></th>
+                <th></th>
+            {% endif %}
         </tr>
         {% for actor in actors%}
         <tr>

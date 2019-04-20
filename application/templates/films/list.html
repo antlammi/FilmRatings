@@ -4,6 +4,10 @@
         <tr>
             <th>Films</th>
             <th>Director</th>
+            {% if current_user.urole == "ADMIN" %}
+                <th></th>
+                <th></th>
+            {% endif %}
         </tr>
         {% for film in films%}
         <tr>

@@ -66,7 +66,12 @@ def user_ratings_index():
 @login_required(role="DEFAULT")
 @app.route("/ratings/user/<user_id>/film/<film_id>/edit", methods=["GET"])
 def edit_rating_form(user_id, film_id):
-    return render_template("ratings/edit.html", form=EditRatingForm(), user_id = user_id, film_id = film_id)
+    formtorender = EditRatingForm()
+    r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
+
+    formtorender.score.data = r.score
+    formtorender.review.data = r.review
+    return render_template("ratings/edit.html", form=formtorender, user_id = user_id, film_id = film_id)
 
 @app.route("/ratings/user/<user_id>/film/<film_id>/", methods=["GET"])
 def ratings_show(user_id, film_id):

@@ -45,6 +45,22 @@ def films_edit(film_id):
     formtorender = FilmForm() 
     formtorender.director.choices = [(d.id, d.name) for d in Director.query.all()]
     formtorender.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
+
+    film = Film.query.get(film_id)
+
+    for director in formtorender.director.choices:
+        if director[0] == film.director_id:
+            formtorender.director.process_data(film.director_id)
+
+    fa = FilmActor.query.filter_by(film_id = film_id)
+    formtorender.actors.data = []
+    for actor in formtorender.actors.choices:
+        for a in fa:
+            formtorender.actors.data.append(a.actor_id)
+    formtorender.name.data = film.name
+   
+    formtorender.description.data = film.description
+    
     return render_template("films/update.html", form=formtorender, film_id = film_id)
 
 @app.route("/films/<film_id>", methods=["GET"])
@@ -84,6 +100,13 @@ def films_update(film_id):
         form.actors.choices = [(a.id, a.name) for a in Actor.query.all()]
         return render_template("films/update.html", form = form, film_id = film_id)
     db.session().commit()
+    
+    #clearing out previous film_actor instances so edited information can replace it
+    falist = FilmActor.query.filter_by(film_id = film_id)
+    for fa in falist:
+        db.session().delete(fa)
+        db.session().commit()
+
     for actor in actors:
         if (FilmActor.query.filter_by(film_id = film_id, actor_id = actor).first() == None):
             fa = FilmActor()
@@ -92,6 +115,7 @@ def films_update(film_id):
             
             db.session().add(fa)
             db.session().commit()
+        
 
     return redirect(url_for("films_index"))
 
