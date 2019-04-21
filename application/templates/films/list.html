@@ -2,8 +2,9 @@
 {% block body %}
     <table class="table table-bordered table-striped">
         <tr>
-            <th>Films</th>
-            <th>Director</th>
+            <th><a href="{{url_for('films_sorted', sortby='name')}}">Films</a></th>
+            <th><a href="{{url_for('films_sorted', sortby='director')}}">Director</a></th>
+            <th><a href="{{url_for('films_sorted', sortby='rating')}}">Rating</a>   </th>
             {% if current_user.urole == "ADMIN" %}
                 <th></th>
                 <th></th>
@@ -11,24 +12,27 @@
         </tr>
         {% for film in films%}
         <tr>
-            <td><a href="{{ url_for('films_show', film_id=film.id )}}">{{film.name}}</a></td>
+            <td><a href="{{ url_for('films_show', film_id=film[0] )}}">{{film[1]}}</a></td>
             <td>
-                {% if not film.director_id == null %}
-                    {% for director in directors %}
-                        {% if film.director_id == director.id %}
-                            <a href="{{url_for('directors_show', director_id = director.id)}}">{{director.name}}</a>
-                        {% endif %}
-                    {% endfor %}
+               
+                <a href="{{url_for('directors_show', director_id = film[2])}}">{{film[3]}}</a>
+                     
+            </td>
+            <td>
+                {% if film[4] > 1.0 %}
+                    {{ film[4]}}
+                {% else %}
+                    unrated
                 {% endif %}
             </td>
             {% if current_user.urole=="ADMIN" %}
             <td>
-                <a href="{{ url_for('films_edit', film_id=film.id )}}">
+                <a href="{{ url_for('films_edit', film_id=film[0] )}}">
                     Edit
                 </a>
             </td>
             <td>
-                <a href="{{ url_for('films_delete', film_id=film.id) }}">
+                <a href="{{ url_for('films_delete', film_id=film[0]) }}">
                     Delete
                 </a>
             </td>

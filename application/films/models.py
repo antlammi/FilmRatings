@@ -2,6 +2,7 @@ from application import db
 from application.models import Base
 from sqlalchemy.sql import text
 from application.actors.models import FilmActor
+import os
 class Film(Base):
     name = db.Column(db.String(400), nullable=False)
     description = db.Column(db.String(1200), nullable=True)
@@ -58,10 +59,34 @@ class Film(Base):
         return recent
     @staticmethod
     def top_films():
-        stmt = text("SELECT name, id, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id GROUP BY Film.id Order By avg desc LIMIT 5")
+        stmt = text("SELECT name, id, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id GROUP BY Film.id ORDER BY avg DESC LIMIT 5")
         res = db.engine.execute(stmt)
         top = []
         for row in res:
             top.append([row.name, row.id, round(row.avg, 2)])
 
         return top
+
+    @staticmethod
+    def films_with_ratings():
+        ##couldn't figure out a statement that worked both locally and on heroku, local one could be a lot cleaner but just did bare minimum
+        if os.environ.get("HEROKU"):
+            stmt = text("SELECT film.id, film.name, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
+            "LEFT JOIN Rating on Rating.film_id = id WHERE Director.id = film.director_id GROUP BY Film.id, director.name ORDER BY film.id")
+        else:
+            stmt = text("SELECT film.id, film.name, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
+            "LEFT JOIN Rating on Rating.film_id = film.id WHERE Director.id = film.director_id GROUP BY Film.id, director.name ORDER BY film.id")
+
+        res = db.engine.execute(stmt)
+        top = []
+        for row in res:
+            if row[4] != None:
+                top.append([row[0], row[1], row[2], row[3], round(row[4], 2)])
+            else :
+                top.append([row[0], row[1], row[2], row[3], 0.0])
+        return top
+    
+    
+
+
+    
