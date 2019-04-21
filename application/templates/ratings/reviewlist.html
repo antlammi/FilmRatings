@@ -2,9 +2,27 @@
 {% block body %}
     <table class="table table-bordered table-striped">
         <tr>
-            <th><a href="{{url_for('reviews_sorted', sortby='film')}}">Film</a></th>
-            <th><a href="{{url_for('reviews_sorted', sortby='score')}}">Score</a></th>
-            <th><a href="{{url_for('reviews_sorted', sortby='user')}}">Rated by</a></th>
+            <th>
+                {% if sortby == 'film' and desc == False %}
+                    <a href="{{url_for('reviews_sorted', sortby='filmdesc')}}">Film</a>
+                {% else %}
+                    <a href="{{url_for('reviews_sorted', sortby='film')}}">Film</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'score' and desc == False %}
+                    <a href="{{url_for('reviews_sorted', sortby='scoredesc')}}">Score/a>
+                {% else %}
+                    <a href="{{url_for('reviews_sorted', sortby='score')}}">Score</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'user' and desc == False %}
+                    <a href="{{url_for('reviews_sorted', sortby='userdesc')}}">Rated by</a>
+                {% else %}
+                    <a href="{{url_for('reviews_sorted', sortby='user')}}">Rated by</a>
+                {% endif %}
+            </th>
             <th></th>
         </tr>
         {% for rating in reviews%}

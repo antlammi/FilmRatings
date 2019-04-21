@@ -2,9 +2,27 @@
 {% block body %}
     <table class="table table-bordered table-striped">
         <tr>
-            <th><a href="{{url_for('directors_sorted', sortby = 'name')}}">Directors</a></th>
-            <th><a href="{{url_for('directors_sorted', sortby = 'nationality')}}">Nationality</a></th>
-            <th><a href="{{url_for('directors_sorted', sortby = 'age')}}">Age</a></th>
+            <th> 
+                {% if sortby == 'name' and desc == False %}
+                    <a href="{{url_for('directors_sorted', sortby = 'namedesc')}}">Directors</a>
+                {% else %}
+                    <a href="{{url_for('directors_sorted', sortby = 'name')}}">Directors</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'nationality' and desc == False %}
+                    <a href="{{url_for('directors_sorted', sortby = 'nationalitydesc')}}">Nationality</a>
+                {% else %}
+                    <a href="{{url_for('directors_sorted', sortby = 'nationality')}}">Nationality</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'age' and desc == False %}
+                    <a href="{{url_for('directors_sorted', sortby = 'agedesc')}}">Age</a>
+                {% else %}
+                    <a href="{{url_for('directors_sorted', sortby = 'age')}}">Age</a>
+                {% endif %}
+            </th>
             {% if current_user.urole == "ADMIN" %}
                 <th></th>
                 <th></th>

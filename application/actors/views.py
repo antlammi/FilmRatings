@@ -25,21 +25,24 @@ def actors_create():
 
 @app.route("/actors/", methods=["GET"])
 def actors_index():
-    return render_template("actors/list.html", actors = Actor.query.all())
+    return render_template("actors/list.html", actors = Actor.query.all(), sortby = None, desc = None)
     
 @app.route("/actors#<sortby>", methods=["GET"])
 def actors_sorted(sortby):
     actors = Actor.query.all()
-    if (sortby =='name'):
+    desc = False
+    if ('name' in sortby):
         actors= sorted(actors, key=lambda actor:actor.name.split()[-1])
     
-    if (sortby =='age'):
+    if ('age' in sortby):
         actors = sorted(actors, key=lambda actor:actor.age)
 
-    if (sortby == 'nationality'):
+    if ('nationality' in sortby):
         actors = sorted(actors, key =lambda actor:actor.nationality)
-    
-    return render_template("actors/list.html", actors = actors)
+    if ('desc' in sortby):
+        actors.reverse()
+        desc = True
+    return render_template("actors/list.html", actors = actors, sortby = sortby, desc = desc)
 
 
 @app.route("/actors/<actor_id>/edit", methods=["GET"])

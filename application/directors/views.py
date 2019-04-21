@@ -25,21 +25,24 @@ def directors_create():
 
 @app.route("/directors/", methods=["GET"])
 def directors_index():
-    return render_template("directors/list.html", directors = Director.query.all())
+    return render_template("directors/list.html", directors = Director.query.all(), sortby = None, desc = None)
 
 @app.route("/directors#<sortby>", methods=["GET"])
 def directors_sorted(sortby):
     directors = Director.query.all()
-    if (sortby =='name'):
+    desc = False
+    if ('name' in sortby):
         directors = sorted(directors, key=lambda director:director.name.split()[-1])
     
-    if (sortby =='age'):
+    if ('age' in sortby):
         directors = sorted(directors, key=lambda director:director.age)
 
-    if (sortby == 'nationality'):
+    if ('nationality' in sortby):
         directors = sorted(directors, key =lambda director:director.nationality)
-    
-    return render_template("directors/list.html", directors = directors)
+    if ('desc' in sortby):
+        directors.reverse()
+        desc = True
+    return render_template("directors/list.html", directors = directors, sortby = sortby, desc = desc)
 
 @app.route("/directors/<director_id>/edit", methods=["GET"])
 @login_required(role="ADMIN")

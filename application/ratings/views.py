@@ -12,40 +12,46 @@ from application.ratings.forms import RatingForm, EditRatingForm
 @login_required(role="ADMIN")
 def ratings_index():
     ratings = Rating.all_ratings_with_films_and_users()
-    return render_template("ratings/list.html", ratings=ratings)
+    return render_template("ratings/list.html", ratings=ratings, sortby = None, desc = None)
 
 @app.route("/ratings#<sortby>", methods=["GET"])
 @login_required(role="ADMIN")
 def ratings_index_sorted(sortby):
     ratings = Rating.all_ratings_with_films_and_users()
-    if (sortby =='film'):
+    desc = False
+    if ('film' in sortby):
         ratings= sorted(ratings, key=lambda rating:rating[0])
-    if (sortby =='score'):
+    if ('score' in sortby):
         ratings= sorted( ratings, key=lambda rating:rating[4], reverse = True)
-    if (sortby == 'user'):
+    if ('user' in sortby):
         ratings = sorted(ratings, key =lambda rating:rating[2])
-    if (sortby == 'reviewed'):
+    if ('reviewed' in sortby):
         ratings = sorted(ratings, key = lambda rating:rating[5], reverse = True)
-    return render_template("ratings/list.html", ratings=ratings)
+    if ('desc' in sortby):
+        ratings.reverse()
+        desc = True
+    return render_template("ratings/list.html", ratings=ratings, sortby = sortby, desc = desc)
     
 @app.route("/ratings/reviews", methods=["GET"])
 def reviews_index():
     reviews = Rating.reviews()
-    return render_template("ratings/reviewlist.html", reviews = reviews)
+    return render_template("ratings/reviewlist.html", reviews = reviews, sortby = None, desc = None)
 
 @app.route("/ratings/reviews#<sortby>", methods=["GET"])
 def reviews_sorted(sortby):
     reviews = Rating.reviews()
-    
-    if (sortby =='film'):
+    desc = False
+    if ('film' in sortby):
         reviews = sorted(reviews, key=lambda rating:rating[0])
     
-    if (sortby =='score'):
+    if ('score' in sortby):
         reviews = sorted(reviews, key=lambda rating:rating[4], reverse = True)
-    if (sortby == 'user'):
+    if ('user' in sortby):
         reviews= sorted(reviews, key =lambda rating:rating[2])
-    
-    return render_template("ratings/reviewlist.html", reviews = reviews)
+    if ('desc' in sortby):
+        reviews.reverse()
+        desc = True
+    return render_template("ratings/reviewlist.html", reviews = reviews, sortby = sortby, desc = desc)
 
 @app.route("/ratings/new", methods=["GET"])
 @login_required(role="DEFAULT")
@@ -87,22 +93,25 @@ def ratings_create():
 def user_ratings_index():
     ratings = Rating.user_ratings(current_user.id)
 
-    return render_template("ratings/personallist.html", ratings = ratings)
+    return render_template("ratings/personallist.html", ratings = ratings, sortby = None, desc = None)
 
 @app.route("/ratings/user#<sortby>", methods=["GET"])
 @login_required(role="DEFAULT")
 def user_ratings_sorted(sortby):
     ratings = Rating.user_ratings(current_user.id)
-    if (sortby =='film'):
+    desc = False
+    if ('film' in sortby):
         ratings = sorted(ratings, key=lambda rating:rating[0])
     
-    if (sortby =='score'):
+    if ('score' in sortby):
         ratings = sorted(ratings, key=lambda rating:rating[4], reverse = True)
     
-    if (sortby == 'reviewed'):
+    if ('reviewed' in sortby):
         ratings = sorted(ratings, key=lambda rating:rating[5], reverse = True)
-    
-    return render_template("ratings/personallist.html", ratings = ratings)
+    if ('desc' in sortby):
+        ratings.reverse()
+        desc = True
+    return render_template("ratings/personallist.html", ratings = ratings, sortby = sortby, desc = desc)
 
 
 @login_required(role="DEFAULT")

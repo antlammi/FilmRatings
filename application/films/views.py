@@ -125,7 +125,7 @@ def films_update(film_id):
 @app.route("/films/", methods=["GET"])
 def films_index():
     films = Film.films_with_ratings()
-    return render_template("films/list.html", films = films, directors = Director.query.all(), sortedby = None, desc = None)
+    return render_template("films/list.html", films = films, directors = Director.query.all(), sortby = None, desc = None)
 
 @app.route ("/films#<sortby>", methods = ["GET"])
 def films_sorted(sortby):

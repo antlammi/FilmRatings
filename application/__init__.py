@@ -84,8 +84,3 @@ try:
 except:
     pass
 
-try: 
-    stmt = text("INSERT INTO account (date_created, date_modified, name, username, password, urole) VALUES (CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'admin', 'admin', 'admin', 'ADMIN')")
-    res = db.engine.execute(stmt)
-except:
-    pass    

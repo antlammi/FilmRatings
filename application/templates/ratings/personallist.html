@@ -3,9 +3,27 @@
 <h3>My Ratings</h1>
     <table class="table table-bordered table-striped">
         <tr>
-            <th><a href="{{url_for('user_ratings_sorted', sortby='film')}}">Film</a></th>
-            <th><a href="{{url_for('user_ratings_sorted', sortby='score')}}">Score</a></th>
-            <th><a href="{{url_for('user_ratings_sorted', sortby='reviewed')}}">Review</a></th>
+            <th>
+                {% if sortby == 'film' and desc == False %}
+                    <a href="{{url_for('user_ratings_sorted', sortby='filmdesc')}}">Film</a>
+                {% else %}
+                    <a href="{{url_for('user_ratings_sorted', sortby='film')}}">Film</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'score' and desc == False %}
+                    <a href="{{url_for('user_ratings_sorted', sortby='scoredesc')}}">Score</a>
+                {% else %}
+                    <a href="{{url_for('user_ratings_sorted', sortby='score')}}">Score</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'reviewed' and desc == False %}
+                    <a href="{{url_for('user_ratings_sorted', sortby='revieweddesc')}}">Review</a>
+                {% else %}
+                    <a href="{{url_for('user_ratings_sorted', sortby='reviewed')}}">Review</a>
+                {% endif %}
+            </th>
             <th></th>
         </tr>
         {% for rating in ratings%}
