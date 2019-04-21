@@ -11,7 +11,7 @@
             </th>
             <th>
                 {% if sortby == 'score' and desc == False %}
-                    <a href="{{url_for('reviews_sorted', sortby='scoredesc')}}">Score/a>
+                    <a href="{{url_for('reviews_sorted', sortby='scoredesc')}}">Score</a>
                 {% else %}
                     <a href="{{url_for('reviews_sorted', sortby='score')}}">Score</a>
                 {% endif %}
