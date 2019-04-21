@@ -26,6 +26,7 @@ def actors_create():
 @app.route("/actors/", methods=["GET"])
 def actors_index():
     return render_template("actors/list.html", actors = Actor.query.all())
+    
 @app.route("/actors#<sortby>", methods=["GET"])
 def actors_sorted(sortby):
     actors = Actor.query.all()

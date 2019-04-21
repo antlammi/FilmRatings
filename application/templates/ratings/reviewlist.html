@@ -2,29 +2,21 @@
 {% block body %}
     <table class="table table-bordered table-striped">
         <tr>
-            <th>Film</th>
-            <th>Score</th>
-            <th>Rated by</th>
+            <th><a href="{{url_for('reviews_sorted', sortby='film')}}">Film</a></th>
+            <th><a href="{{url_for('reviews_sorted', sortby='score')}}">Score</a></th>
+            <th><a href="{{url_for('reviews_sorted', sortby='user')}}">Rated by</a></th>
             <th></th>
         </tr>
-        {% for rating in ratings%}
+        {% for rating in reviews%}
         <tr>
             <td> 
-                {% for film in films %}
-                    {% if film.id == rating.film_id %}
-                        <a href="{{ url_for('films_show', film_id=film.id )}}">{{film.name}}</a>
-                    {% endif %}
-                {% endfor %}
+                <a href="{{ url_for('films_show', film_id=rating[1] )}}">{{rating[0]}}</a>
             </td>
-            <td>{{rating.score}}</td>
+            <td>{{rating[4]}}</td>
             <td> 
-                {% for user in users %}
-                    {% if user.id == rating.user_id %}
-                        {{user.username}}
-                    {% endif %}
-                {% endfor %}
+                {{rating[2]}} 
             </td>
-            <td><a href="{{ url_for('ratings_show', film_id=rating.film_id, user_id = rating.user_id )}}">Review</a></td>
+            <td><a href="{{ url_for('ratings_show', film_id=rating[1], user_id = rating[3])}}">Review</a></td>
         </tr>
             
         {% endfor %}

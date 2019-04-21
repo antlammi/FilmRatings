@@ -25,3 +25,14 @@ class Rating(db.Model):
             recent.append([row[0], row[1], row[2], row[3], row[4], row[5]])
         
         return recent
+
+    @staticmethod
+    def reviews():
+        stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score FROM Rating, Account, Film" 
+        " WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id")
+        res = db.engine.execute(stmt)
+        reviews= []
+        for row in res:
+            reviews.append([row[0], row[1], row[2], row[3], row[4]])
+        
+        return reviews

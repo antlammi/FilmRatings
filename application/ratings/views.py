@@ -16,12 +16,22 @@ def ratings_index():
 
 @app.route("/ratings/reviews", methods=["GET"])
 def reviews_index():
-    ratings = Rating.query.all()
-    for r in ratings:
-        if r.review.__len__() == 0:
-            ratings.remove(r)
-    return render_template("ratings/reviewlist.html", ratings=ratings, films=Film.query.all(), users=User.query.all())
+    reviews = Rating.reviews()
+    return render_template("ratings/reviewlist.html", reviews = reviews, films=Film.query.all(), users=User.query.all())
 
+@app.route("/ratings/reviews#<sortby>", methods=["GET"])
+def reviews_sorted(sortby):
+    reviews = Rating.reviews()
+    
+    if (sortby =='film'):
+        reviews = sorted(reviews, key=lambda rating:rating[0])
+    
+    if (sortby =='score'):
+        reviews = sorted(reviews, key=lambda rating:rating[3])
+    if (sortby == 'user'):
+        reviews= sorted(reviews, key =lambda rating:rating[2])
+    
+    return render_template("ratings/reviewlist.html", reviews = reviews, films = Film.query.all(), users = User.query.all())
 @app.route("/ratings/new", methods=["GET"])
 @login_required(role="DEFAULT")
 def ratings_form():
