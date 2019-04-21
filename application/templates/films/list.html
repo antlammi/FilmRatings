@@ -2,9 +2,27 @@
 {% block body %}
     <table class="table table-bordered table-striped">
         <tr>
-            <th><a href="{{url_for('films_sorted', sortby='name')}}">Films</a></th>
-            <th><a href="{{url_for('films_sorted', sortby='director')}}">Director</a></th>
-            <th><a href="{{url_for('films_sorted', sortby='rating')}}">Rating</a>   </th>
+            <th>
+                {% if sortby == 'name' and desc == False %}
+                    <a href="{{url_for('films_sorted', sortby = 'namedesc')}}">Film</a>
+                {% else %}
+                    <a href ="{{url_for('films_sorted', sortby = 'name')}}">Film</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'director' and desc == False %}
+                    <a href="{{url_for('films_sorted', sortby='directordesc')}}">Director</a>
+                {% else %}
+                    <a href="{{url_for('films_sorted', sortby='director')}}">Director</a>
+                {% endif %}
+            </th>
+            <th>
+                {% if sortby == 'rating' and desc == False %}
+                    <a href="{{url_for('films_sorted', sortby='ratingdesc')}}">Rating</a>
+                {% else %}
+                    <a href="{{url_for('films_sorted', sortby='rating')}}">Rating</a>
+                {% endif %}
+            </th>
             {% if current_user.urole == "ADMIN" %}
                 <th></th>
                 <th></th>

@@ -125,17 +125,23 @@ def films_update(film_id):
 @app.route("/films/", methods=["GET"])
 def films_index():
     films = Film.films_with_ratings()
-    return render_template("films/list.html", films = films, directors = Director.query.all())
+    return render_template("films/list.html", films = films, directors = Director.query.all(), sortedby = None, desc = None)
 
 @app.route ("/films#<sortby>", methods = ["GET"])
 def films_sorted(sortby):
     films = Film.films_with_ratings()
-    if (sortby == 'name'):
+    desc = False
+    if ('name' in sortby):
         films = sorted(films, key=lambda film:film[1])
-    if (sortby =='director'):
+        
+    if ('director' in sortby):
         films = sorted(films, key=lambda film:film[3].split()[-1])
         # -1 loops back to the end of the array, getting the last name
-    if (sortby == 'rating'):
+    if ('rating' in sortby):
         films = sorted(films, key=lambda film:film[4], reverse=True)
-    
-    return render_template("films/list.html", films = films, directors = Director.query.all())
+
+    if ('desc' in sortby):
+        films.reverse()
+        desc = True
+
+    return render_template("films/list.html", films = films, directors = Director.query.all(), sortby = sortby, desc = desc)
