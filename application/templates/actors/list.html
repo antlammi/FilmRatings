@@ -2,9 +2,9 @@
 {% block body %}
     <table class="table table-bordered table-striped">
         <tr>
-            <th>Actors</th>
-            <th>Nationality</th>
-            <th>Age</th>
+            <th><a href="{{url_for('actors_sorted', sortby = 'name')}}">Actors</a></th>
+            <th><a href="{{url_for('actors_sorted', sortby = 'nationality')}}">Nationality</a></th>
+            <th><a href="{{url_for('actors_sorted', sortby = 'age')}}">Age</a></th>
             {% if current_user.urole == "ADMIN" %}
                 <th></th>
                 <th></th>
