@@ -27,7 +27,7 @@ def reviews_sorted(sortby):
         reviews = sorted(reviews, key=lambda rating:rating[0])
     
     if (sortby =='score'):
-        reviews = sorted(reviews, key=lambda rating:rating[4])
+        reviews = sorted(reviews, key=lambda rating:rating[4], reverse = True)
     if (sortby == 'user'):
         reviews= sorted(reviews, key =lambda rating:rating[2])
     
