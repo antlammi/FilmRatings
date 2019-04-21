@@ -3,27 +3,25 @@
 <h3>My Ratings</h1>
     <table class="table table-bordered table-striped">
         <tr>
-            <th>Film</th>
-            <th>Score</th>
-            <th></th>
+            <th><a href="{{url_for('user_ratings_sorted', sortby='film')}}">Film</a></th>
+            <th><a href="{{url_for('user_ratings_sorted', sortby='score')}}">Score</a></th>
+            <th><a href="{{url_for('user_ratings_sorted', sortby='reviewed')}}">Review</a></th>
             <th></th>
         </tr>
         {% for rating in ratings%}
         <tr>
             <td> 
-                {% for film in films %}
-                    {% if film.id == rating.film_id %}
-                        <a href="{{ url_for('films_show', film_id=film.id )}}">{{film.name}}</a>
-                    {% endif %}
-                {% endfor %}
+              
+            <a href="{{ url_for('films_show', film_id=rating[1] )}}">{{rating[0]}}</a>
+                   
             </td>
-            <td>{{rating.score}}</td>
+            <td>{{rating[4]}}</td>
             <td>
-                {% if rating.review.__len__() > 0 %}
-                    <a href="{{ url_for('ratings_show', film_id=rating.film_id, user_id = rating.user_id )}}">Review</a>
+                {% if rating[5].__len__() > 0 %}
+                    <a href="{{ url_for('ratings_show', film_id=rating[1], user_id = rating[3])}}">Review</a>
                 {% endif %}
             </td>
-            <td><a href="{{url_for('edit_rating_form', film_id=rating.film_id, user_id=rating.user_id)}}">Edit</a></td>
+            <td><a href="{{url_for('edit_rating_form', film_id=rating[1], user_id=rating[3])}}">Edit</a></td>
         </tr>
             
         {% endfor %}

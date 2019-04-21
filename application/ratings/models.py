@@ -36,3 +36,25 @@ class Rating(db.Model):
             reviews.append([row[0], row[1], row[2], row[3], row[4]])
         
         return reviews
+    
+    @staticmethod
+    def all_ratings_with_films_and_users():
+        stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review FROM Rating, Account, Film" 
+        " WHERE Rating.user_id = Account.id AND Rating.film_id = Film.id")
+        res = db.engine.execute(stmt)
+        ratings= []
+        for row in res:
+            ratings.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+        
+        return ratings
+    
+    @staticmethod
+    def user_ratings(id):
+        stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review FROM Rating, Account, Film" 
+        " WHERE Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id").params(id=id)
+        res = db.engine.execute(stmt)
+        ratings= []
+        for row in res:
+            ratings.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+        
+        return ratings
