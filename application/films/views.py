@@ -3,8 +3,10 @@ from flask import redirect, render_template, request, url_for
 from application.films.models import Film
 from application.directors.models import Director
 from application.actors.models import Actor, FilmActor
+from application.ratings.models import Rating
 from application.films.forms import FilmForm
 
+from sqlalchemy import and_
 @app.route("/films/new")
 @login_required("ANY")
 def films_form():
@@ -71,9 +73,10 @@ def films_show(film_id):
     for a in actor_ids:
         actors.append(Actor.query.filter_by(id = a.actor_id).first())     
     
+    reviews = Film.film_reviews(film_id)
     return render_template("films/show.html", film=f, director=Director.query.filter_by(id = f.director_id).first(),
         average_rating=Film.average_rating(film_id), ratings_count=Film.ratings_count(film_id),
-        actors = actors)
+        actors = actors, reviews = reviews)
  
 @app.route("/films/<film_id>/delete")
 @login_required(role="ADMIN")

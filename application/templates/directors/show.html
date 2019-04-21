@@ -1,35 +1,36 @@
 {% extends "layout.html" %}
 {% block body %}
+<div class="container">
+    <h3>
+        {{ director.name }}
+    </h3>
+    {% if director.bio != None %}
 
-<h3>
-    {{ director.name }}
-</h3>
-{% if director.bio != None %}
+        
+        <p> {{ director.bio }}</p>
 
-    
-    <p> {{ director.bio }}</p>
-
-{% endif %}
-<br/>
-<br/>
-{% if avg_rating != None %}
-    {{director.name}}'s movies have been given an average rating of <strong>{{avg_rating}}</strong>
-{% else %}
-    {{director.name}}'s movies have not yet been rated
-{% endif %}
-<table class = "table table-bordered table-striped">
-    <tr>
-        <th>Films</th>
-    </tr>
-    {% for film in films %}
-    <tr>
-        <td>
-            <a href="{{url_for('films_show', film_id=film.id)}}">{{film.name}}</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-<p>
-    <a href="{{ url_for('directors_index')}}">back to list</a>
-</p>
+    {% endif %}
+    <br/>
+    <br/>
+    {% if avg_rating != None %}
+        {{director.name}}'s movies have been given an average rating of <strong>{{avg_rating}}</strong>
+    {% else %}
+        {{director.name}}'s movies have not yet been rated
+    {% endif %}
+    <table class = "table table-bordered table-striped">
+        <tr>
+            <th>Films</th>
+        </tr>
+        {% for film in films %}
+        <tr>
+            <td>
+                <a href="{{url_for('films_show', film_id=film.id)}}">{{film.name}}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <a href="{{ url_for('directors_index')}}">back to list</a>
+    </p>
+</div>
 {% endblock %}
