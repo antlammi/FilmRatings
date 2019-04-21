@@ -133,7 +133,8 @@ def films_sorted(sortby):
     if (sortby == 'name'):
         films = sorted(films, key=lambda film:film[1])
     if (sortby =='director'):
-        films = sorted(films, key=lambda film:film[3].split())
+        films = sorted(films, key=lambda film:film[3].split()[-1])
+        # -1 loops back to the end of the array, getting the last name
     if (sortby == 'rating'):
         films = sorted(films, key=lambda film:film[4], reverse=True)
     
