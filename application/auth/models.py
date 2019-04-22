@@ -2,7 +2,6 @@ from application import db
 from application.models import Base
 from sqlalchemy.orm import relationship
 from application.ratings.models import Rating
-
 from sqlalchemy.sql import text
 class User(Base):
     __tablename__ = "account"
@@ -10,7 +9,10 @@ class User(Base):
     name= db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
-    urole = db.Column(db.String(80))
+    urole = db.Column(db.String(80), nullable = False)
+
+    bio = db.Column(db.String(1200), nullable = True)
+
     ratings = db.relationship("Rating", cascade="all, delete-orphan")
     
 

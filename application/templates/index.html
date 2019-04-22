@@ -33,7 +33,7 @@
                         <th>Film</th>
                         <th>Reviewer</th>
                         <th>Score</th>
-                        <th></th>
+                        <th>Title</th>
                     </tr>
                     {% for review in recent_reviews %}
                         <tr>
@@ -48,7 +48,7 @@
                                 {{review[4]}}
                             </td>
                             <td>
-                                <a href="{{url_for('ratings_show', film_id = review[1], user_id = review[3])}}">Review</a>
+                                <a href="{{url_for('ratings_show', film_id = review[1], user_id = review[3])}}">{{review[6]}}</a>
                             </td>
                         </tr>
                     {% endfor %}

@@ -66,7 +66,6 @@ def directors_update(director_id):
     d.nationality = form.nationality.data
     d.age = form.age.data
     d.bio = form.bio.data
-    
     if not form.validate():
         return render_template("directors/update.html", form = form, director_id = director_id)
 

@@ -10,6 +10,7 @@ class Director(Base):
     bio = db.Column(db.String(1200), nullable = True)
     films = db.relationship("Film", backref='account', lazy=True)
 
+
     def __init__(self, name, nationality, age):
         self.name = name
         self.nationality = nationality

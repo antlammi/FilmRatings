@@ -4,6 +4,11 @@
     <h3>
         {{ film.name }}
     </h3>
+    <br/>
+    
+    {% if rating.title != None %}
+        <h5>{{rating.title}}</h5>
+    {% endif %}
     {% if rating.review != None %}
         <p>{{rating.review}}</p>
         <br/>Reviewed by {{user.username}}

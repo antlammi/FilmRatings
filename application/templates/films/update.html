@@ -27,7 +27,7 @@
         <tr>
             <td> {{ form.actors.label }}</td>
             <td>
-                {{ form.actors(}}
+                {{ form.actors}}
             </td>
         </tr> 
         <tr>
@@ -36,6 +36,26 @@
                 <td>{{form.description(cols=70, rows=3)}}</td>
                 <td>
                     {% for error in form.description.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </td>
+        </tr>
+        <tr>
+                <td>{{ form.year.label }}</td>
+        
+                <td>{{form.year}}</td>
+                <td>
+                    {% for error in form.year.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </td>
+        </tr>
+        <tr>
+                <td>{{ form.poster.label }}</td>
+        
+                <td>{{form.poster}}</td>
+                <td>
+                    {% for error in form.poster.errors %}
                         <li>{{ error }}</li>
                     {% endfor %}
                 </td>

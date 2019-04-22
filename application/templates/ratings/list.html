@@ -24,10 +24,10 @@
                 {% endif %}
             </th>
             <th>
-                {% if sortby == 'reviewed' and desc == False %}
-                    <a href="{{url_for('ratings_index_sorted', sortby='revieweddesc')}}">Review</a>
+                {% if sortby == 'review' and desc == False %}
+                    <a href="{{url_for('ratings_index_sorted', sortby='reviewdesc')}}">Review</a>
                 {% else %}
-                    <a href="{{url_for('ratings_index_sorted', sortby='reviewed')}}">Review</a>
+                    <a href="{{url_for('ratings_index_sorted', sortby='review')}}">Review</a>
                 {% endif %}
             </th>
             <th></th>
@@ -45,7 +45,7 @@
             </td> 
             <td>
             {% if rating[5].__len__() > 0 %}
-                <a href="{{ url_for('ratings_show', film_id=rating[1], user_id = rating[3])}}">Review</a>
+                <a href="{{ url_for('ratings_show', film_id=rating[1], user_id = rating[3])}}">{{rating[6]}}</a>
             {% endif %}
             </td>
             <td>

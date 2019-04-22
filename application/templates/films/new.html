@@ -40,6 +40,26 @@
                 </td>
         </tr>
         <tr>
+                <td>{{ form.year.label }}</td>
+        
+                <td>{{form.year}}</td>
+                <td>
+                    {% for error in form.year.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </td>
+        </tr>
+        <tr>
+                <td>{{ form.poster.label }}</td>
+        
+                <td>{{form.poster}}</td>
+                <td>
+                    {% for error in form.poster.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <Button type="submit" class="btn btn-primary">Submit</Button>
             </td>

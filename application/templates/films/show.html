@@ -2,14 +2,24 @@
 {% block body %}
 <div class = "container">
     <h3>
-        {{ film.name }}
+        {{ film.name }} ({{film.year}})
     </h3>
-    {% if film.description != None %}
-
+    <br/>
+    
+    <div class="row">
+        {% if film.poster != None %}
+            <div class="col-md">
+                <img src="{{film.poster}}" alt ="{{film.name}}" style="width:400px; height:auto"/>
+            </div>
+        {% endif %}
+        {% if film.description != None %}
+            <div class="col-md">
+                
+                <p style="font-size:120%"> {{ film.description }}</p>
+            </div>
+        {% endif %}
         
-        <p> {{ film.description }}</p>
-
-    {% endif %}
+    </div>
     <p> 
         {% if director != None %}
             <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a><br/>

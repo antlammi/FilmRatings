@@ -43,7 +43,14 @@
                             {{form.password}}
                         </td> 
                     </tr>
-                    
+                    <tr>
+                        <td>
+                            {{ form.bio.label}}         
+                        </td>
+                        <td>       
+                            {{form.bio(cols=70, rows=3)}}
+                        </td> 
+                    </tr>
                     <tr>
                         <td colspan="2">
                             <Button type="submit" class="btn btn-primary">Submit</Button>

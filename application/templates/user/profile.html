@@ -4,8 +4,15 @@
     <h3>
         {{name}}
     </h3>
+    {% if bio != None %}
+        <div class="row">
+                <div class="col-sm">
+                    <p>{{bio}}</p> 
+                </div>
+        </div>
+    {% endif %}
     <br/>
-    <br/>
+    
     <div class="row">
         {% if favorite_films.__len__() > 0 %}
             <div class="col-sm">

@@ -78,6 +78,7 @@ def ratings_create():
 
     r.user_id = current_user.id
     r.film_id = form.film.data
+    r.title = form.title.data
     r.review = form.review.data       
     if not form.validate() or form.film.data == None:
         ratings = Rating.query.all()
@@ -112,7 +113,7 @@ def user_ratings_sorted(sortby):
     if ('score' in sortby):
         ratings = sorted(ratings, key=lambda rating:rating[4], reverse = True)
     
-    if ('reviewed' in sortby):
+    if ('review' in sortby):
         ratings = sorted(ratings, key=lambda rating:rating[5], reverse = True)
     if ('desc' in sortby):
         ratings.reverse()
@@ -127,6 +128,7 @@ def edit_rating_form(user_id, film_id):
     r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
 
     formtorender.score.data = r.score
+    formtorender.title.data = r.title
     formtorender.review.data = r.review
     return render_template("ratings/edit.html", form=formtorender, user_id = user_id, film_id = film_id)
 
@@ -156,6 +158,7 @@ def edit_rating(user_id, film_id):
         return render_template("ratings/edit.html", form=form, user_id=user_id, film_id = film_id)
     
     r.score = form.score.data
+    r.title = form.title.data
     r.review = form.review.data
     db.session().commit()
     return redirect(url_for("user_ratings_index"))

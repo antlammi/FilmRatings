@@ -22,10 +22,11 @@ def films_create():
     
     f = Film(form.name.data)
     d_id = form.director.data
-   
+    f.year = form.year.data
     f.director_id = d_id
-    
+    f.poster = f.poster.data
     actors = form.actors.data
+
     f.description = form.description.data
     if not form.validate():
         form.director.choices = [(d.id, d.name) for d in Director.query.all()]
@@ -60,7 +61,8 @@ def films_edit(film_id):
         for a in fa:
             formtorender.actors.data.append(a.actor_id)
     formtorender.name.data = film.name
-   
+    formtorender.year.data = film.year
+    formtorender.poster.data = film.poster
     formtorender.description.data = film.description
     
     return render_template("films/update.html", form=formtorender, film_id = film_id)
@@ -94,7 +96,8 @@ def films_update(film_id):
 
     f.name = form.name.data
     d_id = form.director.data
-    
+    f.poster = form.poster.data 
+    f.year = form.year.data   
     f.director_id = d_id
     actors = form.actors.data
     f.description = form.description.data
@@ -133,12 +136,13 @@ def films_sorted(sortby):
     desc = False
     if ('name' in sortby):
         films = sorted(films, key=lambda film:film[1])
-        
+    if ('year' in sortby):
+        films = sorted(films, key=lambda film:film[2])
     if ('director' in sortby):
-        films = sorted(films, key=lambda film:film[3].split()[-1])
+        films = sorted(films, key=lambda film:film[4].split()[-1])
         # -1 loops back to the end of the array, getting the last name
     if ('rating' in sortby):
-        films = sorted(films, key=lambda film:film[4], reverse=True)
+        films = sorted(films, key=lambda film:film[5], reverse=True)
 
     if ('desc' in sortby):
         films.reverse()

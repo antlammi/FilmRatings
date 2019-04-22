@@ -16,6 +16,13 @@
                     <a href="{{url_for('films_sorted', sortby='director')}}">Director</a>
                 {% endif %}
             </th>
+            <th> 
+                    {% if sortby == 'year' and desc == False %}
+                        <a href="{{url_for('films_sorted', sortby = 'yeardesc')}}">Year</a>
+                    {% else %}
+                        <a href="{{url_for('films_sorted', sortby = 'year')}}">Year</a>
+                    {% endif %}
+                </th>
             <th>
                 {% if sortby == 'rating' and desc == False %}
                     <a href="{{url_for('films_sorted', sortby='ratingdesc')}}">Rating</a>
@@ -33,12 +40,17 @@
             <td><a href="{{ url_for('films_show', film_id=film[0] )}}">{{film[1]}}</a></td>
             <td>
                
-                <a href="{{url_for('directors_show', director_id = film[2])}}">{{film[3]}}</a>
+                <a href="{{url_for('directors_show', director_id = film[3])}}">{{film[4]}}</a>
                      
             </td>
+            {% if film[2] != None %}
+                <td>
+                    {{film[2]}}
+                </td>
+            {% endif %}
             <td>
-                {% if film[4] > 1.0 %}
-                    {{ film[4]}}
+                {% if film[5] > 1.0 %}
+                    {{ film[5]}}
                 {% else %}
                     unrated
                 {% endif %}

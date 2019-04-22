@@ -6,7 +6,9 @@ import os
 class Film(Base):
     name = db.Column(db.String(400), nullable=False)
     description = db.Column(db.String(1200), nullable=True)
+    year = db.Column(db.Integer, nullable=True)
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable = True)
+    poster = db.Column(db.String(400), nullable=True)
     actors = db.relationship("FilmActor", cascade="all, delete-orphan")
     ratings = db.relationship("Rating", cascade="all, delete-orphan")
     
@@ -71,19 +73,19 @@ class Film(Base):
     def films_with_ratings():
         ##couldn't figure out a statement that worked both locally and on heroku, local one could be a lot cleaner but just did bare minimum
         if os.environ.get("HEROKU"):
-            stmt = text("SELECT film.id, film.name, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
+            stmt = text("SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
             "LEFT JOIN Rating on Rating.film_id = id WHERE Director.id = film.director_id GROUP BY Film.id, director.name ORDER BY film.id")
         else:
-            stmt = text("SELECT film.id, film.name, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
+            stmt = text("SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
             "LEFT JOIN Rating on Rating.film_id = film.id WHERE Director.id = film.director_id GROUP BY Film.id, director.name ORDER BY film.id")
 
         res = db.engine.execute(stmt)
         top = []
         for row in res:
-            if row[4] != None:
-                top.append([row[0], row[1], row[2], row[3], round(row[4], 2)])
+            if row[5] != None:
+                top.append([row[0], row[1], row[2], row[3], row[4], round(row[5], 2)])
             else :
-                top.append([row[0], row[1], row[2], row[3], 0.0])
+                top.append([row[0], row[1], row[2], row[3], row[4], 0.0])
         return top
     
     
