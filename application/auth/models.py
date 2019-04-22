@@ -77,7 +77,7 @@ class User(Base):
         res = db.engine.execute(stmt)
         reviews = []
         for row in res:
-            reviews.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+            reviews.append([row[0], row[1], row[2], row[3], round(row[4], 2), row[5]])
 
         return reviews
 
