@@ -42,8 +42,8 @@
                         </tr>
                         {% for review in reviews %}
                             <tr>
-                                <td>{{review[2]}}</td>
-                                <td>{{review[1]}}</td>
+                                <td><a href="{{ url_for('user_profile', user_id=review[0])}}">{{review[2]}}</a></td>
+                                <td>{{review[1]}}</a></td>
                                 <td><a href="{{ url_for('ratings_show', film_id=film.id, user_id = review[0] )}}">Review</a></td>
                             </tr>
                         {% endfor %}

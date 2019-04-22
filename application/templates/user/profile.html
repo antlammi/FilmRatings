@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="container">
+    <h3>
+        {{name}}
+    </h3>
+    <br/>
+    <br/>
+    <div class="row">
+        {% if favorite_films.__len__() > 0 %}
+            <div class="col-sm">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Favorite Films</th>
+                        <th>Rating</th>
+                    </tr>
+                    {% for film in favorite_films %}
+                    <tr>
+                        <td><a href="{{url_for('films_show', film_id=film[1])}}">{{film[0]}}</a></td>
+                        <td>{{film[2]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        {% if favorite_actors.__len__() > 0 %}
+            <div class="col-sm">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Favorite Actors</th>
+                        <th>Average Rating</th>
+                    </tr>
+                    {% for actor in favorite_actors %}
+                    <tr>
+                        <td><a href="{{url_for('actors_show', actor_id=actor[1])}}">{{actor[0]}}</a></td>
+                        <td>{{actor[2]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        {% if favorite_directors.__len__() > 0 %}
+        <div class="col-sm">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Favorite Directors</th>
+                    <th>Average Rating</th>
+                </tr>
+                {% for director in favorite_directors %}
+                <tr>
+                    <td><a href="{{url_for('directors_show', director_id=director[1])}}">{{director[0]}}</a></td>
+                    <td>{{director[2]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+    </div>
+    {% if reviews.__len__() > 0 %}
+    <div class="row">
+        <div class="col-lg">
+            <h5>Reviews by {{name}}</h5>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Film</th>
+                    <th>Score</th>
+                    <th></th>
+                </tr>
+                {% for review in reviews %}
+                    <tr>
+                        <td><a href="{{url_for('films_show', film_id=review[1])}}">{{review[0]}}</a></td>
+                        <td>{{review[4]}}</td>
+                        <td><a href="{{url_for('ratings_show', film_id=review[1], user_id = review[3])}}">Review</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
