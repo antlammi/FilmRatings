@@ -66,18 +66,18 @@ class User(Base):
         res = db.engine.execute(stmt)
         favorite = []
         for row in res:
-            favorite.append([row[0], row[1], row[2]])
+            favorite.append([row[0], row[1], round(row[2], 2)])
 
         return favorite
 
     @staticmethod
-    def user_reviews(id):
+    def recent_user_reviews(id):
         stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review FROM Rating, Account, Film" 
         " WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id ORDER BY Rating.date_modified DESC").params(id=id)
         res = db.engine.execute(stmt)
         reviews = []
         for row in res:
-            reviews.append([row[0], row[1], row[2], row[3], round(row[4], 2), row[5]])
+            reviews.append([row[0], row[1], row[2], row[3], row[4], row[5]])
 
         return reviews
 
