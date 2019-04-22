@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{url_for('update_user', user_id = user_id)}}">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <h4>Update user info</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg">
+                <table>
+                    <tr>
+                        <td>
+                            {{ form.name.label }}
+                        </td>
+                        <td>
+                            {{ form.name }}
+                        </td>
+                        <td>
+                            {% for error in form.name.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            {{ form.username.label}}
+                        </td>
+                        <td>
+                            {{form.username}}
+                        </td>
+                        <td>
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                  
+                    <tr>
+                        <td>
+                            {{ form.bio.label}}         
+                        </td>
+                        <td>       
+                            {{form.bio(cols=70, rows=3)}}
+                        </td> 
+                        <td>
+                            {% for error in form.bio.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <Button type="submit" class="btn btn-primary">Submit</Button>
+                            
+                        </td>
+                    
+                    </tr>
+                
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

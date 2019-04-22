@@ -55,21 +55,35 @@
             </li>
           {% endif %}
         </ul>
-        <div class ="form-inline mt-2 mt-md-0">
+        <div class ="form-inline ">
+            <ul class="navbar-nav mr-auto">
             {% if current_user.is_authenticated %}
-              {% if current_user.urole == "DEFAULT" %}
-              <a class="nav-link" href="{{url_for('user_ratings_index') }}">My Ratings</a>
-              {% endif %}
-              <a href="{{ url_for('auth_logout') }}"> Signed in as {{ current_user.name }} -- Logout</a>
-          
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{current_user.name}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navDropdown">
+                    {% if current_user.urole == "DEFAULT" %}
+                    <a class="dropdown-item" href="{{url_for('user_ratings_index') }}">My Ratings</a>
+                    {% endif %}
+                    <a class="dropdown-item" href="{{ url_for('user_profile', user_id = current_user.id) }}">Profile</a>
+                    <a class="dropdown-item" href="{{ url_for('user_settings', user_id = current_user.id) }}"> Settings</a>
+                    <a class="dropdown-item" href="{{ url_for('change_password', user_id = current_user.id) }}"> Change Password</a>
+                    <a class="dropdown-item" href="{{ url_for('auth_logout') }}"> Logout</a>
+                </div>
+            </li>
+            </ul>
+            <div class="col-sm"></div> <!--leaves empty space on the right side of the navbar-->
+            <div class="col-sm"></div>
+            <div class="col-sm"></div>
             {% else %}
             <div class="container">
               <div class="row">
                 <div class="col-md">
-                  <a href="{{ url_for('auth_login') }} "> Login </a>
+                  <a class="nav-link" href="{{ url_for('auth_login') }} "> Login </a>
                 </div> 
                 <div class="col-md">
-                  <a href="{{ url_for('signup_form') }}" >Register </a> 
+                  <a class="nav-link" href="{{ url_for('signup_form') }}" >Register </a> 
                 </div>
               </div>
             </div>
