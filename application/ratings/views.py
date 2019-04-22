@@ -76,12 +76,18 @@ def ratings_create():
     form = RatingForm(request.form)
     r = Rating(form.score.data)
 
-    
     r.user_id = current_user.id
     r.film_id = form.film.data
     r.review = form.review.data       
-    if not form.validate():
-        form.film.choices = [(f.id, f.name) for f in Film.query.all()]
+    if not form.validate() or form.film.data == None:
+        ratings = Rating.query.all()
+        films = Film.query.all()
+        for r in ratings:    
+            if (r.user_id == current_user.id):
+                for f in films:
+                    if f.id == r.film_id:
+                        films.remove(f)
+        form.film.choices = [(f.id, f.name) for f in films]
         return render_template("ratings/new.html", form = form)
     db.session().add(r)
     db.session().commit()
