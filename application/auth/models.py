@@ -71,7 +71,7 @@ class User(Base):
         return favorite
 
     @staticmethod
-    def recent_user_reviews(id):
+    def user_reviews(id):
         stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review FROM Rating, Account, Film" 
         " WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id ORDER BY Rating.date_modified DESC").params(id=id)
         res = db.engine.execute(stmt)
