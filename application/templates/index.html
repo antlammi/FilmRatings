@@ -4,14 +4,11 @@
 
 
 <div class="container">
-    <h2>
-        Welcome to FilmRatings!
-    </h2>
-    <br/>
+    
     <div class="row">
         {% if recent_films != None %}
             <div class="col-md">
-                <h4>Recent Films</h4>
+                <h5>Recent Films</h5>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Film</th>
@@ -30,7 +27,7 @@
         {% endif %}
         {% if recent_reviews != None %}
             <div class="col-md">
-                <h4>Recent Reviews</h4>
+                <h5>Recent Reviews</h5>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Film</th>
@@ -62,7 +59,7 @@
     <div class="row">
         {% if top_films != None %}
             <div class="col-md">
-                <h4>Top Films</h4>
+                <h5>Top Films</h5>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Film</th>
@@ -85,7 +82,7 @@
         {% endif %}
         {% if top_directors != None %}
             <div class="col-md">
-                <h4>Top Directors</h4>
+                <h5>Top Directors</h5>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Director</th>
@@ -108,7 +105,7 @@
         {% endif %}
         {% if top_actors != None %}
             <div class="col-md">
-                <h4>Top Actors</h4>
+                <h5>Top Actors</h5>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Actors</th>
@@ -131,6 +128,11 @@
                 </table>
             </div>
         {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <a class="twitter-timeline" data-theme="light" data-link-color="#2B7BB9" href="https://twitter.com/KufdonHS/lists/film-twitter?ref_src=twsrc%5Etfw">Film Tweets</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
     </div>
 </div>
 {% endblock %}
