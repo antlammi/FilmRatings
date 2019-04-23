@@ -25,8 +25,8 @@ def ratings_index_sorted(sortby):
         ratings= sorted( ratings, key=lambda rating:rating[4], reverse = True)
     if ('user' in sortby):
         ratings = sorted(ratings, key =lambda rating:rating[2])
-    if ('reviewed' in sortby):
-        ratings = sorted(ratings, key = lambda rating:rating[5], reverse = True)
+    if ('review' in sortby):
+        ratings = sorted(ratings, key = lambda rating:rating[6], reverse = True)
     if ('desc' in sortby):
         ratings.reverse()
         desc = True
@@ -48,6 +48,8 @@ def reviews_sorted(sortby):
         reviews = sorted(reviews, key=lambda rating:rating[4], reverse = True)
     if ('user' in sortby):
         reviews= sorted(reviews, key =lambda rating:rating[2])
+    if ('review' in sortby):
+        reviews = sorted(reviews, key=lambda rating:rating[5], reverse = True)
     if ('desc' in sortby):
         reviews.reverse()
         desc = True
@@ -129,7 +131,7 @@ def user_ratings_sorted(sortby):
         ratings = sorted(ratings, key=lambda rating:rating[4], reverse = True)
     
     if ('review' in sortby):
-        ratings = sorted(ratings, key=lambda rating:rating[5], reverse = True)
+        ratings = sorted(ratings, key=lambda rating:rating[6], reverse = True)
     if ('desc' in sortby):
         ratings.reverse()
         desc = True
@@ -139,6 +141,9 @@ def user_ratings_sorted(sortby):
 @login_required(role="DEFAULT")
 @app.route("/ratings/user/<user_id>/film/<film_id>/edit", methods=["GET"])
 def edit_rating_form(user_id, film_id):
+    u = User.query.get(user_id)
+    if u.id != current_user.id:
+        return login_manager.unauthorized()
     formtorender = EditRatingForm()
     r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
 
@@ -146,7 +151,8 @@ def edit_rating_form(user_id, film_id):
     formtorender.title.data = r.title
     formtorender.review.data = r.review
     film = Film.query.get(film_id)
-    return render_template("ratings/edit.html", form=formtorender, user_id = user_id, film_id = film_id, film = film) 
+    formtorender.film.data = film.name
+    return render_template("ratings/edit.html", form=formtorender, user_id = user_id, film_id = film_id ) 
 
 @app.route("/ratings/user/<user_id>/film/<film_id>/", methods=["GET"])
 def ratings_show(user_id, film_id):
@@ -163,7 +169,7 @@ def ratings_delete(user_id, film_id):
     db.session().commit()
     return redirect(url_for("ratings_index"))
 
-@login_required(role="DEFAULT")
+@login_required(role="DEFAULT") 
 @app.route("/ratings/user/<user_id>/film/<film_id>/delete#personal")
 def ratings_delete_personal(user_id, film_id):
     r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
@@ -178,12 +184,15 @@ def ratings_delete_personal(user_id, film_id):
 @app.route("/ratings/user/<user_id>/film/<film_id>", methods=["POST"])
 def edit_rating(user_id, film_id):
     form = EditRatingForm(request.form)
-
+    film = Film.query.get(film_id)
+    u = User.query.get(user_id)
+    if u.id != current_user.id:
+        return login_manager.unauthorized()
     r = Rating.query.filter_by(user_id = user_id, film_id=film_id).first()
     
     if not form.validate():
         film = Film.query.get(film_id)
-        return render_template("ratings/edit.html", form=form, user_id=user_id, film_id = film_id, film = film)
+        return render_template("ratings/edit.html", form=form, user_id=user_id, film_id = film_id, film_name = film.name)
     
     r.score = form.score.data
     r.title = form.title.data

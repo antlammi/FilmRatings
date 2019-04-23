@@ -16,7 +16,7 @@ class FilmForm(FlaskForm):
     actors = MySelectMultipleField(u'Actors', choices=[], coerce=int)
     description = TextAreaField("Description", [validators.optional(), validators.Length(min=0, max=1200)])
     year = IntegerField("Year", [validators.optional(), validators.NumberRange(1880, datetime.datetime.now().year)])
-    poster= StringField("Poster URL", [validators.optional(), validators.URL(), validators.length(max=400)])
+    poster= StringField("Poster URL", [validators.optional(), validators.URL(), validators.length(max=800)])
 
     class Meta:
         csrf = False

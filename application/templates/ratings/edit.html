@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h4>{{film.name}}</h4>
+<h4>{{form.film.data}}</h4>
 
 <form method="POST" action="{{url_for('edit_rating', user_id=user_id, film_id=film_id)}}">
     <table>
@@ -13,6 +13,11 @@
             <td>
                 {{form.score}}
             </td>
+            <td>
+                {% for error in form.film.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
         </tr>
         <tr>
             <td>
@@ -21,6 +26,11 @@
             <td>
                 {{form.title}}
             </td>
+            <td>
+                {% for error in form.film.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
         </tr>
         <tr>    
             <td>
@@ -28,6 +38,11 @@
             </td>
             <td>
                 {{form.review(cols=70, rows=12)}}
+            </td>
+            <td>
+                {% for error in form.review.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
             </td>
         </tr>
         <tr>

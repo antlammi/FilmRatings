@@ -8,9 +8,9 @@ class MySelectField(SelectField):
 
 class ReviewForm(FlaskForm):
     film= MySelectField(u'Film', [validators.InputRequired()], choices=[], coerce=int)
-    score = IntegerField("Score (1-10)", [validators.NumberRange(min=1, max=10)])
+    score = SelectField("Score ", choices=[(1, '1'),(2, '2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9'),(10,'10')], coerce=int)
     title = StringField(u'Title', [validators.optional(), validators.length(max=100)])
-    review = TextAreaField(u'Review', [validators.optional(), validators.length(max=5000)])
+    review = TextAreaField(u'Review', [validators.optional(), validators.length(max=20000)])
     class Meta:
         csrf = False
 
@@ -21,8 +21,9 @@ class FilmRatingForm(FlaskForm):
         csrf = False
 
 class EditRatingForm(FlaskForm):
-    score = IntegerField("Score (1-10)", [validators.NumberRange(min=1, max=10)])
+    film = StringField("Film name")
+    score = SelectField("Score", choices=[(1, '1'),(2, '2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9'),(10,'10')], coerce=int)
     title = StringField(u'Title', [validators.optional(), validators.length(max=100)])
-    review = TextAreaField(u'Review', [validators.optional(), validators.length(max=5000)])
+    review = TextAreaField(u'Review', [validators.optional(), validators.length(max=20000)])
     class Meta:
         csrf = False

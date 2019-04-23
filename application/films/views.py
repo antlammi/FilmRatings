@@ -67,8 +67,7 @@ def films_edit(film_id):
     formtorender.poster.data = film.poster
     formtorender.description.data = film.description
     
-    return render_template("films/update.html", form=formtorender, film_id = film_id)
-
+    return render_template("films/update.html", form=formtorender, film_id = film_id, film = film)
 @app.route("/films/<film_id>", methods=["GET"])
 def films_show(film_id):
     f=Film.query.get(film_id)

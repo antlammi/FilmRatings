@@ -41,12 +41,12 @@ class Film(Base):
         return count
     @staticmethod
     def film_reviews(id):
-        stmt = text("SELECT Rating.user_id, Rating.score, Account.username FROM Rating, Account"
+        stmt = text("SELECT Rating.user_id, Rating.score, Rating.title, Account.username FROM Rating, Account"
         " WHERE length(Rating.review) > 0 AND Account.id = Rating.user_id AND Rating.film_id = :id").params(id=id)
         res = db.engine.execute(stmt)
         reviews = []
         for row in res:
-            reviews.append([row[0], row[1], row[2]])
+            reviews.append([row[0], row[1], row[3], row[2]])
         
         return reviews
 

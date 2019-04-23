@@ -4,7 +4,6 @@
     <h3>
         {{ film.name }} ({{film.year}})
     </h3>
-    <br/>
     
     <div class="row">
         {% if film.poster != "" %}
@@ -20,93 +19,103 @@
         {% endif %}
         
     </div>
-    <br/>
-    <p style="font-size:120%"> 
-        {% if director != None %}
-            <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a><br/>
-        {% endif %}
-        
-        <div class ="row">
-            {% if actors.__len__() != 0 %}
-                <div class="col-md">
-                    <h5>Starring</h5>
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>Actors</th>
-                        </tr>
-                        {% for actor in actors %}
-                            <tr>
-                                <td><a href="{{ url_for('actors_show', actor_id=actor.id )}}">{{actor.name}}</a></td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-            {% endif %}
-            {% if reviews.__len__() != 0 %}
-                <div class = "col-md">
-                    <h5>Reviews</h5>
-                    <table class="table table-bordered table-striped">
-                        <tr>
-                            <th>User</th>
-                            <th>Score</th>
-                            <th></th>
-                        </tr>
-                        {% for review in reviews %}
-                            <tr>
-                                <td><a href="{{ url_for('user_profile', user_id=review[0])}}">{{review[2]}}</a></td>
-                                <td>{{review[1]}}</a></td>
-                                <td><a href="{{ url_for('ratings_show', film_id=film.id, user_id = review[0] )}}">Review</a></td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>  
-            {% endif %}
-        </div>
-        
+    
+    <div class="row">
         {% if ratings_count == 0 %}
-            This film has no ratings yet.
+            <div class="col-sm" style="font-size:120%">This film has no ratings yet.</div>
         {% else %}
-            It has been rated {{ ratings_count }} {% if ratings_count == 1 %} time {% else %} times {% endif %} 
-            and has been given an average rating of <strong>{{average_rating}}</strong> 
-            
+            <div class="col-sm" style="font-size:120%">Average rating: <strong>{{average_rating}}</strong> 
+                ({{ratings_count}} {% if ratings_count > 1 %} ratings{% else %} rating{% endif %})</div>     
         {% endif %}
-    </p>
-    {% if user_rating == -1 %}
-    {% elif user_rating == None%}
-        <h5>Rate this film</h5>
-        <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
+        
+    </div>
+    <div class="row">
+        {% if user_rating == -1 %}
+        {% elif user_rating == None%}
+            <div class="col-sm">
+                <h5>Rate this film</h5>
+                <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
+                    <table>
+                        <tr>
+                            <td style="padding-right:1em">
+                                {{rf.score.label}}
+                            </td>
+                            <td>
+                                {{rf.score}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <Button class="btn btn-primary small" type="submit" >Submit</Button>
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    
+                </form>
+                <br/>
+            </div>   
+        {% else %}
+            <div class="col-sm">
                 <table>
                     <tr>
-                        <td style="padding-right:1em">
-                            {{rf.score.label}}
-                        </td>
-                        <td>
-                            {{rf.score}}
-                        </td>
+                        <td style="font-size:120%;padding-right:1em">Your rating: <strong>{{user_rating.score}}</strong></td>
+                        <td><a class="btn btn-primary btn-sm" href="{{ url_for('edit_rating_form', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Edit </a></td>
+                        <td><a class="btn btn-primary btn-sm" href="{{ url_for('ratings_delete_personal', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Delete</a></td>
                     </tr>
-                    <tr>
-                        <td colspan="2">
-                            <Button class="btn btn-primary small" type="submit" >Submit</Button>
-                        </td>
-                    </tr>
-                    
                 </table>
-                
-            </form>
-            <br/><br/>
-    {% else %}
-      
+            </div>
+            <br/>
+
+        {% endif %}
+    </div>
+    <br/>
+    <div class="row">
+            {% if director != None %}
+                <div class="col-sm">
+                    <p style="font-size:120%"> 
+                            <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a>
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    <div class ="row">
+        {% if actors.__len__() != 0 %}
+            <div class="col-md">
+                <h5>Starring</h5>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Actors</th>
+                    </tr>
+                    {% for actor in actors %}
+                        <tr>
+                            <td><a href="{{ url_for('actors_show', actor_id=actor.id )}}">{{actor.name}}</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        {% if reviews.__len__() != 0 %}
+            <div class = "col-md">
+                <h5>Reviews</h5>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>User</th>
+                        <th>Score</th>
+                        <th>Review</th>
+                    </tr>
+                    {% for review in reviews %}
+                        <tr>
+                            <td><a href="{{ url_for('user_profile', user_id=review[0])}}">{{review[2]}}</a></td>
+                            <td>{{review[1]}}</a></td>
+                            <td><a href="{{ url_for('ratings_show', film_id=film.id, user_id = review[0] )}}">{{review[3]}}</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>  
+        {% endif %}
+    </div>
     
-        
-            <table>
-                <tr>
-                    <td style="padding-right:2em">You have rated this film: <strong>{{user_rating.score}}</strong></td>
-                    <td style="padding-right:2em"><a href="{{ url_for('edit_rating_form', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Edit </a></td>
-                    <td style="padding-right:2em"> <a href="{{ url_for('ratings_delete_personal', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Delete</a></td>
-                </tr>
-            </table>
-            <br/><br/>
-    {% endif %}
     <p>
         <a href="{{ url_for('films_index')}}">back to list</a>
     </p>
