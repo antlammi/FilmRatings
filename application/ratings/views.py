@@ -26,7 +26,7 @@ def ratings_index_sorted(sortby):
     if ('user' in sortby):
         ratings = sorted(ratings, key =lambda rating:rating[2])
     if ('review' in sortby):
-        ratings = sorted(ratings, key = lambda rating:rating[6], reverse = True)
+        ratings = sorted(ratings, key = lambda rating:rating[6])
     if ('desc' in sortby):
         ratings.reverse()
         desc = True
@@ -49,7 +49,7 @@ def reviews_sorted(sortby):
     if ('user' in sortby):
         reviews= sorted(reviews, key =lambda rating:rating[2])
     if ('review' in sortby):
-        reviews = sorted(reviews, key=lambda rating:rating[5], reverse = True)
+        reviews = sorted(reviews, key=lambda rating:rating[5])
     if ('desc' in sortby):
         reviews.reverse()
         desc = True
@@ -131,7 +131,7 @@ def user_ratings_sorted(sortby):
         ratings = sorted(ratings, key=lambda rating:rating[4], reverse = True)
     
     if ('review' in sortby):
-        ratings = sorted(ratings, key=lambda rating:rating[6], reverse = True)
+        ratings = sorted(ratings, key=lambda rating:rating[6])
     if ('desc' in sortby):
         ratings.reverse()
         desc = True

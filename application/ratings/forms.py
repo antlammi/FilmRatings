@@ -8,7 +8,7 @@ class MySelectField(SelectField):
 
 class ReviewForm(FlaskForm):
     film= MySelectField(u'Film', [validators.InputRequired()], choices=[], coerce=int)
-    score = SelectField("Score ", choices=[(1, '1'),(2, '2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9'),(10,'10')], coerce=int)
+    score = SelectField("Score ", choices=[(10, '10'),(9, '9'),(8, '8'),(7, '7'), (6, '6'), (5, '5'), (4, '4'), (3, '3'), (2, '2'), (1, '1')], coerce=int)
     title = StringField(u'Title', [validators.optional(), validators.length(max=100)])
     review = TextAreaField(u'Review', [validators.optional(), validators.length(max=20000)])
     class Meta:
@@ -16,13 +16,13 @@ class ReviewForm(FlaskForm):
 
 class FilmRatingForm(FlaskForm):
     film = IntegerField(u'Film')
-    score = SelectField("Score", choices=[(1, '1'),(2, '2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9'),(10,'10')], coerce=int)
+    score = SelectField("Score", choices=[(10, '10'),(9, '9'),(8, '8'),(7, '7'), (6, '6'), (5, '5'), (4, '4'), (3, '3'), (2, '2'), (1, '1')], coerce=int)
     class Meta:
         csrf = False
 
 class EditRatingForm(FlaskForm):
-    film = StringField("Film name")
-    score = SelectField("Score", choices=[(1, '1'),(2, '2'),(3,'3'),(4,'4'),(5,'5'),(6,'6'),(7,'7'),(8,'8'),(9,'9'),(10,'10')], coerce=int)
+    film = StringField("Film name") 
+    score = SelectField("Score", choices=[(10, '10'),(9, '9'),(8, '8'),(7, '7'), (6, '6'), (5, '5'), (4, '4'), (3, '3'), (2, '2'), (1, '1')], coerce=int)
     title = StringField(u'Title', [validators.optional(), validators.length(max=100)])
     review = TextAreaField(u'Review', [validators.optional(), validators.length(max=20000)])
     class Meta:

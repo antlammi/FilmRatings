@@ -29,6 +29,7 @@
         {% endif %}
         
     </div>
+    <br/>
     <div class="row">
         {% if user_rating == -1 %}
         {% elif user_rating == None%}
@@ -37,24 +38,22 @@
                 <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
                     <table>
                         <tr>
-                            <td style="padding-right:1em">
+                            <td style="font-size:120%">
                                 {{rf.score.label}}
                             </td>
-                            <td>
+                            <td style="font-size:100%; padding-left:0.5em" >
                                 {{rf.score}}
                             </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <Button class="btn btn-primary small" type="submit" >Submit</Button>
+                            <td style="padding-left:0.5em;" colspan="2">
+                                <Button class="btn btn-primary" style="padding:0.2em" type="submit" >Submit</Button>
                             </td>
-                        </tr>
-                        
+                        </tr> 
                     </table>
                     
                 </form>
                 <br/>
-            </div>   
+            </div>
+              
         {% else %}
             <div class="col-sm">
                 <table>
