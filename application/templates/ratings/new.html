@@ -10,7 +10,11 @@
             <td>
                 {{ form.film }}
             </td>
-            
+            <td>
+                {% for error in form.film.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
         </tr>
         
         <tr>

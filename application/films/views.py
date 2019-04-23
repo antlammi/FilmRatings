@@ -4,7 +4,9 @@ from application.films.models import Film
 from application.directors.models import Director
 from application.actors.models import Actor, FilmActor
 from application.ratings.models import Rating
+from application.ratings.forms import FilmRatingForm
 from application.films.forms import FilmForm
+from flask_login import current_user
 
 from sqlalchemy import and_
 @app.route("/films/new")
@@ -74,11 +76,15 @@ def films_show(film_id):
     actors = []
     for a in actor_ids:
         actors.append(Actor.query.filter_by(id = a.actor_id).first())     
-    
+    ratingform = FilmRatingForm()
+    user_rating = -1
+    if current_user.is_authenticated:
+        user_rating = Rating.query.filter_by(user_id = current_user.id, film_id = f.id).first()
+
     reviews = Film.film_reviews(film_id)
     return render_template("films/show.html", film=f, director=Director.query.filter_by(id = f.director_id).first(),
         average_rating=Film.average_rating(film_id), ratings_count=Film.ratings_count(film_id),
-        actors = actors, reviews = reviews)
+        actors = actors, reviews = reviews, rf = ratingform, user_rating = user_rating)
  
 @app.route("/films/<film_id>/delete")
 @login_required(role="ADMIN")

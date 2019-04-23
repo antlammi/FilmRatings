@@ -70,7 +70,40 @@
             
         {% endif %}
     </p>
-
+    {% if user_rating == -1 %}
+    {% elif user_rating == None%}
+        <h5>Rate this film</h5>
+        <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
+                <table>
+                    <tr>
+                        <td>
+                            {{rf.score.label}}
+                        </td>
+                        <td>
+                            {{rf.score}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <Button type="submit" class="btn btn-primary">Submit</Button>
+                        </td>
+                    </tr>
+                </table>
+                
+            </form>
+    {% else %}
+      
+    
+        
+            <table>
+                <tr>
+                    <td style="padding-right:2em">You have rated this film: <strong>{{user_rating.score}}</strong></td>
+                    <td style="padding-right:2em"><a href="{{ url_for('edit_rating_form', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Edit </a></td>
+                    <td style="padding-right:2em"> <a href="{{ url_for('ratings_delete_personal', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Delete</a></td>
+                </tr>
+            </table>
+        
+    {% endif %}
     <p>
         <a href="{{ url_for('films_index')}}">back to list</a>
     </p>

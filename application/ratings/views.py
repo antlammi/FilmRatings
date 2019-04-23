@@ -1,11 +1,11 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import current_user
 
-from application import app, db, login_required
+from application import app, db, login_required, login_manager
 from application.ratings.models import Rating
 from application.films.models import Film
 from application.auth.models import User
-from application.ratings.forms import RatingForm, EditRatingForm
+from application.ratings.forms import FilmRatingForm,ReviewForm, EditRatingForm
 
 #admins have full access to a list of every rating
 @app.route("/ratings/", methods=["GET"])
@@ -56,7 +56,7 @@ def reviews_sorted(sortby):
 @app.route("/ratings/new", methods=["GET"])
 @login_required(role="DEFAULT")
 def ratings_form():
-    formtorender = RatingForm()
+    formtorender = ReviewForm()
     ratings = Rating.query.all()
     films = Film.query.all()
     
@@ -66,14 +66,27 @@ def ratings_form():
             for f in films:
                 if f.id == r.film_id:
                     films.remove(f)
-   
+
     formtorender.film.choices = [(f.id, f.name) for f in films]
     return render_template("ratings/new.html", form = formtorender)
+@app.route("/ratings/new/film/<film_id>", methods=["POST"])
+@login_required(role="DEFAULT")
+def ratings_create_quick(film_id):
+    form = FilmRatingForm(request.form)
+    r = Rating(form.score.data)
+
+    r.user_id = current_user.id
+    r.film_id = film_id
+    
+    db.session().add(r)
+    db.session().commit()
+    return redirect(url_for("films_show", film_id = film_id))
+
 
 @app.route("/ratings/new", methods=["POST"])
 @login_required(role="DEFAULT")
 def ratings_create():
-    form = RatingForm(request.form)
+    form = ReviewForm(request.form)
     r = Rating(form.score.data)
 
     r.user_id = current_user.id
@@ -88,6 +101,8 @@ def ratings_create():
                 for f in films:
                     if f.id == r.film_id:
                         films.remove(f)
+
+
         form.film.choices = [(f.id, f.name) for f in films]
         return render_template("ratings/new.html", form = form)
     db.session().add(r)
@@ -130,7 +145,8 @@ def edit_rating_form(user_id, film_id):
     formtorender.score.data = r.score
     formtorender.title.data = r.title
     formtorender.review.data = r.review
-    return render_template("ratings/edit.html", form=formtorender, user_id = user_id, film_id = film_id)
+    film = Film.query.get(film_id)
+    return render_template("ratings/edit.html", form=formtorender, user_id = user_id, film_id = film_id, film = film) 
 
 @app.route("/ratings/user/<user_id>/film/<film_id>/", methods=["GET"])
 def ratings_show(user_id, film_id):
@@ -148,6 +164,18 @@ def ratings_delete(user_id, film_id):
     return redirect(url_for("ratings_index"))
 
 @login_required(role="DEFAULT")
+@app.route("/ratings/user/<user_id>/film/<film_id>/delete#personal")
+def ratings_delete_personal(user_id, film_id):
+    r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
+    u = User.query.get(user_id)
+    if u.id != current_user.id:
+        print(u.id + '' + r.user_id + '' + current_user.id)
+        return login_manager.unauthorized()
+    db.session().delete(r)
+    db.session().commit()
+    return redirect(url_for("user_ratings_index"))
+
+@login_required(role="DEFAULT")
 @app.route("/ratings/user/<user_id>/film/<film_id>", methods=["POST"])
 def edit_rating(user_id, film_id):
     form = EditRatingForm(request.form)
@@ -155,7 +183,8 @@ def edit_rating(user_id, film_id):
     r = Rating.query.filter_by(user_id = user_id, film_id=film_id).first()
     
     if not form.validate():
-        return render_template("ratings/edit.html", form=form, user_id=user_id, film_id = film_id)
+        film = Film.query.get(film_id)
+        return render_template("ratings/edit.html", form=form, user_id=user_id, film_id = film_id, film = film)
     
     r.score = form.score.data
     r.title = form.title.data
