@@ -169,7 +169,6 @@ def ratings_delete_personal(user_id, film_id):
     r = Rating.query.filter_by(user_id = user_id, film_id = film_id).first()
     u = User.query.get(user_id)
     if u.id != current_user.id:
-        print(u.id + '' + r.user_id + '' + current_user.id)
         return login_manager.unauthorized()
     db.session().delete(r)
     db.session().commit()
