@@ -7,7 +7,7 @@
     <br/>
     
     <div class="row">
-        {% if film.poster != None %}
+        {% if film.poster != "" %}
             <div class="col-md">
                 <img src="{{film.poster}}" alt ="{{film.name}}" style="width:400px; height:auto"/>
             </div>
@@ -20,7 +20,8 @@
         {% endif %}
         
     </div>
-    <p> 
+    <br/>
+    <p style="font-size:120%"> 
         {% if director != None %}
             <strong>Directed by: </strong><a href="{{ url_for('directors_show', director_id=director.id )}}">{{director.name}}</a><br/>
         {% endif %}
@@ -76,7 +77,7 @@
         <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
                 <table>
                     <tr>
-                        <td>
+                        <td style="padding-right:1em">
                             {{rf.score.label}}
                         </td>
                         <td>
@@ -85,12 +86,14 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <Button type="submit" class="btn btn-primary">Submit</Button>
+                            <Button class="btn btn-primary small" type="submit" >Submit</Button>
                         </td>
                     </tr>
+                    
                 </table>
                 
             </form>
+            <br/><br/>
     {% else %}
       
     
@@ -102,7 +105,7 @@
                     <td style="padding-right:2em"> <a href="{{ url_for('ratings_delete_personal', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Delete</a></td>
                 </tr>
             </table>
-        
+            <br/><br/>
     {% endif %}
     <p>
         <a href="{{ url_for('films_index')}}">back to list</a>

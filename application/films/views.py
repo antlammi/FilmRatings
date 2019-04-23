@@ -26,7 +26,7 @@ def films_create():
     d_id = form.director.data
     f.year = form.year.data
     f.director_id = d_id
-    f.poster = f.poster.data
+    f.poster = form.poster.data
     actors = form.actors.data
 
     f.description = form.description.data
@@ -79,7 +79,8 @@ def films_show(film_id):
     ratingform = FilmRatingForm()
     user_rating = -1
     if current_user.is_authenticated:
-        user_rating = Rating.query.filter_by(user_id = current_user.id, film_id = f.id).first()
+        if current_user.urole == "DEFAULT":
+            user_rating = Rating.query.filter_by(user_id = current_user.id, film_id = f.id).first()
 
     reviews = Film.film_reviews(film_id)
     return render_template("films/show.html", film=f, director=Director.query.filter_by(id = f.director_id).first(),
