@@ -63,7 +63,7 @@ class User(Base):
     @staticmethod
     def favorite_directors(id):
         stmt = text("SELECT Director.name, Director.id, AVG(Rating.score) AS avg FROM Director, Rating, Film, Account "
-        "WHERE Director.id = Film.director_id AND Film.id = Rating.film_id AND Rating.user_id = Account.id AND Account.id = 2 "
+        "WHERE Director.id = Film.director_id AND Film.id = Rating.film_id AND Rating.user_id = Account.id AND Account.id = :id "
         "GROUP BY Director.name, Director.id ORDER BY avg DESC LIMIT 5").params(id = id)
         res = db.engine.execute(stmt)
         favorite = []
