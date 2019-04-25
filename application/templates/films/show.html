@@ -7,7 +7,7 @@
     
     <div class="row">
         {% if film.poster != "" %}
-            <div class="col-md-4">
+            <div class="col-md-4" style="min-width:320px; height:400px">
                 <img src="{{film.poster}}" alt ="{{film.name}}" style="max-width:320px; width:auto; height:400px"/>
             </div>
         {% endif %}
