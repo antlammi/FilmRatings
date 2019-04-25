@@ -12,10 +12,10 @@
 
 - Käyttäjänä voin tarkastella listaa parhaista tietokannasta löytyvistä elokuvista/ohjaajista/näyttelijöistä
   - Elokuvat
-```
-  SELECT name, id, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id 
-  GROUP BY Film.id ORDER BY avg DESC LIMIT 5
-```
+  ```
+    SELECT name, id, avg(Rating.score) AS avg FROM Film, Rating WHERE Film.id = rating.film_id 
+    GROUP BY Film.id ORDER BY avg DESC LIMIT 5
+  ```
   - Ohjaajat
   ```
     SELECT director.id, director.name, AVG(Rating.score) as avg FROM Director, Rating, FILM 
@@ -28,7 +28,7 @@
     SELECT Actor.name, Actor.id, AVG(Rating.score) AS avg FROM Actor, Rating, Film_actor, Film
     WHERE Film_actor.actor_id = Actor.id AND film_actor.film_id = Film.id 
     AND Film.id = Rating.film_id GROUP BY Actor.id ORDER BY avg DESC LIMIT 5
-  ```
+    ```
 - Käyttäjänä voin tarkastella tietokannasta löytyvien elokuvien listaa keskivertoarvioiden kanssa
  - Heroku versio
  ```
@@ -50,10 +50,10 @@
     SELECT * FROM Film WHERE id = :id
   ```
   - Elokuvaan liittyvät arvostelut
-```
-  SELECT Rating.user_id, Rating.score, Rating.title, Account.username FROM Rating, Account 
-  WHERE length(Rating.review) > 0 AND Account.id = Rating.user_id AND Rating.film_id = :id
-```
+  ```
+    SELECT Rating.user_id, Rating.score, Rating.title, Account.username FROM Rating, Account 
+    WHERE length(Rating.review) > 0 AND Account.id = Rating.user_id AND Rating.film_id = :id
+  ```
   - Elokuvan pisteytysten määrä
   ```
   SELECT Count(*) from Rating LEFT JOIN Film ON Rating.film_id = Film.id WHERE Film.id = :id
@@ -71,16 +71,16 @@
   SELECT * ACTOR WHERE id = :id 
   ```
 - Käyttäjänä voin tarkastella tietokannasta löytyvien ohjaajien listaa
-```
-  SELECT * FROM Director
-```
+  ```
+    SELECT * FROM Director
+  ```
   - Tämän listan voi järjestää nimen, kansallisuuden tai iän perusteella (tehdään pythonilla)
   
 - Käyttäjänä voin tarkastella yksittäisen ohjaajan tietoja
   - Ohjaajan tiedot
-```
-  SELECT * FROM Director where id = :id
-```
+  ```
+    SELECT * FROM Director where id = :id
+  ```
   - Ohjaajan keskivertopisteytys
   ```
   SELECT AVG(Rating.score) from Rating LEFT JOIN Film ON Rating.film_id = Film.id
@@ -143,16 +143,16 @@
 ```
   - Profiilista löytyy kyseisen käyttäjän suosikkiohjaajat
   ```
-SELECT Director.name, Director.id, AVG(Rating.score) AS avg FROM Director, Rating, Film, Account 
-WHERE Director.id = Film.director_id AND Film.id = Rating.film_id AND Rating.user_id = Account.id AND Account.id = :id 
-GROUP BY Director.name, Director.id ORDER BY avg DESC LIMIT 5
-```
+  SELECT Director.name, Director.id, AVG(Rating.score) AS avg FROM Director, Rating, Film, Account 
+  WHERE Director.id = Film.director_id AND Film.id = Rating.film_id AND Rating.user_id = Account.id AND Account.id = :id 
+  GROUP BY Director.name, Director.id ORDER BY avg DESC LIMIT 5
+  ```
   - Profiilista löytyy kyseisen käyttäjän arvostelut
   ```
-SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title FROM Rating, Account, Film
-WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id 
-ORDER BY Rating.date_modified DESC
-```
+  SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title FROM Rating, Account, Film
+  WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id 
+  ORDER BY Rating.date_modified DESC
+  ```
   
 - Käyttäjänä voin rekisteröityä palveluun
 ```
@@ -189,30 +189,30 @@ UPDATE ACCOUNT set password = ? WHERE ID = ?
 ```
 - Admin-käyttäjänä kykenen lisäämään tietokantaan elokuvia/ohjaajia/näyttelijöitä
   - Elokuvat
-```
-INSERT INTO Film (name, description, director_id, year, poster) VALUES (?, ?, ?, ?, ?)  
-```
+  ```
+  INSERT INTO Film (name, description, director_id, year, poster) VALUES (?, ?, ?, ?, ?)  
+  ```
   - Ohjaajat
   ```
-INSERT INTO Director(name, bio, age, nationality) VALUES (?, ?, ?, ?)  
-```
+  INSERT INTO Director(name, bio, age, nationality) VALUES (?, ?, ?, ?)  
+  ```
   - Näyttelijät
-```
-INSERT INTO Actor(name, bio, age, nationality) VALUES (?, ?, ?, ?)  
-```
+  ```
+  INSERT INTO Actor(name, bio, age, nationality) VALUES (?, ?, ?, ?)  
+  ```
 - Admin-käyttäjänä kykenen muokkaamaan tietokannasta löytyviä elokuvia/ohjaajia/näyttelijöitä
   - Elokuvat
-```
-UPDATE Film SET name=?, description=?, director_id = ?, year = ?, poster = ? WHERE ID = ?
-```
+  ```
+  UPDATE Film SET name=?, description=?, director_id = ?, year = ?, poster = ? WHERE ID = ?
+  ```
   - Ohjaajat
-```
-UPDATE Director SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
-```
+  ```
+  UPDATE Director SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
+  ```
   - Näyttelijät
-```
-UPDATE Actor SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
-```
+  ```
+  UPDATE Actor SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
+  ```
 - Admin-käyttäjänä kykenen poistamaan tietokannasta löytyviä elokuvia/ohjaajia/näyttelijöitä
   - Elokuvat
   ```
@@ -230,7 +230,8 @@ UPDATE Actor SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
 - Admin-käyttäjänä kykenen tarkastelemaan kaikkien palvelussa annettujen pisteytysten listaa
 
   ```
-  SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title FROM Rating, Account, Film
+  SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title 
+  FROM Rating, Account, Film
   WHERE Rating.user_id = Account.id AND Rating.film_id = Film.id
   ```
   
@@ -238,5 +239,3 @@ UPDATE Actor SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
   ```
   DELETE From Rating WHERE User_id = ? AND Film_id = ?
   ```
-
-
