@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
+<br/>
 <h4>{{form.film.data}}</h4>
 
 <form method="POST" action="{{url_for('edit_rating', user_id=user_id, film_id=film_id)}}">
