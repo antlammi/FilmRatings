@@ -68,7 +68,7 @@
   ```
     (Pythonilla tehty for loop jokaiselle edellisen kyselyn id:lle, jossa seuraava kysely)
   ```
-  SELECT * ACTOR WHERE id = :id 
+  SELECT * FROM ACTOR WHERE id = :id 
   ```
 - Käyttäjänä voin tarkastella tietokannasta löytyvien ohjaajien listaa
   ```
