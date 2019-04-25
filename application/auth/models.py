@@ -74,12 +74,15 @@ class User(Base):
 
     @staticmethod
     def user_reviews(id):
-        stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review FROM Rating, Account, Film" 
+        stmt = text("SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title FROM Rating, Account, Film" 
         " WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id ORDER BY Rating.date_modified DESC").params(id=id)
         res = db.engine.execute(stmt)
         reviews = []
         for row in res:
-            reviews.append([row[0], row[1], row[2], row[3], row[4], row[5]])
+            if (row[6] != None):
+                reviews.append([row[0], row[1], row[2], row[3], row[4], row[5], row[6]])
+            else:
+                reviews.append([row[0], row[1], row[2], row[3], row[4], row[5], ""])
 
         return reviews
 
