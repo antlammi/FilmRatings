@@ -190,25 +190,53 @@ UPDATE ACCOUNT set password = ? WHERE ID = ?
 - Admin-käyttäjänä kykenen lisäämään tietokantaan elokuvia/ohjaajia/näyttelijöitä
   - Elokuvat
 ```
-
+INSERT INTO Film (name, description, director_id, year, poster) VALUES (?, ?, ?, ?, ?)  
 ```
   - Ohjaajat
-  - Näyttelijät
-- Admin-käyttäjänä kykenen muokkaamaan tietokannasta löytyviä elokuvia/ohjaajia/näyttelijöitä
+  ```
+INSERT INTO Director(name, bio, age, nationality) VALUES (?, ?, ?, ?)  
 ```
-
+  - Näyttelijät
+```
+INSERT INTO Actor(name, bio, age, nationality) VALUES (?, ?, ?, ?)  
+```
+- Admin-käyttäjänä kykenen muokkaamaan tietokannasta löytyviä elokuvia/ohjaajia/näyttelijöitä
+  - Elokuvat
+```
+UPDATE Film SET name=?, description=?, director_id = ?, year = ?, poster = ? WHERE ID = ?
+```
+  - Ohjaajat
+```
+UPDATE Director SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
+```
+  - Näyttelijät
+```
+UPDATE Actor SET name=?, bio=?, nationality = ?, age = ? WHERE ID = ?
 ```
 - Admin-käyttäjänä kykenen poistamaan tietokannasta löytyviä elokuvia/ohjaajia/näyttelijöitä
-```
+  - Elokuvat
+  ```
+  DELETE FROM Film WHERE ID = ?
+  ```
+  - Ohjaajat
+   ```
+  DELETE FROM Director WHERE ID = ?
+  ```
+  - Näyttelijät
+  ```
+  DELETE FROM Actor WHERE ID = ?
+  ```
 
-```
 - Admin-käyttäjänä kykenen tarkastelemaan kaikkien palvelussa annettujen pisteytysten listaa
-```
 
-```
+  ```
+  SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title FROM Rating, Account, Film
+  WHERE Rating.user_id = Account.id AND Rating.film_id = Film.id
+  ```
+  
 - Admin-käyttäjänä kykenen poistamaan minkä tahansa palveluun lisätyn pisteytyksen
-```
-
-```
+  ```
+  DELETE From Rating WHERE User_id = ? AND Film_id = ?
+  ```
 
 
