@@ -30,18 +30,18 @@
     AND Film.id = Rating.film_id GROUP BY Actor.id ORDER BY avg DESC LIMIT 5
     ```
 - Käyttäjänä voin tarkastella tietokannasta löytyvien elokuvien listaa keskivertoarvioiden kanssa
- - Heroku versio
- ```
+  - Heroku versio
+  ```
   SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film 
   LEFT JOIN Rating on Rating.film_id = id WHERE Director.id = film.director_id 
   GROUP BY Film.id, director.name ORDER BY film.id
- ```
- - Lokaali versio
-```
+  ```
+  - Lokaali versio
+  ```
   SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film 
   LEFT JOIN Rating on Rating.film_id = film.id WHERE Director.id = film.director_id 
   GROUP BY Film.id, director.name ORDER BY film.id
-```
+  ```
   - Tämän listan voi järjestää nimen, ohjaajan nimen, julkaisuvuoden tai keskivertoarvion perusteella (tehdään pythonilla)
   
 - Käyttäjänä voin tarkastella yksittäisen elokuvan tietoja
