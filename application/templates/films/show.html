@@ -11,13 +11,13 @@
                 <img src="{{film.poster}}" alt ="{{film.name}}" style="max-width:320px; width:auto; height:400px"/>
             </div>
         {% endif %}
-        <div class="col-md">
+        <div class="col-md-8">
             <p style="font-size:120%"> {{ film.description }}</p>
-            <table>
-               
-                <tr>
+            <div class="wrap">
+                
+                
                     {% if actors.__len__() != 0 %}
-                        <td>
+                        <div style="width:49%; height:50%;float:left">
                             <h5>Starring</h5>
                             <table class="table table-bordered table-dark">
                                 <tr style="background-color:#292F33">
@@ -30,10 +30,10 @@
                                 {% endfor %}
                             </table>
                     
-                        </td>
+                        </div>
                     {% endif %}
                     {% if reviews.__len__() != 0 %}
-                        <td>
+                        <div style="width:49%; height:49%;float:right">
                             <h5>Reviews</h5>
                             <table class="table table-bordered table-dark">
                                 <tr style="background-color:#292F33">
@@ -49,13 +49,12 @@
                                     </tr>
                                 {% endfor %}
                             </table>
-                    
-                        </td> 
+                        </div>
+                        
                     {% endif %}
-                </tr>
-        
                
-            </table>
+               
+            </div>
         </div>
     </div>
 </div>
