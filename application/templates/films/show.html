@@ -2,7 +2,7 @@
 {% block body %}
 <div class = "container">
     <h3>
-        {{ film.name }} ({{film.year}})
+        {{ film.name }} {% if film.year != None %}({{film.year}}){% endif %}
     </h3>
     
     <div class="row">
