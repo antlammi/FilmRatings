@@ -5,10 +5,10 @@
     <table>
         <tr>
             <td>
-                {{ form.name.label }}
+                {{ form.name.label(style="color:#999fa3")}}
             </td>
             <td>
-                {{ form.name }}
+                {{ form.name(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
             </td>
             <td>
                 {% for error in form.name.errors %}
@@ -16,33 +16,33 @@
                 {% endfor %}
             </td>
         </tr>
-        <tr>
+        <tr> 
             <td>
-                {{ form.nationality.label}}
+                {{ form.nationality.label(style="color:#999fa3")}}
             </td>
             <td>
-                {{form.nationality}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{form.age.label}}
-            </td>
-            <td>
-                {{form.age}}
+                {{form.nationality(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
             </td>
         </tr>
         <tr>
             <td>
-                {{form.bio.label}}
+                {{form.age.label(style="color:#999fa3")}}
             </td>
             <td>
-                {{form.bio(cols=70, rows=3)}}
+                {{form.age(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
             </td>
         </tr>
         <tr>
+            <td>
+                {{form.bio.label(style="color:#999fa3")}}
+            </td>
+            <td>
+                {{form.bio(cols=70, rows=3, style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+            </td>
+        </tr>
+        <tr><td></td>
             <td colspan="2">
-                <Button type="submit" class="btn btn-primary">Submit</Button>
+                <Button type="submit" class="btn btn-outline-success">Submit</Button>
             </td>
         </tr>
     </table>

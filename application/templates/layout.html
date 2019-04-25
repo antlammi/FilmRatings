@@ -7,7 +7,7 @@
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
 
-  <body>
+  <body style="background-color:rgb(28, 36, 40); color:#d9dee0">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-4">
       <a href="/" class="navbar-brand" href="#">FilmRatings</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,14 +62,14 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{current_user.name}}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navDropdown">
+                <div class="dropdown-menu" aria-labelledby="navDropdown" style="background-color:#2c3238">
                     {% if current_user.urole == "DEFAULT" %}
-                    <a class="dropdown-item" href="{{url_for('user_ratings_index') }}">My Ratings</a>
+                    <a class="dropdown-item" href="{{url_for('user_ratings_index') }}" style="color:#6c757d">My Ratings</a>
                     {% endif %}
-                    <a class="dropdown-item" href="{{ url_for('user_profile', user_id = current_user.id) }}">Profile</a>
-                    <a class="dropdown-item" href="{{ url_for('user_settings', user_id = current_user.id) }}"> Settings</a>
-                    <a class="dropdown-item" href="{{ url_for('change_password', user_id = current_user.id) }}"> Change Password</a>
-                    <a class="dropdown-item" href="{{ url_for('auth_logout') }}"> Logout</a>
+                    <a class="dropdown-item" href="{{ url_for('user_profile', user_id = current_user.id) }}" style="color:#6c757d">Profile</a>
+                    <a class="dropdown-item" href="{{ url_for('user_settings', user_id = current_user.id) }}" style="color:#6c757d"> Settings</a>
+                    <a class="dropdown-item" href="{{ url_for('change_password', user_id = current_user.id) }}" style="color:#6c757d"> Change Password</a>
+                    <a class="dropdown-item" href="{{ url_for('auth_logout') }}" style="color:#6c757d"> Logout</a>
                 </div>
             </li>
             </ul>

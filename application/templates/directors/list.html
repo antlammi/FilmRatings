@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-    <table class="table table-bordered table-striped">
-        <tr>
+    <table class="table table-borderless table-dark">
+        <tr style="background-color:#292F33">
             <th> 
                 {% if sortby == 'name' and desc == False %}
                     <a href="{{url_for('directors_sorted', sortby = 'namedesc')}}">Directors</a>
@@ -23,13 +23,10 @@
                     <a href="{{url_for('directors_sorted', sortby = 'age')}}">Age</a>
                 {% endif %}
             </th>
-            {% if current_user.urole == "ADMIN" %}
-                <th></th>
-                <th></th>
-            {% endif %}
+            
         </tr>
         {% for director in directors%}
-        <tr>
+        <tr style="background-color:#2c3238;color:#d9dee0">
             <td><a href="{{url_for('directors_show', director_id = director.id)}}">{{director.name}}</a></td>
             {% if not director.nationality == null %}
                 <td>{{director.nationality}}</td>
@@ -38,13 +35,13 @@
                 <td>{{director.age}}</td>
             {% endif %} 
             {% if current_user.urole=="ADMIN" %}
-            <td>
-                <a href="{{ url_for('directors_edit', director_id=director.id )}}">
+            <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
+                <a style="width:100%" class="btn btn-primary"href="{{ url_for('directors_edit', director_id=director.id )}}">
                     Edit
                 </a>
             </td>
-            <td>
-                <a href="{{ url_for('directors_delete', director_id=director.id) }}">
+            <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
+                <a style="width:100%" class="btn btn-danger"href="{{ url_for('directors_delete', director_id=director.id) }}">
                     Delete
                 </a>
             </td>

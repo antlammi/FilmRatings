@@ -15,10 +15,10 @@
                 <table>
                     <tr>
                         <td>
-                            {{ form.name.label }}
+                            {{ form.name.label(style="color:#999fa3")}}
                         </td>
                         <td>
-                            {{ form.name }}
+                            {{ form.name(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
                         </td>
                         <td>
                             {% for error in form.name.errors %}
@@ -29,10 +29,10 @@
                     
                     <tr>
                         <td>
-                            {{ form.username.label}}
+                            {{ form.username.label(style="color:#999fa3")}}
                         </td>
                         <td>
-                            {{form.username}}
+                            {{form.username(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
                         </td>
                         <td>
                             {% for error in form.username.errors %}
@@ -43,10 +43,10 @@
                   
                     <tr>
                         <td>
-                            {{ form.bio.label}}         
+                            {{ form.bio.label(style="color:#999fa3")}}         
                         </td>
                         <td>       
-                            {{form.bio(cols=70, rows=3)}}
+                            {{form.bio(cols=70, rows=3, style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
                         </td> 
                         <td>
                             {% for error in form.bio.errors %}
@@ -54,9 +54,9 @@
                             {% endfor %}
                         </td>
                     </tr>
-                    <tr>
+                    <tr><td></td>
                         <td colspan="2">
-                            <Button type="submit" class="btn btn-primary">Submit</Button>
+                            <Button type="submit" class="btn btn-outline-success">Submit</Button>
                             
                         </td>
                     

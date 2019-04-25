@@ -9,12 +9,13 @@
         {% if recent_films != None %}
             <div class="col-md">
                 <h5>Recent Films</h5>
-                <table class="table table-bordered table-striped">
-                    <tr>
-                        <th>Film</th>
+                <table class="table table-bordered table-dark">
+                    <tr style="background-color:#292F33">
+                        <th style="color:#d9dee0">Film</th>
                     </tr>
                     {% for film in recent_films %}
-                        <tr>
+                    
+                        <tr style="background-color:#2c3238">
                         
                             <td>
                                 <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
@@ -28,21 +29,21 @@
         {% if recent_reviews != None %}
             <div class="col-md">
                 <h5>Recent Reviews</h5>
-                <table class="table table-bordered table-striped">
-                    <tr>
+                <table class="table table-bordered table-dark">
+                    <tr style="background-color:#292F33;color:#d9dee0">
                         <th>Film</th>
                         <th>Reviewer</th>
                         <th>Score</th>
                         <th>Title</th>
                     </tr>
                     {% for review in recent_reviews %}
-                        <tr>
+                        <tr style="background-color:#2c3238;color:#d9dee0">
                         
                             <td>
                                 <a href="{{ url_for('films_show', film_id=review[1])}}">{{review[0]}}</a>
                             </td>
                             <td>
-                                {{review[2]}}
+                                <a href="{{ url_for('user_profile', user_id = review[3])}}">{{review[2 ]}}</a>
                             </td>
                             <td>
                                 {{review[4]}}
@@ -60,13 +61,13 @@
         {% if top_films != None %}
             <div class="col-md">
                 <h5>Top Films</h5>
-                <table class="table table-bordered table-striped">
-                    <tr>
+                <table class="table table-bordered table-dark">
+                    <tr style="background-color:#292F33; color:#d9dee0">
                         <th>Film</th>
                         <th>Rating</th>
                     </tr>
                     {% for film in top_films %}
-                        <tr>
+                        <tr style="background-color:#2c3238; color:#d9dee0">
                         
                             <td>
                                 <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
@@ -83,13 +84,13 @@
         {% if top_directors != None %}
             <div class="col-md">
                 <h5>Top Directors</h5>
-                <table class="table table-bordered table-striped">
-                    <tr>
+                <table class="table table-bordered table-dark">
+                    <tr style="background-color:#292F33; color:#d9dee0">
                         <th>Director</th>
                         <th>Rating</th>
                     </tr>
                     {% for director in top_directors %}
-                        <tr>
+                        <tr style="background-color:#2c3238; color:#d9dee0">
                         
                             <td>
                                 <a href="{{ url_for('directors_show', director_id=director[1])}}">{{director[0]}}</a>
@@ -106,13 +107,13 @@
         {% if top_actors != None %}
             <div class="col-md">
                 <h5>Top Actors</h5>
-                <table class="table table-bordered table-striped">
-                    <tr>
+                <table class="table table-bordered table-dark">
+                    <tr style="background-color:#292F33;color:#d9dee0">
                         <th>Actors</th>
                         <th>Rating</th>
                     </tr>
                     {% for actor in top_actors %}
-                        <tr>
+                        <tr style="background-color:#2c3238;color:#d9dee0">
                         
                             <td>
                                 <a href="{{ url_for('actors_show', actor_id=actor[1])}}">{{actor[0]}}</a>
@@ -131,7 +132,7 @@
     </div>
     <div class="row">
         <div class="col-sm">
-            <a class="twitter-timeline" data-theme="light" data-link-color="#2B7BB9" href="https://twitter.com/KufdonHS/lists/film-twitter?ref_src=twsrc%5Etfw">Film Tweets</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" data-theme="dark" data-link-color="#2B7BB9" href="https://twitter.com/KufdonHS/lists/film-twitter?ref_src=twsrc%5Etfw">Film Tweets</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
 </div>
