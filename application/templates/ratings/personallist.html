@@ -39,9 +39,9 @@
                 {% endif %}
             </td>
             <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                    <a style="width:100%" class="btn btn-primary" href="{{url_for('edit_rating_form', film_id=rating[1], user_id=rating[3])}}">Edit</a></td>
+                    <a style="width:100%" class="btn btn-outline-primary" href="{{url_for('edit_rating_form', film_id=rating[1], user_id=rating[3])}}">Edit</a></td>
             <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                    <a style="width:100%" class="btn btn-danger" href="{{url_for('ratings_delete_personal', film_id=rating[1], user_id=rating[3])}}">Delete</a></td>
+                    <a style="width:100%" class="btn btn-outline-danger" href="{{url_for('ratings_delete_personal', film_id=rating[1], user_id=rating[3])}}">Delete</a></td>
         </tr>
             
         {% endfor %}

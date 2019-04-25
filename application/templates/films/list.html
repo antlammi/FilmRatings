@@ -56,12 +56,12 @@
             </td>
             {% if current_user.urole=="ADMIN" %}
             <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                <a style="width:100%" class="btn btn-primary" href="{{ url_for('films_edit', film_id=film[0] )}}">
+                <a style="width:100%" class="btn btn-outline-primary" href="{{ url_for('films_edit', film_id=film[0] )}}">
                     Edit
                 </a>
             </td>
             <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40); padding:0.5%">
-                    <a style="width:100%" class="btn btn-danger" href="{{ url_for('films_delete', film_id=film[0]) }}">
+                    <a style="width:100%" class="btn btn-outline-danger" href="{{ url_for('films_delete', film_id=film[0]) }}">
                     Delete
                 </a>
             </td>

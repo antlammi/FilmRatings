@@ -37,12 +37,12 @@
             {% endif %} 
             {% if current_user.urole=="ADMIN" %}
             <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                <a style="width:100%" class="btn btn-primary" href="{{ url_for('actors_edit', actor_id=actor.id )}}">
+                <a style="width:100%" class="btn btn-outline-primary" href="{{ url_for('actors_edit', actor_id=actor.id )}}">
                     Edit
                 </a>
             </td>
             <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                <a style="width:100%" class="btn btn-danger" href="{{ url_for('actors_delete', actor_id=actor.id) }}">
+                <a style="width:100%" class="btn btn-outline-danger" href="{{ url_for('actors_delete', actor_id=actor.id) }}">
                     Delete
                 </a>
             </td>
