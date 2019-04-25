@@ -14,7 +14,7 @@
         <div class="col-md-8">
             <p style="font-size:120%"> {{ film.description }}</p>
             <div class="wrap">
-                
+               
                 
                     {% if actors.__len__() != 0 %}
                         <div style="width:49%; height:50%;float:left">
@@ -31,9 +31,14 @@
                             </table>
                     
                         </div>
+                       
                     {% endif %}
                     {% if reviews.__len__() != 0 %}
-                        <div style="width:49%; height:49%;float:right">
+                        {% if actors.__len__() != 0 %}
+                            <div style="width:49%; height:49%;float:right">
+                        {% else %}
+                            <div style="width:49%; height:49%;float:left">
+                        {% endif %}
                             <h5>Reviews</h5>
                             <table class="table table-bordered table-dark">
                                 <tr style="background-color:#292F33">
