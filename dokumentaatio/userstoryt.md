@@ -124,9 +124,9 @@
   - Tämän listan voi järjestää elokuvan nimen, pisteytyksen, käyttäjän nimen, tai arvostelun otsikon perusteella(pythonilla)
 
 - Käyttäjänä kykenen tarkastelemaan muiden rekisteröityneiden käyttäjien profiileja
-```
-  SELECT * FROM Account WHERE id = :id
-```
+  ```
+    SELECT * FROM Account WHERE id = :id
+  ```
   - Profiilista löytyy kyseisen käyttäjän kuvaus (tulee ylemmän kyselyn mukana)
   
   - Profiilista löytyy kyseisen käyttäjän suosikkielokuvat
@@ -140,7 +140,7 @@
   WHERE Film_actor.actor_id = Actor.id AND film_actor.film_id = Film.id
   AND Film.id = Rating.film_id AND Rating.user_id = Account.id AND Account.id = :id
   GROUP BY Actor.id ORDER BY avg DESC LIMIT 5
-```
+  ```
   - Profiilista löytyy kyseisen käyttäjän suosikkiohjaajat
   ```
   SELECT Director.name, Director.id, AVG(Rating.score) AS avg FROM Director, Rating, Film, Account 
@@ -149,7 +149,8 @@
   ```
   - Profiilista löytyy kyseisen käyttäjän arvostelut
   ```
-  SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title FROM Rating, Account, Film
+  SELECT Film.name, Film.id, Account.username, Account.id, rating.score, rating.review, rating.title 
+  FROM Rating, Account, Film
   WHERE length(Rating.review) > 0 AND Rating.user_id = Account.id AND Rating.film_id = Film.id AND Account.id = :id 
   ORDER BY Rating.date_modified DESC
   ```
