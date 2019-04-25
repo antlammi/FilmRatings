@@ -15,7 +15,7 @@ Sovellus tulee olemaan verkossa toimiva elokuva-arvostelu app, josta voi hakea e
 - Elokuviin liittyy ohjaajat ja näyttelijät.
 - Elokuvia voi hakea ohjaajien ja näyttelijöiden perusteella.
 - Ohjaajien elokuvien keskivertoarvostelut esitetään ohjaajan sivulla.
-- Näyttelijän elokuvien keskivertoarvostelut esitetään ohjaajan sivulla.
+- Näyttelijän elokuvien keskivertoarvostelut esitetään näyttelijän sivulla.
 - Tyylilaji-kategoria elokuville
 - Elokuvilla on kansikuva, esimerkiksi poster.    
 
