@@ -2,7 +2,7 @@
 {% block body %}
 <br/>
     <table class="table table-bordered table-dark">
-        <tr style="background-color:#292F33">
+        <tr style="background-color:rgb(37, 44, 48)">
             <th>
                 {% if sortby == 'film' and desc == False %}
                     <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0"  href="{{url_for('ratings_index_sorted', sortby='filmdesc')}}">Film</a>

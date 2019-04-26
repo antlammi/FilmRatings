@@ -5,63 +5,61 @@
     <div class="row">
         <br/>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="wrap">
-                {% if recent_films.__len__() > 0 %}
-                    <div style="width:31.5%; height:100%;float:left">
-                        <h5>Recent Films</h5>
-                        <table class="table table-bordered table-dark">
-                            <tr style="background-color:#292F33">
-                                <th style="color:#d9dee0">Film</th>
-                            </tr>
-                            {% for film in recent_films %}
+        <div class="row">
+            {% if recent_films.__len__() > 0 %}
+                <div class="col-md-4">
+                    <h5>Recent Films</h5>
+                    <table class="table table-bordered table-dark">
+                        <tr style="background-color:rgb(37, 44, 48)">
+                            <th style="color:#d9dee0">Film</th>
+                        </tr>
+                        {% for film in recent_films %}
+                        
+                            <tr style="background-color:#2c3238">
                             
-                                <tr style="background-color:#2c3238">
-                                
-                                    <td>
-                                        <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
-                                    </td>
-                                
-                                </tr>
-                            {% endfor %}
-                        </table>
-                   
-                    </div>
-                {% endif %}
-                {% if recent_reviews.__len__() > 0%}
-               
-                    <div style="width:65.7%; height:100%;float:right">
-                        <h5>Recent Reviews</h5>
-                        <table class="table table-bordered table-dark" style="height:50% width=49%">
-                            <tr style="background-color:#292F33;color:#d9dee0">
-                                <th>Film</th>
-                                <th>Reviewer</th>
-                                <th>Score</th>
-                                <th>Title</th>
+                                <td>
+                                    <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
+                                </td>
+                            
                             </tr>
-                            {% for review in recent_reviews %}
-                                <tr style="background-color:#2c3238;color:#d9dee0">
-                                
-                                    <td>
-                                        <a href="{{ url_for('films_show', film_id=review[1])}}">{{review[0]}}</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ url_for('user_profile', user_id = review[3])}}">{{review[2 ]}}</a>
-                                    </td>
-                                    <td>
-                                        {{review[4]}}
-                                    </td>
-                                    <td>
-                                        <a href="{{url_for('ratings_show', film_id = review[1], user_id = review[3])}}">{{review[6]}}</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
+                        {% endfor %}
+                    </table>
                 
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
+            {% if recent_reviews.__len__() > 0%}
+                <div class="col-md-8">
+                   
+                    <h5>Recent Reviews</h5>
+                    <table class="table table-bordered table-dark" style="height:50% width=49%">
+                        <tr style="background-color:rgb(37, 44, 48);color:#d9dee0">
+                            <th>Film</th>
+                            <th>Reviewer</th>
+                            <th>Score</th>
+                            <th>Title</th>
+                        </tr>
+                        {% for review in recent_reviews %}
+                            <tr style="background-color:#2c3238;color:#d9dee0">
+                            
+                                <td>
+                                    <a href="{{ url_for('films_show', film_id=review[1])}}">{{review[0]}}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('user_profile', user_id = review[3])}}">{{review[2 ]}}</a>
+                                </td>
+                                <td>
+                                    {{review[4]}}
+                                </td>
+                                <td>
+                                    <a href="{{url_for('ratings_show', film_id = review[1], user_id = review[3])}}">{{review[6]}}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                
+            {% endif %}
+           
         </div>
     </div>
     <div class="row">
@@ -69,7 +67,7 @@
             <div class="col-md">
                 <h5>Top Films</h5>
                 <table class="table table-bordered table-dark">
-                    <tr style="background-color:#292F33; color:#d9dee0">
+                    <tr style="background-color:rgb(37, 44, 48); color:#d9dee0">
                         <th>Film</th>
                         <th>Rating</th>
                     </tr>
@@ -92,7 +90,7 @@
             <div class="col-md">
                 <h5>Top Directors</h5>
                 <table class="table table-bordered table-dark">
-                    <tr style="background-color:#292F33; color:#d9dee0">
+                    <tr style="background-color:rgb(37, 44, 48); color:#d9dee0">
                         <th>Director</th>
                         <th>Rating</th>
                     </tr>
@@ -115,7 +113,7 @@
             <div class="col-md">
                 <h5>Top Actors</h5>
                 <table class="table table-bordered table-dark">
-                    <tr style="background-color:#292F33;color:#d9dee0">
+                    <tr style="background-color:rgb(37, 44, 48); color:#d9dee0">
                         <th>Actors</th>
                         <th>Rating</th>
                     </tr>
