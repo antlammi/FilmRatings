@@ -5,30 +5,30 @@
         <tr style="background-color:#292F33">
             <th>
                 {% if sortby == 'name' and desc == False %}
-                    <a href="{{url_for('films_sorted', sortby = 'namedesc')}}">Film</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby = 'namedesc')}}">Film</a>
                 {% else %}
-                    <a href ="{{url_for('films_sorted', sortby = 'name')}}">Film</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href ="{{url_for('films_sorted', sortby = 'name')}}">Film</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'director' and desc == False %}
-                    <a href="{{url_for('films_sorted', sortby='directordesc')}}">Director</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby='directordesc')}}">Director</a>
                 {% else %}
-                    <a href="{{url_for('films_sorted', sortby='director')}}">Director</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby='director')}}">Director</a>
                 {% endif %}
             </th>
             <th> 
-                    {% if sortby == 'year' and desc == False %}
-                        <a href="{{url_for('films_sorted', sortby = 'yeardesc')}}">Year</a>
-                    {% else %}
-                        <a href="{{url_for('films_sorted', sortby = 'year')}}">Year</a>
-                    {% endif %}
-                </th>
+                {% if sortby == 'year' and desc == False %}
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby = 'yeardesc')}}">Year</a>
+                {% else %}
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby = 'year')}}">Year</a>
+                {% endif %}
+            </th>
             <th>
                 {% if sortby == 'rating' and desc == False %}
-                    <a href="{{url_for('films_sorted', sortby='ratingdesc')}}">Rating</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby='ratingdesc')}}">Rating</a>
                 {% else %}
-                    <a href="{{url_for('films_sorted', sortby='rating')}}">Rating</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('films_sorted', sortby='rating')}}">Rating</a>
                 {% endif %}
             </th>
             
@@ -41,7 +41,7 @@
                 <a href="{{url_for('directors_show', director_id = film[3])}}">{{film[4]}}</a>
                      
             </td>
-            {% if film[2] != None %}
+            {% if film[2] > 0 %}
                 <td>
                     {{film[2]}}
                 </td>

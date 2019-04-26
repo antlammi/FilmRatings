@@ -6,23 +6,23 @@
         <tr style="background-color:#292F33">
             <th>
                 {% if sortby == 'film' and desc == False %}
-                    <a href="{{url_for('user_ratings_sorted', sortby='filmdesc')}}">Film</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='filmdesc')}}">Film</a>
                 {% else %}
-                    <a href="{{url_for('user_ratings_sorted', sortby='film')}}">Film</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='film')}}">Film</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'score' and desc == False %}
-                    <a href="{{url_for('user_ratings_sorted', sortby='scoredesc')}}">Score</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='scoredesc')}}">Score</a>
                 {% else %}
-                    <a href="{{url_for('user_ratings_sorted', sortby='score')}}">Score</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='score')}}">Score</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'review' and desc == False %}
-                    <a href="{{url_for('user_ratings_sorted', sortby='reviewdesc')}}">Review</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='reviewdesc')}}">Review</a>
                 {% else %}
-                    <a href="{{url_for('user_ratings_sorted', sortby='review')}}">Review</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='review')}}">Review</a>
                 {% endif %}
             </th>
         </tr>

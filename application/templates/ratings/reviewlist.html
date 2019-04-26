@@ -5,30 +5,30 @@
         <tr style="background-color:#292F33">
             <th>
                 {% if sortby == 'film' and desc == False %}
-                    <a href="{{url_for('reviews_sorted', sortby='filmdesc')}}">Film</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='filmdesc')}}">Film</a>
                 {% else %}
-                    <a href="{{url_for('reviews_sorted', sortby='film')}}">Film</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='film')}}">Film</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'score' and desc == False %}
-                    <a href="{{url_for('reviews_sorted', sortby='scoredesc')}}">Score</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='scoredesc')}}">Score</a>
                 {% else %}
-                    <a href="{{url_for('reviews_sorted', sortby='score')}}">Score</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='score')}}">Score</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'user' and desc == False %}
-                    <a href="{{url_for('reviews_sorted', sortby='userdesc')}}">Rated by</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='userdesc')}}">Rated by</a>
                 {% else %}
-                    <a href="{{url_for('reviews_sorted', sortby='user')}}">Rated by</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='user')}}">Rated by</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'review' and desc == False %}
-                    <a href="{{url_for('reviews_sorted', sortby='reviewdesc')}}">Title</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='reviewdesc')}}">Title</a>
                 {% else %}
-                    <a href="{{url_for('reviews_sorted', sortby='review')}}">Title</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('reviews_sorted', sortby='review')}}">Title</a>
                 {% endif %}
             </th>
         </tr>

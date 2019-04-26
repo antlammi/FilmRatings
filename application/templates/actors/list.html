@@ -5,24 +5,24 @@
         <tr style="background-color:#292F33">
             <th> 
                 {% if sortby == 'name' and desc == False %}
-                    <a href="{{url_for('actors_sorted', sortby = 'namedesc')}}">Actors</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'namedesc')}}">Actors</a>
                 {% else %}
-                    <a href ="{{url_for('actors_sorted', sortby = 'name')}}">Actors</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href ="{{url_for('actors_sorted', sortby = 'name')}}">Actors</a>
                 {% endif %}
             </th>
             <th>
                 {% if sortby == 'nationality' and desc == False %}
-                    <a href="{{url_for('actors_sorted', sortby = 'nationalitydesc')}}">Nationality</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'nationalitydesc')}}">Nationality</a>
                 {% else %}
-                    <a href="{{url_for('actors_sorted', sortby = 'nationality')}}">Nationality</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'nationality')}}">Nationality</a>
                 {% endif %}
             </th>
             <th>
 
                 {% if sortby == 'age' and desc == False %}
-                    <a href="{{url_for('actors_sorted', sortby = 'agedesc')}}">Age</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'agedesc')}}">Age</a>
                 {% else %}
-                    <a href="{{url_for('actors_sorted', sortby = 'age')}}">Age</a>
+                    <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'age')}}">Age</a>
                 {% endif %}
             </th>
            

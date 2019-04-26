@@ -1,8 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
 
-
-
 <div class="container">
     <div class="row">
         <br/>
@@ -10,8 +8,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="wrap">
-                {% if recent_films != None %}
-                
+                {% if recent_films.__len__() > 0 %}
                     <div style="width:31.5%; height:100%;float:left">
                         <h5>Recent Films</h5>
                         <table class="table table-bordered table-dark">
@@ -32,7 +29,7 @@
                    
                     </div>
                 {% endif %}
-                {% if recent_reviews != None %}
+                {% if recent_reviews.__len__() > 0%}
                
                     <div style="width:65.7%; height:100%;float:right">
                         <h5>Recent Reviews</h5>
@@ -68,7 +65,7 @@
         </div>
     </div>
     <div class="row">
-        {% if top_films != None %}
+        {% if top_films.__len__() > 0 %}
             <div class="col-md">
                 <h5>Top Films</h5>
                 <table class="table table-bordered table-dark">
@@ -91,7 +88,7 @@
                 </table>
             </div>
         {% endif %}
-        {% if top_directors != None %}
+        {% if top_directors.__len__() > 0 %}
             <div class="col-md">
                 <h5>Top Directors</h5>
                 <table class="table table-bordered table-dark">
@@ -114,7 +111,7 @@
                 </table>
             </div>
         {% endif %}
-        {% if top_actors != None %}
+        {% if top_actors.__len__() > 0 %}
             <div class="col-md">
                 <h5>Top Actors</h5>
                 <table class="table table-bordered table-dark">

@@ -83,9 +83,15 @@ class Film(Base):
         top = []
         for row in res:
             if row[5] != None:
-                top.append([row[0], row[1], row[2], row[3], row[4], round(row[5], 2)])
+                if row[2] != None:
+                    top.append([row[0], row[1], row[2], row[3], row[4], round(row[5], 2)])
+                else:
+                    top.append([row[0], row[1], -1, row[3], row[4], round(row[5],2)])
             else :
-                top.append([row[0], row[1], row[2], row[3], row[4], 0.0])
+                if row[2] != None:
+                    top.append([row[0], row[1], row[2], row[3], row[4], 0.0])
+                else :
+                    top.append([row[0], row[1], -1, row[3], row[4], 0.0])
         return top
     
     
