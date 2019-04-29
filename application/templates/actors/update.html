@@ -4,6 +4,9 @@
 <br/>
 <form method="POST" action="{{url_for('actors_update', actor_id = actor_id) }}">
     <table>
+        <style>
+            td {background-color:rgba(0,0,0,0) !important}
+        </style>
         <tr>
             <td>
                 {{ form.name.label(style="color:#999fa3")}}

@@ -3,7 +3,7 @@
 <br/>
 <h3>My Ratings</h1>
     <table class="table table-bordered table-dark">
-        <tr style="background-color:rgb(37, 44, 48)">
+        <tr>
             <th>
                 {% if sortby == 'film' and desc == False %}
                     <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('user_ratings_sorted', sortby='filmdesc')}}">Film</a>
@@ -27,7 +27,7 @@
             </th>
         </tr>
         {% for rating in ratings%}
-        <tr style="background-color:#2c3238; color:#d9dee0">
+        <tr>
             <td> 
               
             <a href="{{ url_for('films_show', film_id=rating[1] )}}">{{rating[0]}}</a>
@@ -39,10 +39,10 @@
                     <a href="{{ url_for('ratings_show', film_id=rating[1], user_id = rating[3])}}">{{rating[6]}}</a>
                 {% endif %}
             </td>
-            <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                    <a style="width:100%" class="btn btn-outline-primary" href="{{url_for('edit_rating_form', film_id=rating[1], user_id=rating[3])}}">Edit</a></td>
-            <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                    <a style="width:100%" class="btn btn-outline-danger" href="{{url_for('ratings_delete_personal', film_id=rating[1], user_id=rating[3])}}">Delete</a></td>
+            <td style="padding:0.5%">
+                    <a style="width:100%" class="btn" href="{{url_for('edit_rating_form', film_id=rating[1], user_id=rating[3])}}">Edit</a></td>
+            <td style="padding:0.5%">
+                    <a style="width:100%; color:rgb(224, 45, 45)" class="btn" href="{{url_for('ratings_delete_personal', film_id=rating[1], user_id=rating[3])}}">Delete</a></td>
         </tr>
             
         {% endfor %}

@@ -4,6 +4,9 @@
 <br/>
 <form method="POST" action="{{url_for('ratings_create') }}">
     <table>
+        <style>
+            td {background-color:rgba(0,0,0,0) !important}
+        </style>
         <tr>
             <td>
                 {{ form.film.label(style="color:#999fa3") }}

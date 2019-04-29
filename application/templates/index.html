@@ -10,12 +10,12 @@
                 <div class="col-md-4" style="padding-left:0;padding-right:1.2em">
                     <h5>Recent Films</h5>
                     <table class="table table-bordered table-dark">
-                        <tr style="background-color:rgb(37, 44, 48)">
-                            <th style="color:#d9dee0">Film</th>
+                        <tr>
+                            <th>Film</th>
                         </tr>
                         {% for film in recent_films %}
                         
-                            <tr style="background-color:#2c3238">
+                            <tr>
                             
                                 <td>
                                     <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
@@ -32,14 +32,14 @@
                    
                     <h5>Recent Reviews</h5>
                     <table class="table table-bordered table-dark">
-                        <tr style="background-color:rgb(37, 44, 48);color:#d9dee0">
+                        <tr>
                             <th>Film</th>
                             <th>Reviewer</th>
                             <th>Score</th>
                             <th>Title</th>
                         </tr>
                         {% for review in recent_reviews %}
-                            <tr style="background-color:#2c3238;color:#d9dee0">
+                            <tr>
                             
                                 <td>
                                     <a href="{{ url_for('films_show', film_id=review[1])}}">{{review[0]}}</a>
@@ -67,12 +67,12 @@
             <div class="col-md-4">
                 <h5>Top Films</h5>
                 <table class="table table-bordered table-dark">
-                    <tr style="background-color:rgb(37, 44, 48); color:#d9dee0">
+                    <tr>
                         <th>Film</th>
                         <th>Rating</th>
                     </tr>
                     {% for film in top_films %}
-                        <tr style="background-color:#2c3238; color:#d9dee0">
+                        <tr>
                         
                             <td>
                                 <a href="{{ url_for('films_show', film_id=film[1])}}">{{film[0]}}</a>
@@ -90,12 +90,12 @@
             <div class="col-md-4">
                 <h5>Top Directors</h5>
                 <table class="table table-bordered table-dark">
-                    <tr style="background-color:rgb(37, 44, 48); color:#d9dee0">
+                    <tr>
                         <th>Director</th>
                         <th>Rating</th>
                     </tr>
                     {% for director in top_directors %}
-                        <tr style="background-color:#2c3238; color:#d9dee0">
+                        <tr>
                         
                             <td>
                                 <a href="{{ url_for('directors_show', director_id=director[1])}}">{{director[0]}}</a>
@@ -113,12 +113,12 @@
             <div class="col-md-4">
                 <h5>Top Actors</h5>
                 <table class="table table-bordered table-dark">
-                    <tr style="background-color:rgb(37, 44, 48); color:#d9dee0">
+                    <tr>
                         <th>Actors</th>
                         <th>Rating</th>
                     </tr>
                     {% for actor in top_actors %}
-                        <tr style="background-color:#2c3238;color:#d9dee0">
+                        <tr>
                         
                             <td>
                                 <a href="{{ url_for('actors_show', actor_id=actor[1])}}">{{actor[0]}}</a>
@@ -140,5 +140,6 @@
             <a class="twitter-timeline" data-theme="dark" data-link-color="#2B7BB9" href="https://twitter.com/KufdonHS/lists/film-twitter?ref_src=twsrc%5Etfw">Film Tweets</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>
+    
 </div>
 {% endblock %}

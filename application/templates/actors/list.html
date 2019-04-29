@@ -2,7 +2,7 @@
 {% block body %}
 <br/>
     <table class="table table-bordered table-dark">
-        <tr style="background-color:rgb(37, 44, 48)">
+        <tr>
             <th> 
                 {% if sortby == 'name' and desc == False %}
                     <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'namedesc')}}">Actors</a>
@@ -25,10 +25,13 @@
                     <a class="btn" style="width:100%;padding-left:0;text-align:left;color:#d9dee0" href="{{url_for('actors_sorted', sortby = 'age')}}">Age</a>
                 {% endif %}
             </th>
-           
+            {% if current_user.urole=="ADMIN" %}
+                <th></th>
+                <th></th>
+            {% endif %}
         </tr>
         {% for actor in actors%}
-        <tr style="background-color:#2c3238; color:#d9dee0">
+        <tr>
             <td><a href="{{url_for('actors_show',  actor_id = actor.id)}}">{{actor.name}}</a></td>
             {% if not actor.nationality == null %}
                 <td>{{actor.nationality}}</td>
@@ -37,13 +40,13 @@
                 <td>{{actor.age}}</td>
             {% endif %} 
             {% if current_user.urole=="ADMIN" %}
-            <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                <a style="width:100%" class="btn btn-outline-primary" href="{{ url_for('actors_edit', actor_id=actor.id )}}">
+            <td style="padding:0.5%">
+                <a style="width:100%" class="btn" href="{{ url_for('actors_edit', actor_id=actor.id )}}">
                     Edit
                 </a>
             </td>
-            <td style="background-color:rgb(28, 36, 40);border:rgb(28, 36, 40);padding:0.5%">
-                <a style="width:100%" class="btn btn-outline-danger" href="{{ url_for('actors_delete', actor_id=actor.id) }}">
+            <td style="padding:0.5%">
+                <a style="width:100%; color:rgb(224, 45, 45)" class="btn" href="{{ url_for('actors_delete', actor_id=actor.id) }}">
                     Delete
                 </a>
             </td>

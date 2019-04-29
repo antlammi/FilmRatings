@@ -21,11 +21,11 @@
                         <div style="width:49%; height:50%;float:left">
                             <h5>Starring</h5>
                             <table class="table table-bordered table-dark">
-                                <tr style="background-color:rgb(37, 44, 48)">
+                                <tr>
                                     <th>Actors</th>
                                 </tr>
                                 {% for actor in actors %}
-                                    <tr style="background-color:#2c3238">
+                                    <tr>
                                         <td><a href="{{ url_for('actors_show', actor_id=actor.id )}}">{{actor.name}}</a></td>
                                     </tr>
                                 {% endfor %}
@@ -42,13 +42,13 @@
                         {% endif %}
                             <h5>Reviews</h5>
                             <table class="table table-bordered table-dark">
-                                <tr style="background-color:rgb(37, 44, 48)">
+                                <tr>
                                     <th>User</th>
                                     <th>Score</th>
                                     <th>Review</th>
                                 </tr>
                                 {% for review in reviews %}
-                                    <tr style="background-color:#2c3238">
+                                    <tr>
                                         <td><a href="{{ url_for('user_profile', user_id=review[0])}}">{{review[2]}}</a></td>
                                         <td>{{review[1]}}</a></td>
                                         <td><a href="{{ url_for('ratings_show', film_id=film.id, user_id = review[0] )}}" style="font-size:100%">{{review[3]}}</a></td>
@@ -87,12 +87,16 @@
     </div>
     <br/>
     <div class="row">
+       
         {% if user_rating == -1 %}
         {% elif user_rating == None%}
             <div class="col-sm">
                 <h5>Rate this film</h5>
                 <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
                     <table>
+                        <style>
+                            td {background-color:rgba(0,0,0,0)}
+                        </style>
                         <tr>
                             <td style="font-size:120%">
                                 {{rf.score.label(style="color:#999fa3")}}
@@ -112,11 +116,11 @@
               
         {% else %}
             <div class="col-sm">
-                <table>
+                <table>      
                     <tr>
-                        <td style="font-size:120%;padding-right:1em">Your rating: <strong>{{user_rating.score}}</strong></td>
-                        <td><a class="btn btn-outline-primary btn-sm" href="{{ url_for('edit_rating_form', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Edit </a></td>
-                        <td><a class="btn btn-outline-danger btn-sm" href="{{ url_for('ratings_delete_personal', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Delete</a></td>
+                        <td style="font-size:120%;padding-right:1em; background-color:rgba(0,0,0,0)">Your rating: <strong>{{user_rating.score}}</strong></td>
+                        <td style="background-color:rgba(0,0,0,0)"><a class="btn btn-outline-primary" href="{{ url_for('edit_rating_form', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Edit </a></td>
+                        <td style="background-color:rgba(0,0,0,0)"><a class="btn btn-outline-danger btn-sm" href="{{ url_for('ratings_delete_personal', film_id=user_rating.film_id, user_id = user_rating.user_id)}}">Delete</a></td>
                     </tr>
                 </table>
             </div>

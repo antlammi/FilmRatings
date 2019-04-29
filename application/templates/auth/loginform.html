@@ -6,6 +6,9 @@
 
 <form method="POST" action="{{ url_for('auth_login') }}">
     <table>
+        <style>
+            td {background-color:rgba(0,0,0,0) !important}
+        </style>
         <tr>
             <td>
                 {{ form.username.label(style="color:#999fa3")}}
