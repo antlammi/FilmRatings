@@ -12,7 +12,7 @@ Sovellukseen voi tällä hetkellä luoda omat tunnukset, joilla voi vapaasti kä
 Username: **admin**     
 Password: **admin**
 ## Asennusohjeet
-Mikäli haluaa ladata sovelluksen omalle koneelleen, selainversion käyttämisen sijaan, onnistuu tämäkin.
+Mikäli haluaa ladata sovelluksen omalle koneelleen, herokuversion käyttämisen sijaan, onnistuu tämäkin.
 Aloita kloonaamalla ensin git repositorion omalle koneelle. Tämän jälkeen tulee luoda hakemiston sisälle python virtuaaliympäristö komennolla       
         
         python3 -m venv venv
