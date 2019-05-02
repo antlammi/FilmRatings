@@ -35,7 +35,7 @@ def directors_sorted(sortby):
         directors = sorted(directors, key=lambda director:director.name.split()[-1])
     
     if ('age' in sortby):
-        directors = sorted(directors, key=lambda director:director.age)
+        directors = sorted(directors, key=lambda director: director.age or 0)
 
     if ('nationality' in sortby):
         directors = sorted(directors, key =lambda director:director.nationality)

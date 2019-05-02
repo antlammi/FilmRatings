@@ -33,12 +33,16 @@
         {% for actor in actors%}
         <tr>
             <td><a href="{{url_for('actors_show',  actor_id = actor.id)}}">{{actor.name}}</a></td>
-            {% if not actor.nationality == null %}
-                <td>{{actor.nationality}}</td>
-            {% endif %}
-            {% if not actor.age == null %}
-                <td>{{actor.age}}</td>
-            {% endif %} 
+            <td>
+                {% if not actor.nationality == None %}
+                    {{actor.nationality}}
+                {% endif %}
+            </td>
+            <td>
+                {% if not actor.age == None %}
+                    {{actor.age}}
+                {% endif %} 
+            </td>   
             {% if current_user.urole=="ADMIN" %}
             <td style="padding:0.5%">
                 <a style="width:100%" class="btn" href="{{ url_for('actors_edit', actor_id=actor.id )}}">

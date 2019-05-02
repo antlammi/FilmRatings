@@ -35,7 +35,7 @@ def actors_sorted(sortby):
         actors= sorted(actors, key=lambda actor:actor.name.split()[-1])
     
     if ('age' in sortby):
-        actors = sorted(actors, key=lambda actor:actor.age)
+        actors = sorted(actors, key=lambda actor:actor.age or 0)
 
     if ('nationality' in sortby):
         actors = sorted(actors, key =lambda actor:actor.nationality)

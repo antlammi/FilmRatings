@@ -32,12 +32,16 @@
         {% for director in directors%}
         <tr>
             <td><a href="{{url_for('directors_show', director_id = director.id)}}">{{director.name}}</a></td>
-            {% if not director.nationality == null %}
-                <td>{{director.nationality}}</td>
-            {% endif %}
-            {% if not director.age == null %}
-                <td>{{director.age}}</td>
-            {% endif %} 
+            <td>
+                {% if not director.nationality == None %}
+                    {{director.nationality}}
+                {% endif %}
+            </td>
+            <td>
+                {% if not director.age == None %}
+                    {{director.age}}
+                {% endif %} 
+            </td>
             {% if current_user.urole=="ADMIN" %}
             <td style="padding:0.5%">
                 <a style="width:100%" class="btn"href="{{ url_for('directors_edit', director_id=director.id )}}">
