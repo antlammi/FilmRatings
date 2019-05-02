@@ -86,7 +86,7 @@ class Film(Base):
         res = db.engine.execute(stmt)
         top = []
         #This started off relatively clean but has since become a mess. Essentially "None" values don't work with how I order lists so they
-        #are replaced with -1 or "None" where relevant. On top of average ratings of None cannot be rounded. I'm sure there's a much cleaner
+        #are replaced with -1 or "None" where relevant. Also, average ratings of None cannot be rounded. I'm sure there's a much cleaner
         #way to do this but as the project is essentially over now, I won't change it.  
         for row in res:
             if row[5] != None:
