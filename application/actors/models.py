@@ -6,7 +6,7 @@ class Actor(Base):
     
     name = db.Column(db.String(400), nullable=False)
     nationality = db.Column(db.String(400), nullable = True)
-    age = db.Column(db.String(3), nullable = True)
+    age = db.Column(db.Integer, nullable = True)
     bio = db.Column(db.String(1200), nullable = True)
     films = db.relationship("FilmActor", cascade="all, delete-orphan")
 

@@ -39,10 +39,11 @@
         {% for film in films%}
         <tr>
             <td><a href="{{ url_for('films_show', film_id=film[0] )}}">{{film[1]}}</a></td>
+            
             <td>
-               
-                <a href="{{url_for('directors_show', director_id = film[3])}}">{{film[4]}}</a>
-                     
+                {% if film[4] != "None"%}
+                    <a href="{{url_for('directors_show', director_id = film[3])}}">{{film[4]}}</a>   
+                {% endif %} 
             </td>
             {% if film[2] > 0 %}
                 <td>

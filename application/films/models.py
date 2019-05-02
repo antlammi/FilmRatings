@@ -73,25 +73,42 @@ class Film(Base):
     def films_with_ratings():
         ##couldn't figure out a statement that worked both locally and on heroku, local one could be a lot cleaner but just did bare minimum
         if os.environ.get("HEROKU"):
-            stmt = text("SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
-            "LEFT JOIN Rating on Rating.film_id = id WHERE Director.id = film.director_id GROUP BY Film.id, director.name ORDER BY film.id")
+            stmt = text("SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Film "
+                    "LEFT JOIN Rating on Rating.film_id = id "
+                    "LEFT JOIN Director ON Director.id = film.director_id "
+                    "GROUP BY Film.id, director.name ORDER BY film.id")
         else:
-            stmt = text("SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film "
-            "LEFT JOIN Rating on Rating.film_id = film.id WHERE Director.id = film.director_id GROUP BY Film.id, director.name ORDER BY film.id")
+            stmt = text("SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Film "
+                    "LEFT JOIN Rating on Rating.film_id = film.id "
+                    "LEFT JOIN Director ON Director.id = film.director_id "
+                    "GROUP BY Film.id, director.name ORDER BY film.id")
 
         res = db.engine.execute(stmt)
         top = []
+        #This started off relatively clean but has since become a mess. Essentially "None" values don't work with how I order lists so they
+        #are replaced with -1 or "None" where relevant. On top of average ratings of None cannot be rounded. I'm sure there's a much cleaner
+        #way to do this but as the project is essentially over now, I won't change it.  
         for row in res:
             if row[5] != None:
                 if row[2] != None:
-                    top.append([row[0], row[1], row[2], row[3], row[4], round(row[5], 2)])
-                else:
+                    if row[4] != None:
+                        top.append([row[0], row[1], row[2], row[3], row[4], round(row[5], 2)])
+                    else:
+                        top.append([row[0], row[1], row[2], row[3], "None" , round(row[5], 2)])
+                elif row[4] != None:
                     top.append([row[0], row[1], -1, row[3], row[4], round(row[5],2)])
+                else:
+                    top.append([row[0], row[1], -1, row[3], "None", round(row[5], 2)])
             else :
                 if row[2] != None:
-                    top.append([row[0], row[1], row[2], row[3], row[4], 0.0])
-                else :
+                    if row[4] != None:
+                        top.append([row[0], row[1], row[2], row[3], row[4], 0.0])
+                    else: 
+                        top.append([row[0], row[1], row[2], row[3], "None", 0.0])
+                elif row[4] != None:
                     top.append([row[0], row[1], -1, row[3], row[4], 0.0])
+                else :
+                    top.append([row[0], row[1], -1, row[3], "None", 0.0])
         return top
     
     

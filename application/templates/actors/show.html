@@ -20,7 +20,7 @@
                 <th>Films</th>
             </tr>
             {% for film in films %}
-                <tr style="background-color:#2c3238">
+                <tr>
                     <td>
                         <a href="{{url_for('films_show', film_id=film.id)}}">{{film.name}}</a>
                     </td>
