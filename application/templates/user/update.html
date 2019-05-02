@@ -42,6 +42,9 @@
                             {% for error in form.username.errors %}
                                 <li>{{ error }}</li>
                             {% endfor %}
+                            {% if error != None %}
+                                <li>{{ error }}</li>
+                            {% endif %}
                         </td>
                     </tr>
                   

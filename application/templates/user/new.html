@@ -38,6 +38,14 @@
                         <td>
                             {{form.username(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
                         </td>
+                        <td>
+                            {% for error in form.username.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                            {% if error != None %}
+                                <li>{{ error }}</li>
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -46,6 +54,11 @@
                         <td>       
                             {{form.password(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
                         </td> 
+                        <td>
+                            {% for error in form.password.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -53,6 +66,11 @@
                         </td>
                         <td>       
                             {{form.bio(cols=70, rows=3, style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+                        </td>
+                        <td>
+                            {% for error in form.bio.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
                         </td> 
                     </tr>
                     <tr><td></td>
