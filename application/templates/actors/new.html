@@ -9,39 +9,54 @@
     <table>
         <tr>
             <td>
-                {{ form.name.label(style="color:#999fa3")}}
+                {{ form.name.label(style="color:#d9dee0")}}
             </td>
             <td>
-                {{ form.name(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+                {{ form.name(style="width:100%;background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
             </td>
             <td>
                 {% for error in form.name.errors %}
-                <li>{{ error }}</li>
+                    <li>{{ error }}</li>
                 {% endfor %}
             </td>
         </tr>
         <tr> 
             <td>
-                {{ form.nationality.label(style="color:#999fa3")}}
+                {{ form.nationality.label(style="color:#d9dee0")}}
             </td>
             <td>
-                {{form.nationality(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{form.age.label(style="color:#999fa3")}}
+                {{form.nationality(style="width:100%;background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
             </td>
             <td>
-                {{form.age(style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
             </td>
         </tr>
         <tr>
             <td>
-                {{form.bio.label(style="color:#999fa3")}}
+                {{form.age.label(style="color:#d9dee0")}}
             </td>
             <td>
-                {{form.bio(cols=70, rows=3, style="width:100%;background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+                {{form.age(style="width:100%;background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
+            </td>
+            <td>
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{form.bio.label(style="color:#d9dee0")}}
+            </td>
+            <td>
+                {{form.bio(cols=70, rows=3, style="width:100%;background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
+            </td>
+            <td>
+                {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
             </td>
         </tr>
         <tr><td></td>

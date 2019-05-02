@@ -9,10 +9,10 @@
         </style>
         <tr>
             <td>
-                {{ form.name.label(style="color:#999fa3")}}
+                {{ form.name.label(style="color:#d9dee0")}}
             </td>
             <td>
-                {{ form.name(style="background-color:#2c3238;color:white;border-color:#292F33")}}
+                {{ form.name(style="background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
             </td>
             <td>
                 {% for error in form.name.errors %}
@@ -22,47 +22,47 @@
         </tr>
         <tr>
             <td>
-                {{ form.director.label(style="color:#999fa3")}}
+                {{ form.director.label(style="color:#d9dee0")}}
             </td>
             <td>
-                {{form.director(style="background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+                {{form.director(style="background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
             </td>
         </tr>
         <tr>
-            <td> {{ form.actors.label(style="color:#999fa3")}}</td>
+            <td> {{ form.actors.label(style="color:#d9dee0")}}</td>
             <td>
-                {{ form.actors(style="background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
+                {{ form.actors(style="background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}
             </td>
         </tr> 
         <tr>
-                <td>{{ form.description.label(style="color:#999fa3")}}</td>
-        
-                <td>{{form.description(cols=70, rows=3, style="background-color:#2c3238;color:white;border-color:#292F33")}}</td>
-                <td>
-                    {% for error in form.description.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </td>
+            <td>{{ form.description.label(style="color:#d9dee0")}}</td>
+    
+            <td>{{form.description(cols=70, rows=3, style="background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}</td>
+            <td>
+                {% for error in form.description.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
         </tr>
         <tr>
-                <td>{{ form.year.label(style="color:#999fa3")}}</td>
-        
-                <td>{{form.year(style="background-color:#2c3238;color:white;border-color:#292F33")}}</td>
-                <td>
-                    {% for error in form.year.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </td>
+            <td>{{ form.year.label(style="color:#d9dee0")}}</td>
+    
+            <td>{{form.year(style="background-color:#d9dee0;color:white;border-color:#292F33")}}</td>
+            <td>
+                {% for error in form.year.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
         </tr>
         <tr>
-                <td>{{ form.poster.label(style="color:#999fa3")}}</td>
-        
-                <td>{{form.poster(style="background-color:#2c3238;color:white;border-color:#292F33")}}</td>
-                <td>
-                    {% for error in form.poster.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </td>
+            <td>{{ form.poster.label(style="color:#d9dee0")}}</td>
+    
+            <td>{{form.poster(style="background-color:#2c3238;color:#d9dee0;border-color:#292F33")}}</td>
+            <td>
+                {% for error in form.poster.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </td>
         </tr>
         <tr><td></td>
                 <td colspan="2">
