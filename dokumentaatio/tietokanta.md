@@ -25,9 +25,11 @@
     password VARCHAR(144) NOT NULL, 
     urole VARCHAR(80) NOT NULL, 
     bio VARCHAR(1200), 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (username)
   );
   ```
+  
 ##### Näyttelijä
   ```
   CREATE TABLE actor (
