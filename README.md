@@ -1,7 +1,7 @@
 # FilmRatings
 Aineopintojen harjoitustyö: Tietokantasovellus kurssia varten tehty elokuva-arvostelu sovellus.   
     
-Käyttäjä voi lisätä sovelluksen avulla elokuville pisteytyksiä (rating), sekä kirjoittaa niille kokonaisia arvosteluja (review). Sovelluksesta voi hakea myös elokuvia elokuvan nimen, ohjaajan, tai näyttelijöiden perusteella. (https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Toiminnallisuus.md)        
+Käyttäjä voi lisätä sovelluksen avulla elokuville pisteytyksiä (rating), sekä kirjoittaa niille kokonaisia arvosteluja (review). Sovelluksesta voi hakea myös elokuvia elokuvan nimen, ohjaajan, tai näyttelijöiden perusteella.      
 [Sovellus Heroku-palvelussa](https://shielded-hamlet-29677.herokuapp.com/)      
 [User Storyt](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/userstoryt.md)      
 [Informaatiota tietokannasta](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/tietokanta.md)      
