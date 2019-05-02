@@ -94,17 +94,14 @@
                 <h5>Rate this film</h5>
                 <form method="POST" action="{{url_for('ratings_create_quick', film_id = film.id) }}">
                     <table>
-                        <style>
-                            td {background-color:rgba(0,0,0,0)}
-                        </style>
                         <tr>
-                            <td style="font-size:120%">
+                            <td style="font-size:120%; background-color:rgba(0,0,0,0)">
                                 {{rf.score.label(style="color:#999fa3")}}
                             </td>
-                            <td style="font-size:100%; padding-left:0.5em" >
+                            <td style="font-size:100%; padding-left:0.5em; background-color:rgba(0,0,0,0)" >
                                 {{rf.score(style="background-color:#2c3238;color:#999fa3;border-color:#292F33")}}
                             </td>
-                            <td style="padding-left:0.5em;" colspan="2">
+                            <td style="padding-left:0.5em;; background-color:rgba(0,0,0,0)" colspan="2">
                                 <Button class="btn btn-outline-primary" style="padding:0.2em" type="submit" >Submit</Button>
                             </td>
                         </tr> 
