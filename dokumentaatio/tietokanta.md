@@ -29,7 +29,7 @@
     UNIQUE (username)
   );
   ```
-  >
+  
 ##### Näyttelijä
   ```
   CREATE TABLE actor (
