@@ -1,5 +1,5 @@
 ### Tietokantakaavio
-![tietokantakaavio](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Tietokantakaavio%20v2.png)
+![tietokantakaavio](https://github.com/antlammi/FilmRatings/blob/master/dokumentaatio/Tietokantakaavio%20v3.png)
 ### Schema
 ##### Ohjaaja
   ```
@@ -9,7 +9,7 @@
     date_modified DATETIME, 
     name VARCHAR(400) NOT NULL, 
     nationality VARCHAR(400), 
-    age VARCHAR(3), 
+    age INTEGER, 
     bio VARCHAR(1200), 
     PRIMARY KEY (id)
   );
@@ -36,7 +36,7 @@
     date_modified DATETIME, 
     name VARCHAR(400) NOT NULL, 
     nationality VARCHAR(400), 
-    age VARCHAR(3), 
+    age INTEGER, 
     bio VARCHAR(1200), 
     PRIMARY KEY (id)
   );
