@@ -1,3 +1,4 @@
+### User Story ja SQL-kyselyt
 - Käyttäjänä voin tarkastella listaa palveluun hiljattain lisätyistä elokuvista/arvosteluista
   - Elokuvat
   ```
@@ -32,14 +33,14 @@
 - Käyttäjänä voin tarkastella tietokannasta löytyvien elokuvien listaa keskivertoarvioiden kanssa
   - Heroku versio
   ```
-  SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film 
-  LEFT JOIN Rating on Rating.film_id = id WHERE Director.id = film.director_id 
+  SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Film 
+  LEFT JOIN Rating on Rating.film_id = id LEFT JOIN Director ON Director.id = film.director_id
   GROUP BY Film.id, director.name ORDER BY film.id
   ```
   - Lokaali versio
   ```
-  SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Director, Film 
-  LEFT JOIN Rating on Rating.film_id = film.id WHERE Director.id = film.director_id 
+  SELECT film.id, film.name, film.year, director_id, director.name, avg(Rating.score) AS avg FROM Film 
+  LEFT JOIN Rating on Rating.film_id = film.id LEFT JOIN Director ON Director.id = film.director_id 
   GROUP BY Film.id, director.name ORDER BY film.id
   ```
   - Tämän listan voi järjestää nimen, ohjaajan nimen, julkaisuvuoden tai keskivertoarvion perusteella (tehdään pythonilla)
