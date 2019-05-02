@@ -14,7 +14,7 @@
       td {background-color: #15273b8f;color:#d9dee0}
       
     </style>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-4">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top mb-4" style="background-color:#15283a !important">
       <a href="/" class="navbar-brand" href="#">FilmRatings</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -68,7 +68,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{current_user.name}}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navDropdown" style="background-color:#2c3238">
+                <div class="dropdown-menu" aria-labelledby="navDropdown" style="background-color:#152b3f">
                     {% if current_user.urole == "DEFAULT" %}
                     <a class="dropdown-item" href="{{url_for('user_ratings_index') }}" style="color:#6c757d">My Ratings</a>
                     {% endif %}
